@@ -4,16 +4,17 @@ body {
 
 .league-container {
   display: flex;
-  margin-left: 30px;
+  justify-content: left;
+  margin-left: 60px;
 }
 
 .league-card {
   position: relative;
-  width: 370px;
-  height: 180px;
+  width: 400px;
+  height: 195px;
   border-radius: 20px;
   overflow: hidden; /* Ensures the image doesn't exceed the card size */
-  margin-right: 40px;
+  margin-right: 50px;
 }
 
 .league-card img {

@@ -8,7 +8,8 @@ body {
 /* Events container, flexbox, justify content space between */
 .events-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
+  margin-left: 60px;
 }
 
 /* Event Card, white background, 400 width and 600 height */
