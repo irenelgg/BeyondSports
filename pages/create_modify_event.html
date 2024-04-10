@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create/Modify Event</title>
     <link rel="stylesheet" href="../styles/create_modify_event.css">
+    <link rel="stylesheet" href="../styles/navbar.css" />
+
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-logo">Beyond Sports</div>
-        <div class="search-container">
-            <input type="text" placeholder="Search for anything" class="search-input">
-            <button type="submit" class="search-button">Search</button>
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
         </div>
-        <div class="nav-links">
-            <a href="#home" class="nav-item">Home</a>
-            <a href="#myevents" class="nav-item">My Events</a>
-            <a href="#communities" class="nav-item">Communities</a>
-            <a href="#contacts" class="nav-item">Contacts</a>
-            <a href="#create" class="nav-item create-button">Create</a>
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
         </div>
-    </nav>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">My Events</a></li>
+          <li><a href="#">My Leagues</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="#">Event</a>
+            <a href="#">League</a>
+          </div>
+        </div>
+      </nav>
 
     <div class="container">
         <h1>Create/Modify Event:</h1>
