@@ -1,28 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>League Card</title>
-    <link rel="stylesheet" href="../styles/leaguecard.css" />
-  </head>
-  <body>
-    <div class="league-container">
-      <div class="league-card">
-        <img src="../assets/images/league1.png" />
-        <div class="league-info">
-          <h3>PowerUp League</h3>
-          <p>April 7-16</p>
-        </div>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create/Modify League</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../styles/create_modify_league.css">
+    <link rel="stylesheet" href="../styles/navbar.css" />
 
-      <div class="league-card">
-        <img src="../assets/images/league2.png" />
-        <div class="league-info">
-          <h3>Hoopers League</h3>
-          <p>April 9-11</p>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
         </div>
-      </div>
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">My Events</a></li>
+          <li><a href="#">My Leagues</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="#">Event</a>
+            <a href="#">League</a>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+        <h1>Create/Modify League:</h1>
+        <form id="league-form">
+            <div class="form-section">
+                <label for="image-upload" class="upload-area">
+                    <input type="file" id="image-upload" accept="image/*" hidden>
+                    Drag & Drop or select files from device
+                </label>
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group">
+                    <label for="league-name">League Name</label>
+                    <input type="text" id="league-name" placeholder="League Name...">
+                </div>
+
+                <div class="input-group">
+                    <label>Prize</label>
+                    <input type="text" id="prize" placeholder="Prize...">
+                </div>
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group-dates">
+                    <label for="date-range">Event Dates</label>
+                    <input type="text" id="date-range" placeholder="Select Date Range..." readonly>
+                </div>
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group">
+                    <label for="spots">Spots</label>
+                    <input type="number" id="spots" placeholder="Spots...">
+                </div>
+                
+                <div class="input-group">
+                    <label for="organizer">Organizer</label>
+                    <input type="text" id="organizer" placeholder="Organizer...">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <label for="rules">Rules and Requirements</label>
+                <textarea id="rules" placeholder="Rules and Requirements..."></textarea>
+            </div>
+            
+            <div class="events-container">
+                <div>
+                    <h2>Events:</h2>
+                </div>
+                <div class="form-section event-right">
+                    <button type="button" id="add-event-button" class="add-event-btn">+ Add Event</button>
+                </div>
+            </div>
+            
+            <div class="event-list">
+                <!-- Dynamically added events will go here -->
+            </div>
+
+            <!-- <div class="form-section">
+                <button type="submit" class="submit-btn">Save League</button>
+            </div> -->
+
+            <button type="submit" class="submit-btn">Create League</button>
+        </form>
     </div>
-  </body>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr("#date-range", {
+                mode: "range",
+                dateFormat: "F j, Y"
+            });
+        });
+    </script>
+
+</body>
 </html>
