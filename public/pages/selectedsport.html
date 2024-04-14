@@ -145,13 +145,23 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Fetch events
         fetch("/events")
           .then((response) => response.json())
-          .then((events) => {
-            const container = document.querySelector(".events-container");
-            container.innerHTML = ""; // Clear existing content
-            events.forEach((event) => {
-              const eventHtml = `
+          .then((events) => updateEvents(events))
+          .catch((error) => console.error("Error fetching events:", error));
+
+        // Fetch leagues
+        fetch("/leagues")
+          .then((response) => response.json())
+          .then((leagues) => updateLeagues(leagues))
+          .catch((error) => console.error("Error fetching leagues:", error));
+
+        function updateEvents(events) {
+          const container = document.querySelector(".events-container");
+          container.innerHTML = ""; // Clear existing content
+          events.forEach((event) => {
+            const eventHtml = `
                       <div class="event-card">
                           <div class="event-card-picture">
                               <img src="${
@@ -186,10 +196,29 @@
                           </div>
                       </div>
                   `;
-              container.insertAdjacentHTML("beforeend", eventHtml);
-            });
-          })
-          .catch((error) => console.error("Error fetching events:", error));
+            container.insertAdjacentHTML("beforeend", eventHtml);
+          });
+        }
+
+        function updateLeagues(leagues) {
+          const leagueContainer = document.querySelector(".league-container");
+          leagueContainer.innerHTML = ""; // Clear existing content
+          leagues.forEach((league) => {
+            const leagueHtml = `
+                      <div class="league-card">
+                          <img src="${
+                            league.imageUrl ||
+                            "../assets/images/default_league.png"
+                          }" />
+                          <div class="league-info">
+                              <h3>${league.leagueName}</h3>
+                              <p>${league.eventDates}</p>
+                          </div>
+                      </div>
+                  `;
+            leagueContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          });
+        }
       });
     </script>
   </body>

@@ -6,11 +6,14 @@ const path = require('path');
 const port = 3000;
 
 // Persistent database connection
+// Persistent database connection
 const db = new sqlite3.Database('./events.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
     if (err) {
         console.error(err.message);
     } else {
         console.log('Connected to the events database.');
+
+        // Create the events table if it doesn't exist
         db.run(`CREATE TABLE IF NOT EXISTS events (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             eventName TEXT,
@@ -28,7 +31,25 @@ const db = new sqlite3.Database('./events.db', sqlite3.OPEN_READWRITE | sqlite3.
             if (err) {
                 console.error(err.message);
             } else {
-                console.log('Table created or already exists.');
+                console.log('Events table created or already exists.');
+            }
+        });
+
+        // Create the leagues table if it doesn't exist
+        db.run(`CREATE TABLE IF NOT EXISTS leagues (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            leagueName TEXT,
+            prize TEXT,
+            eventDates TEXT,
+            spots INTEGER,
+            organizer TEXT,
+            rules TEXT,
+            imageUrl TEXT
+        )`, (err) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log('League table created or already exists.');
             }
         });
     }
@@ -82,6 +103,36 @@ app.get('/events', (req, res) => {
         }
     });
 });
+
+app.post('/league', upload.single('image'), (req, res) => {
+    const { leagueName, prize, eventDates, spots, organizer, rules } = req.body;
+    const imageUrl = req.file ? `../assets/images/${req.file.filename}` : '';
+
+    const sql = `INSERT INTO leagues (leagueName, prize, eventDates, spots, organizer, rules, imageUrl) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+    db.run(sql, [leagueName, prize, eventDates, spots, organizer, rules, imageUrl], (err) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Failed to add league');
+        } else {
+            res.send('League added successfully!');
+        }
+    });
+});
+
+app.get('/leagues', (req, res) => {
+    db.all(`SELECT * FROM leagues`, [], (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send('Failed to retrieve leagues');
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
