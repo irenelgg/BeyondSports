@@ -1,0 +1,98 @@
+/* Variable for special color */
+:root {
+  --primary-color: #149bfc;
+}
+body {
+  font-family: "Inter", sans-serif;
+}
+/* Events container, flexbox, justify content space between */
+.events-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: left;
+  margin-left: 60px;
+}
+
+/* Event Card, white background, 400 width and 600 height */
+.event-card {
+  width: 400px;
+  height: 600px;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+/* Event Card Picture, same width as container, and adjust heigth accordingly */
+.event-card-picture img {
+  width: 100%;
+  height: 225px;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Event Card Content, padding 20px */
+.event-card-content {
+  padding: 30px;
+}
+
+/* Event Card Title, font size 24px, font weight bold */
+.event-card-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Event Card Organizer and Location, font size 16px, color grey */
+.event-card-organizer,
+.event-card-location {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+/* Event Card Description, font size 16px, color grey */
+.event-card-description {
+  font-size: 16px;
+  color: grey;
+  margin: 20px 0;
+}
+
+/* Event Card Time */
+.event-card-time {
+  text-align: center;
+}
+
+/* Time Shape */
+.time-shape {
+  background-color: white; /* White background for the 'button' */
+  color: var(--primary-color); /* Blue text color */
+  padding: 8px 16px; /* Padding inside the 'button' */
+  border: 2px solid var(--primary-color); /* Blue border for the 'button' */
+  border-radius: 10px; /* Rounded corners for the 'button' */
+  font-weight: bold; /* Optional: Makes the text bold */
+}
+
+.card-divider {
+  border: 0; /* Remove default border */
+  height: 1px; /* Set the height of the line */
+  background-color: #cccccc; /* Light grey color */
+  margin: 5px 0; /* Add some vertical spacing around the line */
+}
+
+.event-card-rsvp {
+  background-color: var(--primary-color); /* Blue background */
+  color: white; /* White text */
+  text-align: center; /* Center the text inside */
+  padding: 8px 16px; /* Add some padding around the text */
+  border-radius: 10px; /* Slightly rounded corners for the button */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  margin-top: 15px; /* Add some space above the RSVP button */
+  font-weight: bold; /* Optional: Makes the text bold */
+}

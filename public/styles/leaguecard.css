@@ -1,0 +1,34 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.league-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin-left: 60px;
+}
+
+.league-card {
+  position: relative;
+  width: 400px;
+  height: 195px;
+  border-radius: 20px;
+  overflow: hidden; /* Ensures the image doesn't exceed the card size */
+  margin-right: 50px;
+  margin-top: 50px;
+}
+
+.league-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This makes sure the image covers the card area without stretching */
+}
+
+.league-info {
+  position: absolute;
+  bottom: 0; /* Aligns the text to the bottom of the card */
+  color: white; /* Text color */
+  width: 100%; /* Ensures the text container matches the card width */
+  padding: 0 0px 5px 150px; /* Adds some spacing inside the text container */
+}
