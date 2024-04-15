@@ -48,3 +48,25 @@
 }
 
 
+
+
+.exit{
+  background-color: white;
+  color: var(--primary-color);
+  border: black;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 16%;
+  padding: 10px 0;
+  /* Vertical padding to control height */
+  text-align: center;
+  /* Centers text horizontally */
+  display: inline-block;
+  /* Allows the use of text-align */
+  font-size: 15px;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  /* Includes padding and border in the element's total width and height */
+}
+
+
