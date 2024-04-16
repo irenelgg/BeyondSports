@@ -116,3 +116,14 @@ body {
   font-weight: 600;
   font-size: 50px;
 }
+
+.myEvent-title {
+  margin-left: 60px;
+  color: var(--primary-color);
+}
+
+.myEvent-title h2 {
+  font-size: 50px;
+  font-weight: 600;
+  margin-top: 20px;
+}
