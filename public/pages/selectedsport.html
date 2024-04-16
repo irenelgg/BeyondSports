@@ -220,6 +220,27 @@
           });
         }
       });
+
+
+      //TODO: need to make sure that each event card leads to its specific event page and also updates the event page with the correct event information
+      document.addEventListener("DOMContentLoaded", function (event) {
+        all_events = document.querySelectorAll(".event-card");
+        all_events.forEach((event) => {
+          event.addEventListener("click", function (event) {
+            window.location.href = "event_opened.html";
+        });
+      });
+      })
+
+      //TODO: need to make sure that each league card leads to its specific league page and also updates the league page with the correct league information
+      document.addEventListener("DOMContentLoaded", function (event) {
+        all_events = document.querySelectorAll(".league-card");
+        all_events.forEach((event) => {
+          event.addEventListener("click", function (event) {
+            window.location.href = "event_opened.html"; //TODO: need to change this to league_opened.html
+        });
+      });
+      })
     </script>
   </body>
 </html>
