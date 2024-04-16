@@ -1,0 +1,13 @@
+.sports-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  
+  .sport-icon {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 19%;
+  }

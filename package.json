@@ -1,0 +1,16 @@
+{
+    "name": "cs160-app",
+    "version": "1.0.0",
+    "description": "Hello friend!",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Sumit Choudhary",
+    "license": "UNLICENSED",
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
+  
