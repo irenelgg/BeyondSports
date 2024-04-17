@@ -50,8 +50,10 @@
               id="image-upload"
               name="image"
               accept="image/*"
+              hidden
             />
             Drag & Drop or select files from device
+            <span id="file-name"></span>
           </label>
         </div>
 
@@ -122,6 +124,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+      document
+        .getElementById("image-upload")
+        .addEventListener("change", function () {
+          const fileInput = this;
+          const fileNameSpan = document.getElementById("file-name");
+          if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            fileNameSpan.textContent = `Selected file: ${fileName}`; // Display file name
+          } else {
+            fileNameSpan.textContent = ""; // Clear when no file is selected
+          }
+        });
+
       document.addEventListener("DOMContentLoaded", function () {
         flatpickr("#date-range", {
           mode: "range",
