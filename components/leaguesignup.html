@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Team Modal</title>
+    <link rel="stylesheet" href="../styles/leaguesignup.css">
+</head>
+<body>
+    <div id="main-content">
+        <!-- Your main page content goes here -->
+    </div>
+
+    <!-- Modal Backdrop -->
+    <div id="modal-overlay"></div>
+
+    <!-- Team Information Modal -->
+    <div id="team-modal" class="modal">
+        <h2>Please input the following information:</h2>
+        <p class="input-title">Team Name</p>
+        <input type="text" placeholder="Team Name..." name="team-name" id="team-name-input">
+        <!-- Repeat for each team member -->
+        <p class="input-title">Team Member 1</p>
+        <div class="input-group">
+            <input type="text" placeholder="Team Member 1 Name..." name="member1-name">
+            <input type="email" placeholder="Team Member 1 Email..." name="member1-email">
+        </div>
+        <p class="input-title">Team Member 2</p>
+        <div class="input-group">
+            <input type="text" placeholder="Team Member 2 Name..." name="member1-name">
+            <input type="email" placeholder="Team Member 2 Email..." name="member1-email">
+        </div>
+        <p class="input-title">Team Member 3</p>
+        <div class="input-group">
+            <input type="text" placeholder="Team Member 3 Name..." name="member1-name">
+            <input type="email" placeholder="Team Member 3 Email..." name="member1-email">
+        </div>
+        <p class="input-title">Team Member 4</p>
+        <div class="input-group">
+            <input type="text" placeholder="Team Member 4 Name..." name="member1-name">
+            <input type="email" placeholder="Team Member 4 Email..." name="member1-email">
+        </div>
+        <p class="input-title">Team Member 5</p>
+        <div class="input-group">
+            <input type="text" placeholder="Team Member 5 Name..." name="member1-name">
+            <input type="email" placeholder="Team Member 5 Email..." name="member1-email">
+        </div>
+        <!-- Add inputs for other members -->
+        <p>You will be accepting all rules and requirements. An invite will also be sent to all team members via email.</p>
+        <div class="modal-buttons">
+            <button class="no-button">NO, GO BACK</button>
+            <button class="yes-button">YES, JOIN</button>
+        </div>
+    </div>
+
+    <script src="js/modal.js"></script>
+</body>
+</html>

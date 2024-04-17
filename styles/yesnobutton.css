@@ -1,0 +1,69 @@
+/* Main content and body styles here */
+body {
+    font-family: Arial, sans-serif;
+}
+
+#main-content.blur {
+    filter: blur(3px);
+}
+
+.question {
+    color: #1d96ec;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+/* Modal overlay and modal styles */
+.hidden {
+    display: none;
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10; /* High z-index to ensure it's above other content */
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    z-index: 15; /* Higher z-index than overlay to appear above it */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 8px;
+    outline: 2px solid #1d96ec;
+    width: 30%;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.yes-button {
+    background-color: #fc1513
+}
+
+.no-button {
+    background-color: #1d96ec;
+}
+.yes-button:hover {
+    background-color: #b51513
+}
+
+.no-button:hover {
+    background-color: #005fa3;
+}
