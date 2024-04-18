@@ -64,6 +64,12 @@
           </label>
         </div>
 
+        <div class="form-section">
+          <button id="generate-image-button" class="submit-btn">
+            Or Generate an Image Using AI
+          </button>
+        </div>
+
         <div class="form-section horizontal">
           <div class="input-group-event">
             <label for="event-name">Event Name</label>
@@ -215,6 +221,41 @@
             // Handle checkbox setup if needed
           } catch (error) {
             console.error("Failed to fetch event details:", error);
+          }
+        });
+
+      document
+        .getElementById("generate-image-button")
+        .addEventListener("click", async function (event) {
+          event.preventDefault(); // Prevent the form from submitting when the button is clicked
+
+          const sport = document.getElementById("sport").value;
+          // Construct the URL for the API request to generate the image
+          const imageApiUrl = `https://noggin.rea.gent/selected-starfish-4691?key=rg_v1_yxqou4lkxcg39qbob0vaahqpxyin2nlxnmcg_ngk&sport=${encodeURIComponent(
+            sport
+          )}`;
+
+          try {
+            const response = await fetch(imageApiUrl, {
+              method: "GET", // Assuming the API uses GET, update if it's POST
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to fetch the image");
+            }
+
+            const downloadLink = document.createElement("a");
+            downloadLink.href = imageApiUrl;
+            // set it right under generate image button and make it a clickbale link that downlds the image
+            downloadLink.textContent = "Download Image";
+            document
+              .getElementById("generate-image-button")
+              .insertAdjacentElement("afterend", downloadLink);
+            downloadLink.download = "event-image.png";
+            // open in new tab
+            downloadLink.target = "_blank";
+          } catch (error) {
+            console.error("Error generating image:", error);
           }
         });
     </script>
