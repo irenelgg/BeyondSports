@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beyond Sports</title>
-<link rel="stylesheet" href="/CSS/styles.css">
+<link rel="stylesheet" href="../styles/sportcard.css" />
+<link rel="stylesheet" href="../styles/navbar.css" />
+<link rel="stylesheet" href="../styles/leaguecard.css" />
+<link rel="stylesheet" href="../styles/selectedsport.css" />
+
 </head>
 <body>
   <header>
@@ -34,25 +38,31 @@
   
   <main>
 
+    <div class="selected-sport-title">
+        <h2>Choose Your Sport</h2>
+      </div>
+
     <section class="choose-sport">
-      <div class="title">Choose Your Sport:</div>
       <div class="sports-icons">
-        <div class="sport-icon">
-          <img src="/images/images-4.jpeg" alt="Wheel-chair basketball">
+        <div class="sport-icon" title="Wheelchair Basketball">
+          <img src="../assets/images/basket1.png" alt="Wheel-chair basketball">
         </div>
       </div>
     </section>
+
+    <div class="selected-sport-title">
+        <h2>Leagues Near You</h2>
+      </div>
     
-    <section class="league-container">
-      <div class="title">Nearby Leagues:</div>
+    <div class="league-container">
         <div class="league-card">
-          <img src="/images/images-4.jpeg" alt="PowerUp League">
+          <img src="../assets/images/league1.png" alt="PowerUp League">
           <div class="league-info">
             <h3>PowerUp League</h3>
             <p>April 7-16</p>
           </div>
         </div>
-    </section>
+    </div>
   </main>
   
 </body>
