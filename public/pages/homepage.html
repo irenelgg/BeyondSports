@@ -64,6 +64,17 @@
         </div>
     </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      const sportIcons = document.querySelectorAll(".sport-icon");
+      sportIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          window.location.href = "selectedsport.html";
+        });
+      });
+    })
+  </script>
   
 </body>
 </html>

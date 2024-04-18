@@ -227,15 +227,15 @@
         all_events = document.querySelectorAll(".event-card");
         all_events.forEach((event) => {
           event.addEventListener("click", function (event) {
-          const eventName = encodeURIComponent(event.querySelector(".event-name").textContent);
-          const eventDate = encodeURIComponent(event.querySelector(".event-date").textContent);
-          const eventOrganizer = encodeURIComponent(event.querySelector(".event-organizer").textContent);
-          const eventLocation = encodeURIComponent(event.querySelector(".event-location").textContent);
-          const eventSpots = encodeURIComponent(event.querySelector(".event-spots").textContent);
-          const eventDescription = encodeURIComponent(event.querySelector(".event-description").textContent);
+            const eventName = encodeURIComponent(event.querySelector(".event-name").textContent);
+            const eventDate = encodeURIComponent(event.querySelector(".event-date").textContent);
+            const eventOrganizer = encodeURIComponent(event.querySelector(".event-organizer").textContent);
+            const eventLocation = encodeURIComponent(event.querySelector(".event-location").textContent);
+            const eventSpots = encodeURIComponent(event.querySelector(".event-spots").textContent);
+            const eventDescription = encodeURIComponent(event.querySelector(".event-description").textContent);
 
-          window.location.href = `event_opened.html?name=${eventName}&date=${eventDate}&organizer=${eventOrganizer}&location=${eventLocation}&spots=${eventSpots}&description=${eventDescription}`;
-        });
+            window.location.href = "event_opened.html?name=${eventName}&date=${eventDate}&organizer=${eventOrganizer}&location=${eventLocation}&spots=${eventSpots}&description=${eventDescription}";
+          });
         });
       });
 
