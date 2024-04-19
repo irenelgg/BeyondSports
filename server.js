@@ -51,6 +51,7 @@ const db = new sqlite3.Database(
             eventDates TEXT,
             spots INTEGER,
             organizer TEXT,
+            sport TEXT,
             rules TEXT,
             imageUrl TEXT,
             creator_id INTEGER
@@ -211,8 +212,8 @@ app.post("/league", upload.single("image"), (req, res) => {
     req.body;
   const imageUrl = req.file ? `../assets/images/${req.file.filename}` : "";
 
-  const sql = `INSERT INTO leagues (leagueName, prize, eventDates, spots, organizer, rules, imageUrl, creator_id) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO leagues (leagueName, prize, eventDates, spots, organizer, sport, rules, imageUrl, creator_id) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.run(
     sql,
@@ -277,6 +278,39 @@ app.put("/invite/:invite_id", (req, res) => {
     }
   });
 });
+
+//Get all events for a sport
+app.get("/events/sport", (req, res) => {
+  const sport = req.query.sport;
+  const sql = "SELECT * FROM events WHERE sport = ?";
+  console.log("REACHED HERE");
+  db.all(sql, [sport], (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+//Get all events by ID
+app.get('/events/:id', (req, res) => {
+  const { id } = req.params; // Get the event ID from the URL parameter
+  const sql = 'SELECT * FROM events WHERE id = ?';
+  db.get(sql, [id], (err, row) => {
+      if (err) {
+          res.status(500).send({ error: err.message });
+          return;
+      }
+      if (row) {
+          res.json(row);
+      } else {
+          res.status(404).send({ error: "Event not found" });
+      }
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
