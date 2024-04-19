@@ -75,5 +75,25 @@
         </div>
       </section>
     </main>
+
+    <script>
+      window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get('name');
+        const eventDate = urlParams.get('date');
+        const eventOrganizer = urlParams.get('organizer');
+        const eventLocation = urlParams.get('location');
+        const eventSpots = urlParams.get('spots');
+        const eventDescription = urlParams.get('description');
+      
+        document.querySelector('.event-header h1').textContent = 'Event: ' + decodeURIComponent(eventName);
+        document.querySelector('.event-logistics-cols .event-date').textContent = decodeURIComponent(eventDate);
+        document.querySelector('.event-logistics-cols .event-organizer').textContent = decodeURIComponent(eventOrganizer);
+        document.querySelector('.event-logistics-cols .event-location').textContent = decodeURIComponent(eventLocation);
+        document.querySelector('.event-logistics-cols .event-spots').textContent = decodeURIComponent(eventSpots);
+        document.querySelector('.event-description .event-body').textContent = decodeURIComponent(eventDescription);
+      };
+      </script>
+
   </body>
 </html>
