@@ -43,6 +43,7 @@
         method="post"
         enctype="multipart/form-data"
       >
+        <input type="hidden" id="creator-id" name="creator_id" value="1" />
         <div class="form-section">
           <label for="image-upload" class="upload-area">
             <input
@@ -84,6 +85,11 @@
               placeholder="Select Date Range..."
               readonly
             />
+          </div>
+
+          <div class="input-group">
+            <label for="sport">Sport</label>
+            <input type="text" id="sport" name="sport" placeholder="Sport..." />
           </div>
         </div>
 

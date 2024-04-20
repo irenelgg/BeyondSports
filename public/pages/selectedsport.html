@@ -41,85 +41,7 @@
       <h2>Events Near You</h2>
     </div>
 
-    <div class="events-container">
-      <!-- First event card -->
-      <div class="event-card">
-        <div class="event-card-picture">
-          <img src="../assets/images/basket1.png" />
-        </div>
-        <div class="event-card-content">
-          <div class="event-card-title">Basket Pick Up - Mix</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-          </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-          </div>
-          <div class="event-card-description">
-            Come take a break from your midterms and play some Basket with our
-            team leader Zeid.
-          </div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">7:30PM</div>
-          </div>
-          <div class="event-card-rsvp">RSVP</div>
-        </div>
-      </div>
-
-      <!-- Second event card -->
-      <div class="event-card">
-        <div class="event-card-picture">
-          <img src="../assets/images/basket2.png" />
-        </div>
-        <div class="event-card-content">
-          <div class="event-card-title">Basket Pick Up - Mix</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-          </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-          </div>
-          <div class="event-card-description">
-            Come take a break from your midterms and play some Basket with our
-            team leader Zeid.
-          </div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">7:30PM</div>
-          </div>
-          <div class="event-card-rsvp">RSVP</div>
-        </div>
-      </div>
-
-      <!-- Third event card -->
-      <div class="event-card">
-        <div class="event-card-picture">
-          <img src="../assets/images/basket3.png" />
-        </div>
-        <div class="event-card-content">
-          <div class="event-card-title">Basket Pick Up - Mix</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-          </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-          </div>
-          <div class="event-card-description">
-            Come take a break from your midterms and play some Basket with our
-            team leader Zeid.
-          </div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">7:30PM</div>
-          </div>
-          <div class="event-card-rsvp">RSVP</div>
-        </div>
-      </div>
-    </div>
+    <div class="events-container"></div>
 
     <div class="selected-sport-title">
       <h2>Leagues Near You</h2>
@@ -144,82 +66,82 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fetch events
-        fetch("/events")
-          .then((response) => response.json())
-          .then((events) => updateEvents(events))
-          .catch((error) => console.error("Error fetching events:", error));
+      //TODO: need to change textContent to correct db query
 
-        // Fetch leagues
-        fetch("/leagues")
-          .then((response) => response.json())
-          .then((leagues) => updateLeagues(leagues))
-          .catch((error) => console.error("Error fetching leagues:", error));
-
-        function updateEvents(events) {
-          const container = document.querySelector(".events-container");
-          container.innerHTML = ""; // Clear existing content
-          events.forEach((event) => {
-            const eventHtml = `
-                      <div class="event-card">
-                          <div class="event-card-picture">
-                              <img src="${
-                                event.imageUrl || "../assets/images/default.png"
-                              }" />
-                          </div>
-                          <div class="event-card-content">
-                              <div class="event-card-title">${
-                                event.eventName
-                              }</div>
-                              <div class="event-card-organizer">
-                                  <img src="../assets/icons/icon_person.svg" class="icon" />${
-                                    event.organizer || "Zeid Solh"
-                                  }
-                              </div>
-                              <div class="event-card-location">
-                                  <img src="../assets/icons/icon_map.svg" class="icon" />${
-                                    event.address
-                                  }, ${event.city}
-                              </div>
-                              <div class="event-card-description">${
-                                event.description
-                              }</div>
-                              <hr class="card-divider" />
-                              <div class="event-card-time">
-                                  <p>Time</p>
-                                  <div class="time-shape">${
-                                    event.eventTime
-                                  }</div>
-                              </div>
-                              <div class="event-card-rsvp">RSVP</div>
-                          </div>
-                      </div>
-                  `;
-            container.insertAdjacentHTML("beforeend", eventHtml);
+      //TODO: need to make sure that each league card leads to its specific league page and also updates the league page with the correct league information
+      document.addEventListener("DOMContentLoaded", function (event) {
+        all_events = document.querySelectorAll(".league-card");
+        all_events.forEach((event) => {
+          event.addEventListener("click", function (event) {
+            window.location.href = "view_league.html";
           });
-        }
-
-        function updateLeagues(leagues) {
-          const leagueContainer = document.querySelector(".league-container");
-          leagueContainer.innerHTML = ""; // Clear existing content
-          leagues.forEach((league) => {
-            const leagueHtml = `
-                      <div class="league-card">
-                          <img src="${
-                            league.imageUrl ||
-                            "../assets/images/default_league.png"
-                          }" />
-                          <div class="league-info">
-                              <h3>${league.leagueName}</h3>
-                              <p>${league.eventDates}</p>
-                          </div>
-                      </div>
-                  `;
-            leagueContainer.insertAdjacentHTML("beforeend", leagueHtml);
-          });
-        }
+        });
       });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sportName = urlParams.get("sport");
+
+        // Update the page title and header dynamically based on the sport
+        document.title = `Select Sport: ${sportName}`;
+        document.querySelector(
+          ".selected-sport-title h1"
+        ).textContent = `Selected Sport: ${sportName}`;
+
+        // Fetch events for the given sport
+        fetch(`/events/sport?sport=${encodeURIComponent(sportName)}`)
+          .then((response) => response.json())
+          .then((events) => {
+            updateEvents(events);
+            makeCardsClickable(); // Call to make cards clickable after they are created
+          })
+          .catch((error) => console.error("Error fetching events:", error));
+      });
+
+      function updateEvents(events) {
+        const container = document.querySelector(".events-container");
+        container.innerHTML = ""; // Clear existing content
+        events.forEach((event) => {
+          const eventHtml = `
+      <div class="event-card" title="${event.id}">
+        <div class="event-card-picture">
+          <img src="${event.imageUrl || "../assets/images/default.png"}" />
+        </div>
+        <div class="event-card-content">
+          <div class="event-card-title">${event.eventName}</div>
+          <div class="event-card-organizer">
+            <img src="../assets/icons/icon_person.svg" class="icon" />${
+              event.organizer || "N/A"
+            }
+          </div>
+          <div class="event-card-location">
+            <img src="../assets/icons/icon_map.svg" class="icon" />${
+              event.address
+            }, ${event.city}
+          </div>
+          <div class="event-card-description">${event.description}</div>
+          <hr class="card-divider" />
+          <div class="event-card-time">
+            <p>Time</p>
+            <div class="time-shape">${event.eventTime}</div>
+          </div>
+          <div class="event-card-rsvp">RSVP</div>
+        </div>
+      </div>
+    `;
+          container.insertAdjacentHTML("beforeend", eventHtml);
+        });
+      }
+
+      function makeCardsClickable() {
+        const all_events = document.querySelectorAll(".event-card");
+        all_events.forEach((card) => {
+          card.addEventListener("click", function () {
+            const eventId = this.getAttribute("title"); // Use 'this' to refer to the card
+            window.location.href = `event_opened.html?id=${eventId}`;
+          });
+        });
+      }
     </script>
   </body>
 </html>
