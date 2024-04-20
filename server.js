@@ -51,6 +51,7 @@ const db = new sqlite3.Database(
             eventDates TEXT,
             spots INTEGER,
             organizer TEXT,
+            sport TEXT,
             rules TEXT,
             imageUrl TEXT,
             creator_id INTEGER
@@ -145,40 +146,65 @@ app.post("/event", upload.single("image"), (req, res) => {
     spots,
     sport,
     creator_id,
+    league_id, // Note league_id is still received but handled differently
   } = req.body;
-  const imageUrl = req.file ? `../assets/images/${req.file.filename}` : "";
+  const imageUrl = req.file ? `/assets/images/${req.file.filename}` : "";
   const accessibilityString = ["blindness", "wheelchair"]
     .filter((acc) => req.body[acc])
     .join(",");
 
-  const sql = `INSERT INTO events (eventName, eventDate, eventTime, address, city, state, description, spots, sport, imageUrl, accessibility, creator_id) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO events (
+      eventName, eventDate, eventTime, address, city, state, description,
+      spots, sport, imageUrl, accessibility, creator_id)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  db.run(
-    sql,
-    [
-      eventName,
-      eventDate,
-      eventTime,
-      address,
-      city,
-      state,
-      description,
-      spots,
-      sport,
-      imageUrl,
-      accessibilityString,
-      creator_id,
-    ],
-    (err) => {
-      if (err) {
-        console.error(err.message);
-        res.status(500).send("Failed to add event");
+  const params = [
+    eventName,
+    eventDate,
+    eventTime,
+    address,
+    city,
+    state,
+    description,
+    spots,
+    sport,
+    imageUrl,
+    accessibilityString,
+    creator_id,
+  ];
+
+  // Execute SQL to insert the event
+  db.run(sql, params, function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to add event");
+    } else {
+      const eventId = this.lastID; // Get the ID of the newly inserted event
+      if (league_id) {
+        // If a league_id was provided, link the event to the league
+        const linkSql = `INSERT INTO league_events (league_id, event_id) VALUES (?, ?)`;
+        db.run(linkSql, [league_id, eventId], function (linkErr) {
+          if (linkErr) {
+            console.error(linkErr.message);
+            res.status(500).send("Failed to link event to league");
+          } else {
+            console.log({
+              message: "Event added and linked to league successfully!",
+              eventId: eventId,
+              leagueId: league_id,
+            });
+            res.redirect(`/pages/add-events.html?leagueId=${league_id}`);
+          }
+        });
       } else {
-        res.send("Event added successfully!");
+        // No league_id provided, so just confirm event creation
+        res.json({
+          message: "Event added successfully!",
+          eventId: eventId,
+        });
       }
     }
-  );
+  });
 });
 
 app.get("/events", (req, res) => {
@@ -186,6 +212,19 @@ app.get("/events", (req, res) => {
     if (err) {
       console.error(err.message);
       res.status(500).send("Failed to retrieve events");
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+app.get("/events/league/:leagueId", (req, res) => {
+  const sql =
+    "SELECT * FROM events e INNER JOIN league_events le ON e.id = le.event_id WHERE le.league_id = ?";
+  db.all(sql, [req.params.leagueId], (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
     } else {
       res.json(rows);
     }
@@ -207,12 +246,20 @@ app.post("/link-event-to-league", (req, res) => {
 });
 
 app.post("/league", upload.single("image"), (req, res) => {
-  const { leagueName, prize, eventDates, spots, organizer, rules, creator_id } =
-    req.body;
+  const {
+    leagueName,
+    prize,
+    eventDates,
+    spots,
+    organizer,
+    sport,
+    rules,
+    creator_id,
+  } = req.body;
   const imageUrl = req.file ? `../assets/images/${req.file.filename}` : "";
 
-  const sql = `INSERT INTO leagues (leagueName, prize, eventDates, spots, organizer, rules, imageUrl, creator_id) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const sql = `INSERT INTO leagues (leagueName, prize, eventDates, spots, organizer, sport, rules, imageUrl, creator_id)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.run(
     sql,
@@ -222,16 +269,18 @@ app.post("/league", upload.single("image"), (req, res) => {
       eventDates,
       spots,
       organizer,
+      sport,
       rules,
       imageUrl,
       creator_id,
     ],
-    (err) => {
+    function (err) {
       if (err) {
         console.error(err.message);
         res.status(500).send("Failed to add league");
       } else {
-        res.send("League added successfully!");
+        // Redirecting to an event creation page specific to this league
+        res.redirect(`/pages/add-events.html?leagueId=${this.lastID}`); // Ensure the redirection path matches your setup
       }
     }
   );
@@ -274,6 +323,38 @@ app.put("/invite/:invite_id", (req, res) => {
       res.status(500).send("Failed to update invite");
     } else {
       res.send("Invite updated successfully!");
+    }
+  });
+});
+
+//Get all events for a sport
+app.get("/events/sport", (req, res) => {
+  const sport = req.query.sport;
+  const sql = "SELECT * FROM events WHERE sport = ?";
+  console.log("REACHED HERE");
+  db.all(sql, [sport], (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+//Get all events by ID
+app.get("/events/:id", (req, res) => {
+  const { id } = req.params; // Get the event ID from the URL parameter
+  const sql = "SELECT * FROM events WHERE id = ?";
+  db.get(sql, [id], (err, row) => {
+    if (err) {
+      res.status(500).send({ error: err.message });
+      return;
+    }
+    if (row) {
+      res.json(row);
+    } else {
+      res.status(404).send({ error: "Event not found" });
     }
   });
 });
