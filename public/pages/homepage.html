@@ -44,7 +44,7 @@
 
     <section class="choose-sport">
       <div class="sports-icons">
-        <div class="sport-icon" title="Wheelchair Basketball">
+        <div class="sport-icon" title="Basketball">
           <img src="../assets/images/basket1.png" alt="Wheel-chair basketball">
         </div>
       </div>
@@ -55,7 +55,7 @@
       </div>
     
     <div class="league-container">
-        <div class="league-card">
+        <div class="league-card" title="PowerUp League">
           <img src="../assets/images/league1.png" alt="PowerUp League">
           <div class="league-info">
             <h3>PowerUp League</h3>
@@ -64,6 +64,28 @@
         </div>
     </div>
   </main>
-  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      const sportIcons = document.querySelectorAll(".league-card");
+      sportIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          window.location.href = "view_league.html";
+        });
+      });
+    })
+
+    // Redirect to selected sport page when sport icon is clicked
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const sportIcons = document.querySelectorAll(".sport-icon");
+        sportIcons.forEach((icon) => {
+            icon.addEventListener("click", () => {
+            const sportName = icon.getAttribute("title"); 
+            window.location.href = `selectedsport.html?sport=${encodeURIComponent(sportName)}`;
+            });
+        });
+    });
+  </script>
+
 </body>
 </html>
