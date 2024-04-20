@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Events to League</title>
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <!-- Existing navbar content -->
+    </nav>
+
+    <div class="container">
+      <h1>Add Events to Your League:</h1>
+      <button onclick="openEventCreation()">Create New Event</button>
+
+      <h2>Events in This League:</h2>
+      <div id="event-list">
+        <!-- Events will be listed here -->
+      </div>
+    </div>
+
+    <script>
+      const leagueId = new URLSearchParams(window.location.search).get(
+        "leagueId"
+      );
+
+      function openEventCreation() {
+        window.location.href = `create_event_for_league.html?leagueId=${leagueId}`;
+      }
+
+      document.addEventListener("DOMContentLoaded", fetchEvents);
+
+      function fetchEvents() {
+        fetch(`/events/league/${leagueId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const eventList = document.getElementById("event-list");
+            data.forEach((event) => {
+              const div = document.createElement("div");
+              div.innerHTML = `Name: ${event.eventName}, Date: ${event.eventDate}`;
+              eventList.appendChild(div);
+            });
+          })
+          .catch((error) => console.error("Error loading events:", error));
+      }
+    </script>
+  </body>
+</html>
