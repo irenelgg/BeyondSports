@@ -41,7 +41,7 @@ h2 {
 }
 
 .input-group-dates {
-  flex-basis: 48%;
+  flex-basis: 100%; /* Adjust the spacing between input fields */
 }
 
 label {
@@ -60,6 +60,16 @@ textarea {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
+  box-sizing: border-box; /* Add this line */
+  font-size: 18px;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus,
+textarea {
+  outline-color: #1d96ec;
 }
 
 .upload-area {
@@ -68,6 +78,18 @@ textarea {
   text-align: center;
   cursor: pointer;
   background-color: #fafafa;
+  font-size: 16px; /* Adjust font size for file upload area too */
+}
+
+.upload-area:hover {
+  border-color: #1d96ec; /* Optional: change border color on hover for consistency */
+}
+
+#file-name {
+  display: block; /* Makes the file name appear on a new line */
+  margin-top: 10px; /* Adds some space above the file name */
+  color: #333; /* Sets the text color */
+  font-size: 14px; /* Sets the text size */
 }
 
 .navbar {
