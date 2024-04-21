@@ -2,8 +2,8 @@
 
 
 .images {
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 10px;
+  max-height: 10px;
   margin-left: 650px;
 }
 
@@ -67,6 +67,13 @@
   /* Adjust as needed */
   box-sizing: border-box;
   /* Includes padding and border in the element's total width and height */
+}
+
+.texts{
+  color: grey;
+  font-size: 32px;
+
+  
 }
 
 
