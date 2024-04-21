@@ -10,7 +10,7 @@ body {
   flex-wrap: wrap;
   display: flex;
   justify-content: left;
-  margin-left: 60px;
+  margin-left: 50px;
 }
 
 /* Event Card, white background, 400 width and 600 height */
@@ -95,4 +95,40 @@ body {
   cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
   margin-top: 15px; /* Add some space above the RSVP button */
   font-weight: bold; /* Optional: Makes the text bold */
+}
+.event-card-actions {
+  display: flex; /* Aligns buttons in a row */
+  justify-content: center; /* Centers buttons */
+  gap: 10px; /* Adds space between buttons */
+}
+
+.event-card-button {
+  padding: 8px 16px; /* Adds padding around text */
+  border-radius: 15px; /* Rounds corners */
+  border: 2px solid var(--primary-color); /* Adds border using primary color variable */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  font-weight: bold; /* Makes text bold */
+  margin-top: 15px; /* Adds top margin */
+}
+
+.event-card-button.confirmed {
+  background-color: var(--primary-color); /* Blue background */
+  color: white; /* White text */
+  text-align: center; /* Center the text inside */
+  padding: 8px 16px; /* Add some padding around the text */
+  border-radius: 10px; /* Slightly rounded corners for the button */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  margin-top: 15px; /* Add some space above the RSVP button */
+  font-weight: bold; /* Optional: Makes the text bold */
+  width: 170px;
+}
+
+.event-card-button.cancel {
+  background-color: white; /* White background for the 'button' */
+  color: var(--primary-color); /* Blue text color */
+  padding: 8px 16px; /* Padding inside the 'button' */
+  border: 2px solid var(--primary-color); /* Blue border for the 'button' */
+  border-radius: 10px; /* Rounded corners for the 'button' */
+  font-weight: bold; /* Optional: Makes the text bold */
+  width: 170px;
 }
