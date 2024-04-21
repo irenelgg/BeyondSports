@@ -1,143 +1,229 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Events</title>
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/leagues.css" />
+    <link rel="stylesheet" href="../styles/event.css" />
+    <link rel="stylesheet" href="../styles/eventcard.css" />
+    <link rel="stylesheet" href="../styles/leaguecard.css" />
+    <link rel="stylesheet" href="../styles/selectedsport.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Events</title>
-  <link rel="stylesheet" href="../styles/create_modify_event.css" />
-  <link rel="stylesheet" href="../styles/navbar.css" />
-  <link rel="stylesheet" href="../styles/leagues.css" />
-  <link rel="stylesheet" href="../styles/event.css" />
-  <link rel="stylesheet" href="../styles/eventcard.css" />
-  <link rel="stylesheet" href="../styles/leaguecard.css" />
-  <link rel="stylesheet" href="../styles/selectedsport.css" />
-</head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="../assets/icons/icon_logo.svg" />
+        <span>BeyondSports</span>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Search for anything" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Events</a></li>
+        <li><a href="#">My Leagues</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+      <div class="nav-create">
+        <button class="dropbtn">Create</button>
+        <div class="dropdown-content">
+          <a href="#">Event</a>
+          <a href="#">League</a>
+        </div>
+      </div>
+    </nav>
 
-<body>
-  <nav class="navbar">
-    <div class="nav-logo">
-      <img src="../assets/icons/icon_logo.svg" />
-      <span>BeyondSports</span>
+    <div class="myEvent-title">
+      <h2>Your Confirmed Events:</h2>
     </div>
-    <div class="nav-search">
-      <input type="text" placeholder="Search for anything" />
-    </div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">My Events</a></li>
-      <li><a href="#">My Leagues</a></li>
-      <li><a href="#">Contacts</a></li>
-    </ul>
-    <div class="nav-create">
-      <button class="dropbtn">Create</button>
-      <div class="dropdown-content">
-        <a href="#">Event</a>
-        <a href="#">League</a>
+
+    <div class="events-container">
+      <!-- First event card -->
+      <div class="event-card">
+        <div class="event-card-picture">
+          <img src="../assets/images/basket1.png" />
+        </div>
+        <div class="event-card-content">
+          <div class="event-card-title">Basket Pick Up - Mix</div>
+          <div class="event-card-organizer">
+            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
+          </div>
+          <div class="event-card-location">
+            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+          </div>
+          <div class="event-card-description">
+            Come take a break from your midterms and play some Basket with our
+            team leader Zeid.
+          </div>
+          <hr class="card-divider" />
+          <div class="event-card-time">
+            <p>Time</p>
+            <div class="time-shape">7:30PM</div>
+          </div>
+          <div class="event-card-actions">
+            <button class="event-card-button confirmed">CONFIRMED</button>
+            <button class="event-card-button cancel">CANCEL</button>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <div class="myEvent-title">
-    <h2>Your Confirmed Events:</h2>
-  </div>
-  
-      <div class="events-container">
-        <!-- First event card -->
-        <div class="event-card">
-          <div class="event-card-picture">
-            <img src="../assets/images/basket1.png" />
+    <div class="myEvent-title">
+      <h2>Your Created Events:</h2>
+    </div>
+
+    <div class="events-container">
+      <!-- Second event card -->
+      <div class="event-card">
+        <div class="event-card-picture">
+          <img src="../assets/images/basket2.png" />
+        </div>
+        <div class="event-card-content">
+          <div class="event-card-title">Basket Pick Up - Mix</div>
+          <div class="event-card-organizer">
+            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
           </div>
-          <div class="event-card-content">
-            <div class="event-card-title">Basket Pick Up - Mix</div>
-            <div class="event-card-organizer">
-              <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-            </div>
-            <div class="event-card-location">
-              <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-            </div>
-            <div class="event-card-description">
-              Come take a break from your midterms and play some Basket with our
-              team leader Zeid.
-            </div>
-            <hr class="card-divider" />
-            <div class="event-card-time">
-              <p>Time</p>
-              <div class="time-shape">7:30PM</div>
-            </div>
-            <div class="event-card-actions">
-              <button class="event-card-button confirmed">CONFIRMED</button>
-              <button class="event-card-button cancel">CANCEL</button>
-            </div>
+          <div class="event-card-location">
+            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+          </div>
+          <div class="event-card-description">
+            Come take a break from your midterms and play some Basket with our
+            team leader Zeid.
+          </div>
+          <hr class="card-divider" />
+          <div class="event-card-time">
+            <p>Time</p>
+            <div class="time-shape">6:30PM</div>
+          </div>
+          <div class="event-card-actions">
+            <button class="event-card-button confirmed">MODIFY</button>
+            <button class="event-card-button cancel">DELETE</button>
           </div>
         </div>
       </div>
 
-      <div class="myEvent-title">
-        <h2>Your Created Events:</h2>
-      </div>
-      
-          <div class="events-container">
-            <!-- Second event card -->
-            <div class="event-card">
-              <div class="event-card-picture">
-                <img src="../assets/images/basket2.png" />
-              </div>
-              <div class="event-card-content">
-                <div class="event-card-title">Basket Pick Up - Mix</div>
-                <div class="event-card-organizer">
-                  <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-                </div>
-                <div class="event-card-location">
-                  <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-                </div>
-                <div class="event-card-description">
-                  Come take a break from your midterms and play some Basket with our
-                  team leader Zeid.
-                </div>
-                <hr class="card-divider" />
-                <div class="event-card-time">
-                  <p>Time</p>
-                  <div class="time-shape">6:30PM</div>
-                </div>
-                <div class="event-card-actions">
-                  <button class="event-card-button confirmed">MODIFY</button>
-                  <button class="event-card-button cancel">DELETE</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Second event card -->
-            <div class="event-card">
-              <div class="event-card-picture">
-                <img src="../assets/images/basket2.png" />
-              </div>
-              <div class="event-card-content">
-                <div class="event-card-title">Basket Pick Up - Mix</div>
-                <div class="event-card-organizer">
-                  <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-                </div>
-                <div class="event-card-location">
-                  <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-                </div>
-                <div class="event-card-description">
-                  Come take a break from your midterms and play some Basket with our
-                  team leader Zeid.
-                </div>
-                <hr class="card-divider" />
-                <div class="event-card-time">
-                  <p>Time</p>
-                  <div class="time-shape">6:30PM</div>
-                </div>
-                <div class="event-card-actions">
-                  <button class="event-card-button confirmed">MODIFY</button>
-                  <button class="event-card-button cancel">DELETE</button>
-                </div>
-              </div>
-            </div>
+      <!-- Second event card -->
+      <div class="event-card">
+        <div class="event-card-picture">
+          <img src="../assets/images/basket2.png" />
+        </div>
+        <div class="event-card-content">
+          <div class="event-card-title">Basket Pick Up - Mix</div>
+          <div class="event-card-organizer">
+            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
           </div>
-</body>
+          <div class="event-card-location">
+            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+          </div>
+          <div class="event-card-description">
+            Come take a break from your midterms and play some Basket with our
+            team leader Zeid.
+          </div>
+          <hr class="card-divider" />
+          <div class="event-card-time">
+            <p>Time</p>
+            <div class="time-shape">6:30PM</div>
+          </div>
+          <div class="event-card-actions">
+            <button class="event-card-button confirmed">MODIFY</button>
+            <button class="event-card-button cancel">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userId = getUserId(); // You will need to implement this function to fetch the user's ID, e.g., from session or local storage.
 
+      fetch(`/events/user/${userId}`)
+        .then((response) => response.json())
+        .then((events) => {
+          updateEvents(events);
+          attachCancelEventListeners();
+        })
+        .catch((error) => console.error("Error fetching user events:", error));
+    });
+
+    function updateEvents(events) {
+      const container = document.querySelector(".events-container");
+      container.innerHTML = ""; // Clear any existing content
+      events.forEach((event) => {
+        const eventHtml = `
+                <div class="event-card">
+                    <div class="event-card-picture">
+                        <img src="${
+                          event.imageUrl || "../assets/images/default.png"
+                        }" />
+                    </div>
+                    <div class="event-card-content">
+                        <div class="event-card-title">${event.eventName}</div>
+                        <div class="event-card-organizer">
+                            <img src="../assets/icons/icon_person.svg" class="icon" />${
+                              event.organizer
+                            }
+                        </div>
+                        <div class="event-card-location">
+                            <img src="../assets/icons/icon_map.svg" class="icon" />${
+                              event.city
+                            }, ${event.state}
+                        </div>
+                        <div class="event-card-description">${
+                          event.description
+                        }</div>
+                        <hr class="card-divider" />
+                        <div class="event-card-time">
+                            <p>Time</p>
+                            <div class="time-shape">${event.eventTime}</div>
+                        </div>
+                        <div class="event-card-actions">
+                            <button class="event-card-button confirmed">CONFIRMED</button>
+                            <button class="event-card-button cancel" data-event-id="${
+                              event.id
+                            }">CANCEL</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        container.insertAdjacentHTML("beforeend", eventHtml);
+      });
+    }
+
+    function attachCancelEventListeners() {
+      const cancelButtons = document.querySelectorAll(".cancel");
+      cancelButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          console.log("Cancel button clicked");
+          const eventId = this.getAttribute("data-event-id");
+          cancelRSVP(eventId);
+        });
+      });
+    }
+
+    function cancelRSVP(eventId) {
+      const userId = getUserId();
+      fetch("/rsvp", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: userId, event_id: eventId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          location.reload();
+        })
+        .catch((error) => console.error("Failed to cancel RSVP:", error));
+    }
+
+    function getUserId() {
+      // Implement the logic to retrieve the user ID from session or local storage here
+      return 1; // Placeholder
+    }
+  </script>
 </html>

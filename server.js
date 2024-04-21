@@ -383,27 +383,77 @@ app.get("/events/league/:leagueId", (req, res) => {
   `;
 
   db.all(sql, [leagueId], (err, events) => {
-      if (err) {
-          res.status(500).send({ error: err.message });
-          console.error(err.message);
-          return;
-      }
-      res.json(events);
+    if (err) {
+      res.status(500).send({ error: err.message });
+      console.error(err.message);
+      return;
+    }
+    res.json(events);
   });
 });
 
 app.get("/leagues/:id", (req, res) => {
   const sql = "SELECT * FROM leagues WHERE id = ?";
   db.get(sql, [req.params.id], (err, result) => {
-      if (err) {
-          res.status(500).send("Server error");
-          return;
-      }
-      if (result) {
-          res.json(result);
-      } else {
-          res.status(404).send("League not found");
-      }
+    if (err) {
+      res.status(500).send("Server error");
+      return;
+    }
+    if (result) {
+      res.json(result);
+    } else {
+      res.status(404).send("League not found");
+    }
+  });
+});
+
+// POST endpoint to RSVP to an event
+app.post("/rsvp", (req, res) => {
+  const { user_id, event_id, league_id } = req.body;
+  const type = "participant"; // Default type is 'participant', but you can modify it based on your logic
+
+  const sql = `INSERT INTO participation (user_id, event_id, league_id, type) VALUES (?, ?, ?, ?)`;
+
+  db.run(sql, [user_id, event_id, league_id, type], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to RSVP to event");
+    } else {
+      res.send({ message: "RSVP successful!", participationId: this.lastID });
+    }
+  });
+});
+
+// GET events by user ID
+app.get("/events/user/:userId", (req, res) => {
+  const sql = `SELECT e.*, p.type FROM events e
+               JOIN participation p ON e.id = p.event_id
+               WHERE p.user_id = ?`;
+
+  db.all(sql, [req.params.userId], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve events");
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+app.delete("/rsvp", (req, res) => {
+  const { user_id, event_id } = req.body; // Assuming you send user_id and event_id in the request body
+
+  const sql = "DELETE FROM participation WHERE user_id = ? AND event_id = ?";
+  db.run(sql, [user_id, event_id], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to cancel RSVP");
+    } else {
+      res.send({
+        message: "RSVP cancelled successfully!",
+        affectedRows: this.changes,
+      });
+    }
   });
 });
 
