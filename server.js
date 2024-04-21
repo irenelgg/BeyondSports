@@ -331,7 +331,6 @@ app.put("/invite/:invite_id", (req, res) => {
 app.get("/events/sport", (req, res) => {
   const sport = req.query.sport;
   const sql = "SELECT * FROM events WHERE sport = ?";
-  console.log("REACHED HERE");
   db.all(sql, [sport], (err, rows) => {
     if (err) {
       res.status(500).send("Server error");
@@ -356,6 +355,55 @@ app.get("/events/:id", (req, res) => {
     } else {
       res.status(404).send({ error: "Event not found" });
     }
+  });
+});
+
+//Get all leagues for a sport
+app.get("/leagues/sport", (req, res) => {
+  const sport = req.query.sport;
+  const sql = "SELECT * FROM leagues WHERE sport = ?";
+  console.log("REACHED HERE");
+  db.all(sql, [sport], (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+// Get all events for a specific league
+app.get("/events/league/:leagueId", (req, res) => {
+  const { leagueId } = req.params;
+  const sql = `
+      SELECT e.* FROM events e
+      INNER JOIN league_events le ON e.id = le.event_id
+      WHERE le.league_id = ?;
+  `;
+
+  db.all(sql, [leagueId], (err, events) => {
+      if (err) {
+          res.status(500).send({ error: err.message });
+          console.error(err.message);
+          return;
+      }
+      res.json(events);
+  });
+});
+
+app.get("/leagues/:id", (req, res) => {
+  const sql = "SELECT * FROM leagues WHERE id = ?";
+  db.get(sql, [req.params.id], (err, result) => {
+      if (err) {
+          res.status(500).send("Server error");
+          return;
+      }
+      if (result) {
+          res.json(result);
+      } else {
+          res.status(404).send("League not found");
+      }
   });
 });
 

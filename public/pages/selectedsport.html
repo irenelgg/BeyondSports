@@ -48,7 +48,7 @@
     </div>
 
     <div class="league-container">
-      <div class="league-card">
+      <!-- <div class="league-card" title = "">
         <img src="../assets/images/league1.png" />
         <div class="league-info">
           <h3>PowerUp League</h3>
@@ -58,11 +58,11 @@
 
       <div class="league-card">
         <img src="../assets/images/league2.png" />
-        <div class="league-info">
+        <div class="league-info" title = "">
           <h3>Hoopers League</h3>
           <p>April 9-11</p>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <script>
@@ -93,10 +93,38 @@
           .then((response) => response.json())
           .then((events) => {
             updateEvents(events);
-            makeCardsClickable(); // Call to make cards clickable after they are created
+            makeCardsClickable('.event-card', 'event_opened.html');
           })
           .catch((error) => console.error("Error fetching events:", error));
+
+        fetch(`/leagues/sport?sport=${encodeURIComponent(sportName)}`)
+          .then(response => response.json())
+          .then(leagues => {
+            updateLeagues(leagues);
+            makeCardsClickable('.league-card', 'powerup.html');
+        })
+        .catch(error => console.error("Error fetching leagues:", error));
       });
+
+
+
+
+      function updateLeagues(leagues) {
+        const container = document.querySelector(".league-container");
+        container.innerHTML = "";
+        leagues.forEach(league => {
+            const leagueHtml = `
+                <div class="league-card" title="${league.id}">
+                    <img src="${league.imageUrl || "../assets/images/default_league.png"}" />
+                    <div class="league-info">
+                        <h3>${league.leagueName}</h3>
+                        <p>${league.eventDates}</p>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML("beforeend", leagueHtml);
+    });
+    }
 
       function updateEvents(events) {
         const container = document.querySelector(".events-container");
@@ -133,13 +161,13 @@
         });
       }
 
-      function makeCardsClickable() {
-        const all_events = document.querySelectorAll(".event-card");
-        all_events.forEach((card) => {
-          card.addEventListener("click", function () {
-            const eventId = this.getAttribute("title"); // Use 'this' to refer to the card
-            window.location.href = `event_opened.html?id=${eventId}`;
-          });
+      function makeCardsClickable(selector, redirectPage) {
+        const cards = document.querySelectorAll(selector);
+        cards.forEach(card => {
+            card.addEventListener("click", function () {
+                const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
+                window.location.href = `${redirectPage}?id=${id}`;
+            });
         });
       }
     </script>
