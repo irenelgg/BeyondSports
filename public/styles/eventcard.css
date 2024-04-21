@@ -123,7 +123,8 @@ body {
   width: 170px;
 }
 
-.event-card-button.cancel {
+.event-card-button.cancel,
+.event-card-button.delete {
   background-color: white; /* White background for the 'button' */
   color: var(--primary-color); /* Blue text color */
   padding: 8px 16px; /* Padding inside the 'button' */

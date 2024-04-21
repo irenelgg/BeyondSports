@@ -457,6 +457,54 @@ app.delete("/rsvp", (req, res) => {
   });
 });
 
+// Get events created by a specific user
+app.get("/events/created/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const sql = "SELECT * FROM events WHERE creator_id = ?";
+  db.all(sql, [userId], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve events");
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+// DELETE endpoint to delete an event created by a user
+app.delete("/event/:eventId", (req, res) => {
+  const { eventId } = req.params;
+  const userId = req.body.userId; // Assuming you pass the user ID in the body for verification
+
+  // First, check if the requesting user is the creator of the event
+  const verifySql = "SELECT creator_id FROM events WHERE id = ?";
+  db.get(verifySql, [eventId], (verifyErr, row) => {
+    if (verifyErr) {
+      console.error(verifyErr.message);
+      return res
+        .status(500)
+        .send("Database error occurred while verifying the event creator.");
+    }
+    if (row && row.creator_id === userId) {
+      // User verified as the creator, proceed to delete
+      const sql = "DELETE FROM events WHERE id = ?";
+      db.run(sql, [eventId], function (err) {
+        if (err) {
+          console.error(err.message);
+          res.status(500).send("Failed to delete the event");
+        } else {
+          res.send({
+            message: "Event deleted successfully",
+            affectedRows: this.changes,
+          });
+        }
+      });
+    } else {
+      res.status(403).send("You do not have permission to delete this event.");
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
