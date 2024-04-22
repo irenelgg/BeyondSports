@@ -577,6 +577,53 @@ app.post("/exit-league", (req, res) => {
   );
 });
 
+app.get("/leagues/created/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const sql = "SELECT * FROM leagues WHERE creator_id = ?";
+
+  db.all(sql, [userId], (err, leagues) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve created leagues");
+    } else {
+      res.json(leagues);
+    }
+  });
+});
+
+app.delete("/league/:leagueId", (req, res) => {
+  const { leagueId } = req.params;
+  const userId = req.body.userId; // This should be securely fetched, e.g., from session or token
+
+  const verifySql = "SELECT creator_id FROM leagues WHERE id = ?";
+  db.get(verifySql, [leagueId], (verifyErr, league) => {
+    if (verifyErr) {
+      console.error(verifyErr.message);
+      return res
+        .status(500)
+        .send("Database error while verifying league creator.");
+    }
+    if (!league || league.creator_id !== userId) {
+      return res
+        .status(403)
+        .send("You do not have permission to delete this league.");
+    }
+
+    const deleteSql = "DELETE FROM leagues WHERE id = ?";
+    db.run(deleteSql, [leagueId], function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to delete the league");
+      } else {
+        res.send({
+          message: "League deleted successfully",
+          changes: this.changes,
+        });
+      }
+    });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

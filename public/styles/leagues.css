@@ -15,7 +15,8 @@ h1 {
 }
 
 .leagues-opened-container,
-.pending-leagues-container {
+.pending-leagues-container,
+.created-leagues-container {
   padding: 0 80px;
   display: flex;
   /* flex-direction: column; */

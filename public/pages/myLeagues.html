@@ -58,50 +58,75 @@
         </div> -->
       </section>
     </main>
+    <h1>Created Leagues:</h1>
+    <main class="created-leagues-container">
+      <section class="leagues-header"></section>
+    </main>
   </body>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const userId = 1; // Assuming the user's ID is stored in local storage
-      if (!userId) {
-        console.error("User ID is required.");
-        return;
+      const userId = 1; // Fetch this dynamically if needed
+
+      fetchLeagues(`/leagues/user/${userId}`, updateParticipationDisplay);
+      fetchLeagues(`/leagues/created/${userId}`, updateCreatedLeaguesDisplay);
+
+      function fetchLeagues(url, callback) {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((error) => console.error("Failed to fetch leagues:", error));
       }
 
-      fetch(`/leagues/user/${userId}`)
-        .then((response) => response.json())
-        .then((data) => updateLeaguesDisplay(data))
-        .catch((error) => console.error("Failed to fetch leagues:", error));
-    });
-
-    function updateLeaguesDisplay(leagues) {
-      const confirmedContainer = document.querySelector(
-        ".leagues-opened-container"
-      );
-      const pendingContainer = document.querySelector(
-        ".pending-leagues-container"
-      ); // You may need to add this to your HTML
-
-      leagues.forEach((league) => {
-        const leagueHtml = `
-          <div class="league-card" onclick="location.href='/pages/accepted-league.html?id=${
-            league.id
-          }'">
-            <img src="${
-              league.imageUrl || "../assets/images/default_league.png"
-            }" alt="${league.leagueName}" />
-            <div class="league-info">
-              <h3>${league.leagueName}</h3>
-              <p>${league.eventDates}</p>
+      function updateParticipationDisplay(leagues) {
+        const confirmedContainer = document.querySelector(
+          ".leagues-opened-container"
+        );
+        const pendingContainer = document.querySelector(
+          ".pending-leagues-container"
+        );
+        leagues.forEach((league) => {
+          const leagueHtml = `
+            <div class="league-card" onclick="location.href='/pages/accepted-league.html?id=${
+              league.id
+            }'">
+              <img src="${
+                league.imageUrl || "../assets/images/default_league.png"
+              }" alt="${league.leagueName}" />
+              <div class="league-info">
+                <h3>${league.leagueName}</h3>
+                <p>${league.eventDates}</p>
+              </div>
             </div>
-          </div>  
-        `;
+          `;
+          if (league.type === "participant") {
+            confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          } else if (league.type === "pending") {
+            pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          }
+        });
+      }
 
-        if (league.type === "participant") {
-          confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
-        } else if (league.type === "pending") {
-          pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
-        }
-      });
-    }
+      function updateCreatedLeaguesDisplay(leagues) {
+        const createdContainer = document.querySelector(
+          ".created-leagues-container .leagues-header"
+        );
+        leagues.forEach((league) => {
+          const leagueHtml = `
+            <div class="league-card" onclick="location.href='/pages/delete-league.html?id=${
+              league.id
+            }'">
+              <img src="${
+                league.imageUrl || "../assets/images/default_league.png"
+              }" alt="${league.leagueName}" />
+              <div class="league-info">
+                <h3>${league.leagueName}</h3>
+                <p>${league.eventDates}</p>
+              </div>
+            </div>
+          `;
+          createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
+        });
+      }
+    });
   </script>
 </html>
