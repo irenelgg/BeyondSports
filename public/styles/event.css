@@ -50,7 +50,9 @@
 
 .event-rsvp,
 .exit-league,
-.delete-league {
+.delete-league,
+.accept-league,
+.reject-league {
   background-color: var(--primary-color);
   color: white;
   border: none;

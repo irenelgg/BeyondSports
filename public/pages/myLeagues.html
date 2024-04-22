@@ -36,31 +36,31 @@
 
     <h1>Your Confirmed Leagues:</h1>
     <main class="leagues-opened-container">
-      <section class="leagues-header">
-        <!-- <div class="leagues-image">
+      <!-- <section class="leagues-header"> -->
+      <!-- <div class="leagues-image">
           <img src="../assets/images/league2.png" alt="Basketball Game" />
           <div class="text-overlay">
             <h2 class="league-title">Hoopers League</h2>
             <p class="league-date">April 9-11</p>
           </div>
         </div> -->
-      </section>
+      <!-- </section> -->
     </main>
     <h1>Pending Leagues:</h1>
     <main class="pending-leagues-container">
-      <section class="leagues-header">
-        <!-- <div class="leagues-image">
+      <!-- <section class="leagues-header"> -->
+      <!-- <div class="leagues-image">
           <img src="../assets/images/league1.png" alt="Basketball Game" />
           <div class="text-overlay">
             <h2 class="league-title">PowerUp League</h2>
             <p class="league-date">April 7-16</p>
           </div>
         </div> -->
-      </section>
+      <!-- </section> -->
     </main>
     <h1>Created Leagues:</h1>
     <main class="created-leagues-container">
-      <section class="leagues-header"></section>
+      <!-- <section class="leagues-header"></section> -->
     </main>
   </body>
   <script>
@@ -85,10 +85,14 @@
           ".pending-leagues-container"
         );
         leagues.forEach((league) => {
+          let link;
+          if (league.type === "participant") {
+            link = "/pages/accepted-league.html?id=" + league.id;
+          } else if (league.type === "pending") {
+            link = "/pages/pending-league.html?id=" + league.id; // replace with the correct link for pending leagues
+          }
           const leagueHtml = `
-            <div class="league-card" onclick="location.href='/pages/accepted-league.html?id=${
-              league.id
-            }'">
+            <div class="league-card" onclick="location.href='${link}'">
               <img src="${
                 league.imageUrl || "../assets/images/default_league.png"
               }" alt="${league.leagueName}" />
@@ -108,7 +112,7 @@
 
       function updateCreatedLeaguesDisplay(leagues) {
         const createdContainer = document.querySelector(
-          ".created-leagues-container .leagues-header"
+          ".created-leagues-container"
         );
         leagues.forEach((league) => {
           const leagueHtml = `

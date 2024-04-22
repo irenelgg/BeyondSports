@@ -279,8 +279,18 @@ app.post("/league", upload.single("image"), (req, res) => {
         console.error(err.message);
         res.status(500).send("Failed to add league");
       } else {
-        // Redirecting to an event creation page specific to this league
-        res.redirect(`/pages/add-events.html?leagueId=${this.lastID}`); // Ensure the redirection path matches your setup
+        const leagueId = this.lastID; // Get the ID of the newly inserted league
+
+        // Automatically create a pending participation for the creator
+        const participationSql = `INSERT INTO participation (user_id, league_id, event_id, type) VALUES (?, ?, NULL, 'pending')`;
+        db.run(participationSql, [creator_id, leagueId], (participationErr) => {
+          if (participationErr) {
+            console.error(participationErr.message);
+            res.status(500).send("Failed to create initial participation");
+          } else {
+            res.redirect(`/pages/add-events.html?leagueId=${leagueId}`); // Ensure the redirection path matches your setup
+          }
+        });
       }
     }
   );
@@ -621,6 +631,33 @@ app.delete("/league/:leagueId", (req, res) => {
         });
       }
     });
+  });
+});
+
+app.post("/accept-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const sql =
+    "UPDATE participation SET type = 'participant' WHERE user_id = ? AND league_id = ?";
+  db.run(sql, [user_id, league_id], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to accept league participation");
+    } else {
+      res.send({ message: "League participation accepted successfully!" });
+    }
+  });
+});
+
+app.post("/reject-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const sql = "DELETE FROM participation WHERE user_id = ? AND league_id = ?";
+  db.run(sql, [user_id, league_id], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to reject league participation");
+    } else {
+      res.send({ message: "League participation rejected successfully!" });
+    }
   });
 });
 
