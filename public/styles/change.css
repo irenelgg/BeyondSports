@@ -1,0 +1,65 @@
+.change-container{
+  display: flex;
+  align-items: center;
+  
+}
+
+.change-container img {
+  width: 50%;
+  height: 30%;
+  margin-left: 250px;
+  margin-top: -100px;
+  
+}
+
+.change-text
+{
+
+  margin-left: 20px;
+  
+}
+
+.change-events
+{
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  
+}
+
+.change-exit{
+  background-color: white;
+  color: var(--primary-color);
+  border: 100px black;
+  cursor: pointer;
+  border-radius: 40px;
+  width: 20%;
+  padding: 40px 0;
+  /* Vertical padding to control height */
+  text-align: center;
+  /* Centers text horizontally */
+  display: inline-block;
+  /* Allows the use of text-align */
+  font-size: 30px;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  white-space: nowrap; 
+  /* Includes padding and border in the element's total width and height */
+}
+
+.change-exited{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
