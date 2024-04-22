@@ -198,10 +198,8 @@ app.post("/event", upload.single("image"), (req, res) => {
         });
       } else {
         // No league_id provided, so just confirm event creation
-        res.json({
-          message: "Event added successfully!",
-          eventId: eventId,
-        });
+        // redirect to homepage
+        res.redirect("/pages/homepage.html");
       }
     }
   });
@@ -279,8 +277,18 @@ app.post("/league", upload.single("image"), (req, res) => {
         console.error(err.message);
         res.status(500).send("Failed to add league");
       } else {
-        // Redirecting to an event creation page specific to this league
-        res.redirect(`/pages/add-events.html?leagueId=${this.lastID}`); // Ensure the redirection path matches your setup
+        const leagueId = this.lastID; // Get the ID of the newly inserted league
+
+        // Automatically create a pending participation for the creator
+        const participationSql = `INSERT INTO participation (user_id, league_id, event_id, type) VALUES (?, ?, NULL, 'pending')`;
+        db.run(participationSql, [creator_id, leagueId], (participationErr) => {
+          if (participationErr) {
+            console.error(participationErr.message);
+            res.status(500).send("Failed to create initial participation");
+          } else {
+            res.redirect(`/pages/add-events.html?leagueId=${leagueId}`); // Ensure the redirection path matches your setup
+          }
+        });
       }
     }
   );
@@ -505,6 +513,152 @@ app.delete("/event/:eventId", (req, res) => {
   });
 });
 
+app.post("/join-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const insertParticipationSql = `
+    INSERT INTO participation (user_id, event_id, league_id, type)
+    SELECT ?, event_id, ?, 'participant'
+    FROM league_events
+    WHERE league_id = ?;
+  `;
+
+  db.run(
+    insertParticipationSql,
+    [user_id, league_id, league_id],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to join league");
+      } else {
+        res.send({
+          message: "Successfully joined the league",
+          changes: this.changes,
+        });
+      }
+    }
+  );
+});
+
+app.get("/leagues/user/:userId", (req, res) => {
+  const sql = `
+    SELECT l.*, p.type, GROUP_CONCAT(e.eventName) as eventNames
+    FROM leagues l
+    JOIN participation p ON l.id = p.league_id
+    LEFT JOIN league_events le ON l.id = le.league_id
+    LEFT JOIN events e ON le.event_id = e.id
+    WHERE p.user_id = ?
+    GROUP BY l.id
+  `;
+
+  db.all(sql, [req.params.userId], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve leagues");
+    } else {
+      res.json(
+        rows.map((row) => {
+          row.eventNames = row.eventNames ? row.eventNames.split(",") : [];
+          return row;
+        })
+      );
+    }
+  });
+});
+
+// Endpoint to exit a league
+app.post("/exit-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  db.run(
+    `DELETE FROM participation WHERE user_id = ? AND league_id = ?`,
+    [user_id, league_id],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to exit league");
+      } else {
+        res.send({
+          message: "Successfully exited the league",
+          changes: this.changes,
+        });
+      }
+    }
+  );
+});
+
+app.get("/leagues/created/:userId", (req, res) => {
+  const userId = req.params.userId;
+  const sql = "SELECT * FROM leagues WHERE creator_id = ?";
+
+  db.all(sql, [userId], (err, leagues) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve created leagues");
+    } else {
+      res.json(leagues);
+    }
+  });
+});
+
+app.delete("/league/:leagueId", (req, res) => {
+  const { leagueId } = req.params;
+  const userId = req.body.userId; // This should be securely fetched, e.g., from session or token
+
+  const verifySql = "SELECT creator_id FROM leagues WHERE id = ?";
+  db.get(verifySql, [leagueId], (verifyErr, league) => {
+    if (verifyErr) {
+      console.error(verifyErr.message);
+      return res
+        .status(500)
+        .send("Database error while verifying league creator.");
+    }
+    if (!league || league.creator_id !== userId) {
+      return res
+        .status(403)
+        .send("You do not have permission to delete this league.");
+    }
+
+    const deleteSql = "DELETE FROM leagues WHERE id = ?";
+    db.run(deleteSql, [leagueId], function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to delete the league");
+      } else {
+        res.send({
+          message: "League deleted successfully",
+          changes: this.changes,
+        });
+      }
+    });
+  });
+});
+
+app.post("/accept-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const sql =
+    "UPDATE participation SET type = 'participant' WHERE user_id = ? AND league_id = ?";
+  db.run(sql, [user_id, league_id], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to accept league participation");
+    } else {
+      res.send({ message: "League participation accepted successfully!" });
+    }
+  });
+});
+
+app.post("/reject-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const sql = "DELETE FROM participation WHERE user_id = ? AND league_id = ?";
+  db.run(sql, [user_id, league_id], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to reject league participation");
+    } else {
+      res.send({ message: "League participation rejected successfully!" });
+    }
+  });
+});
+
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}/pages/homepage.html`);
 });

@@ -22,9 +22,9 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Events</a></li>
+        <li><a href="#">My Leagues</a></li>
         <li><a href="#">Contacts</a></li>
       </ul>
       <div class="nav-create">
@@ -55,7 +55,7 @@
         </li>
       </ul>
 
-      <button type="button" class="exit-league">Exit League</button>
+      <button type="button" class="delete-league">Delete League</button>
       <h2>Events:</h2>
     </div>
 
@@ -148,28 +148,26 @@
       }
 
       document
-        .querySelector(".exit-league")
+        .querySelector(".delete-league")
         .addEventListener("click", function () {
           const leagueId = new URLSearchParams(window.location.search).get(
             "id"
           );
           const userId = 1; // Get this dynamically as needed
 
-          fetch("/exit-league", {
-            method: "POST",
+          fetch(`/league/${leagueId}`, {
+            method: "DELETE",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ user_id: userId, league_id: leagueId }),
+            body: JSON.stringify({ userId: userId }),
           })
             .then((response) => response.json())
             .then((data) => {
-              if (data.message) {
-                alert(data.message);
-                window.location.href = "/pages/myLeagues.html"; // Redirect or update UI as needed
-              }
+              alert(data.message);
+              window.location.href = "/pages/myLeagues.html"; // Redirect to the leagues list page
             })
-            .catch((error) => console.error("Error exiting league:", error));
+            .catch((error) => console.error("Error deleting league:", error));
         });
     </script>
   </body>
