@@ -2,6 +2,7 @@ To run: node server.js
 http://localhost:3000/pages/selectedsport.html
 
 1. **Events Table**
+
    - **Purpose**: This table stores information about individual events.
    - **Fields**:
      - `id`: Unique identifier for each event.
@@ -17,6 +18,7 @@ http://localhost:3000/pages/selectedsport.html
      - `creator_id`: Identifier linking to the user who created the event.
 
 2. **Leagues Table**
+
    - **Purpose**: This table stores information about leagues, which can consist of multiple related events.
    - **Fields**:
      - `id`: Unique identifier for each league.
@@ -30,6 +32,7 @@ http://localhost:3000/pages/selectedsport.html
      - `creator_id`: Identifier for the user who created the league.
 
 3. **Users Table**
+
    - **Purpose**: Stores information about users who participate in or organize events and leagues.
    - **Fields**:
      - `id`: Unique identifier for each user.
@@ -37,6 +40,7 @@ http://localhost:3000/pages/selectedsport.html
      - `accessibility`: Information about any accessibility needs the user might have.
 
 4. **League Events Relationship Table**
+
    - **Purpose**: Manages the relationship between leagues and events, allowing for the association of multiple events with a single league.
    - **Fields**:
      - `league_id`: Identifier for the league.
@@ -44,6 +48,7 @@ http://localhost:3000/pages/selectedsport.html
      - These fields are foreign keys that reference the primary keys in the leagues and events tables, respectively.
 
 5. **Participation Table**
+
    - **Purpose**: Tracks which users participate in which events and leagues, and specifies whether they are participants or creators.
    - **Fields**:
      - `user_id`: Identifier for the user.
@@ -62,3 +67,10 @@ http://localhost:3000/pages/selectedsport.html
      - This table also uses foreign keys to link to the users and leagues tables.
 
 Each of these tables is interconnected through various foreign keys that establish relationships between different entities (users, events, leagues). This structure supports complex queries and operations, such as finding all events created by a particular user, listing all participants of an event, or managing league memberships and event scheduling.
+
+PAGES:
+homepage: http://localhost:3000/pages/homepage.html
+create event page: http://localhost:3000/pages/create_modify_event.html
+create league page: http://localhost:3000/pages/create_modify_league.html
+my events page: http://localhost:3000/pages/myEvents.html?user=1
+my leagues page: http://localhost:3000/pages/myLeagues.html

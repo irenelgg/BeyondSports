@@ -198,10 +198,8 @@ app.post("/event", upload.single("image"), (req, res) => {
         });
       } else {
         // No league_id provided, so just confirm event creation
-        res.json({
-          message: "Event added successfully!",
-          eventId: eventId,
-        });
+        // redirect to homepage
+        res.redirect("/pages/homepage.html");
       }
     }
   });
@@ -662,5 +660,5 @@ app.post("/reject-league", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}/pages/homepage.html`);
 });
