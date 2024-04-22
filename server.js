@@ -505,6 +505,50 @@ app.delete("/event/:eventId", (req, res) => {
   });
 });
 
+app.post("/join-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  const insertParticipationSql = `
+    INSERT INTO participation (user_id, event_id, league_id, type)
+    SELECT ?, event_id, ?, 'participant'
+    FROM league_events
+    WHERE league_id = ?;
+  `;
+
+  db.run(
+    insertParticipationSql,
+    [user_id, league_id, league_id],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to join league");
+      } else {
+        res.send({
+          message: "Successfully joined the league",
+          changes: this.changes,
+        });
+      }
+    }
+  );
+});
+
+// Get leagues by user ID
+app.get("/leagues/user/:userId", (req, res) => {
+  const sql = `
+    SELECT l.*, p.type FROM leagues l
+    JOIN participation p ON l.id = p.league_id
+    WHERE p.user_id = ?
+  `;
+
+  db.all(sql, [req.params.userId], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to retrieve leagues");
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
