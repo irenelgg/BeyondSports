@@ -14,14 +14,11 @@
 .event-details {
   display: flex;
   column-gap: 24px;
-
 }
 
 .event-image {
   flex-grow: 1;
 }
-
-
 
 .event-info {
   flex-grow: 2;
@@ -51,7 +48,8 @@
   border-radius: 5px;
 }
 
-.event-rsvp {
+.event-rsvp,
+.exit-league {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -90,7 +88,6 @@
   font-weight: 550;
   color: grey;
 }
-
 
 /* Variable for special color */
 :root {

@@ -93,38 +93,37 @@
           .then((response) => response.json())
           .then((events) => {
             updateEvents(events);
-            makeCardsClickable('.event-card', 'event_opened.html');
+            makeCardsClickable(".event-card", "event_opened.html");
           })
           .catch((error) => console.error("Error fetching events:", error));
 
         fetch(`/leagues/sport?sport=${encodeURIComponent(sportName)}`)
-          .then(response => response.json())
-          .then(leagues => {
+          .then((response) => response.json())
+          .then((leagues) => {
             updateLeagues(leagues);
-            makeCardsClickable('.league-card', 'powerup.html');
-        })
-        .catch(error => console.error("Error fetching leagues:", error));
+            makeCardsClickable(".league-card", "league.html");
+          })
+          .catch((error) => console.error("Error fetching leagues:", error));
       });
-
-
-
 
       function updateLeagues(leagues) {
         const container = document.querySelector(".league-container");
         container.innerHTML = "";
-        leagues.forEach(league => {
-            const leagueHtml = `
+        leagues.forEach((league) => {
+          const leagueHtml = `
                 <div class="league-card" title="${league.id}">
-                    <img src="${league.imageUrl || "../assets/images/default_league.png"}" />
+                    <img src="${
+                      league.imageUrl || "../assets/images/default_league.png"
+                    }" />
                     <div class="league-info">
                         <h3>${league.leagueName}</h3>
                         <p>${league.eventDates}</p>
                     </div>
                 </div>
             `;
-            container.insertAdjacentHTML("beforeend", leagueHtml);
-    });
-    }
+          container.insertAdjacentHTML("beforeend", leagueHtml);
+        });
+      }
 
       function updateEvents(events) {
         const container = document.querySelector(".events-container");
@@ -163,11 +162,11 @@
 
       function makeCardsClickable(selector, redirectPage) {
         const cards = document.querySelectorAll(selector);
-        cards.forEach(card => {
-            card.addEventListener("click", function () {
-                const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
-                window.location.href = `${redirectPage}?id=${id}`;
-            });
+        cards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
+            window.location.href = `${redirectPage}?id=${id}`;
+          });
         });
       }
     </script>

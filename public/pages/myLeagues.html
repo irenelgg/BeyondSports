@@ -83,7 +83,9 @@
 
       leagues.forEach((league) => {
         const leagueHtml = `
-          <div class="league-card">
+          <div class="league-card" onclick="location.href='/pages/accepted-league.html?id=${
+            league.id
+          }'">
             <img src="${
               league.imageUrl || "../assets/images/default_league.png"
             }" alt="${league.leagueName}" />

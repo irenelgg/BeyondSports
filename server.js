@@ -531,12 +531,15 @@ app.post("/join-league", (req, res) => {
   );
 });
 
-// Get leagues by user ID
 app.get("/leagues/user/:userId", (req, res) => {
   const sql = `
-    SELECT l.*, p.type FROM leagues l
+    SELECT l.*, p.type, GROUP_CONCAT(e.eventName) as eventNames
+    FROM leagues l
     JOIN participation p ON l.id = p.league_id
+    LEFT JOIN league_events le ON l.id = le.league_id
+    LEFT JOIN events e ON le.event_id = e.id
     WHERE p.user_id = ?
+    GROUP BY l.id
   `;
 
   db.all(sql, [req.params.userId], (err, rows) => {
@@ -544,9 +547,34 @@ app.get("/leagues/user/:userId", (req, res) => {
       console.error(err.message);
       res.status(500).send("Failed to retrieve leagues");
     } else {
-      res.json(rows);
+      res.json(
+        rows.map((row) => {
+          row.eventNames = row.eventNames ? row.eventNames.split(",") : [];
+          return row;
+        })
+      );
     }
   });
+});
+
+// Endpoint to exit a league
+app.post("/exit-league", (req, res) => {
+  const { user_id, league_id } = req.body;
+  db.run(
+    `DELETE FROM participation WHERE user_id = ? AND league_id = ?`,
+    [user_id, league_id],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send("Failed to exit league");
+      } else {
+        res.send({
+          message: "Successfully exited the league",
+          changes: this.changes,
+        });
+      }
+    }
+  );
 });
 
 app.listen(port, () => {
