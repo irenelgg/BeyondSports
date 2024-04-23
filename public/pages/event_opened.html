@@ -26,8 +26,8 @@
       <div class="nav-create">
         <button class="dropbtn">Create</button>
         <div class="dropdown-content">
-          <a href="#">Event</a>
-          <a href="#">League</a>
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
         </div>
       </div>
     </nav>
@@ -132,7 +132,7 @@
           })
           .then((data) => {
             alert(data.message); // Alert or update UI to show success message
-            // Additional code to handle the UI update
+            window.location.href = "/pages/myEvents.html";
           })
           .catch((error) => console.error("Failed to RSVP:", error));
       }
