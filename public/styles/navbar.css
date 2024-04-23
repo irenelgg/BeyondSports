@@ -10,24 +10,17 @@ body {
 
 .navbar {
   display: flex;
-  align-items: center; /* Center items vertically in navbar */
-  justify-content: space-between; /* Distribute space between elements */
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
   color: black;
   padding: 0 20px;
   height: 70px;
 }
 
-.nav-logo {
-  flex-grow: 0; /* Don't allow the logo to grow */
-  flex-shrink: 0; /* Don't allow the logo to shrink */
-  display: flex;
-  align-items: center; /* Center logo vertically */
-}
-
 .nav-logo img {
   height: 18px; /* Adjust based on your logo's size */
-  vertical-align: middle;
+  vertical-align: 0;
 }
 
 .nav-logo span {
@@ -36,34 +29,25 @@ body {
   font-size: 20px;
 }
 
-/* Centered Search Bar */
-.nav-search {
-  flex-grow: 1; /* Allow the search bar to take up the remaining space */
-  display: flex;
-  justify-content: center; /* Center search bar horizontally */
-}
+/* Remove border from search bar */
 
 .nav-search input {
+  padding: 12px 30px 12px 30px;
   border: none;
   border-radius: 2px;
   font-size: 16px;
-  width: 60%; /* Adjust based on preferred width */
-  max-width: 500px; /* Maximum width */
+  width: 200px;
   background-color: #eeeeee;
-  padding: 8px 16px;
 }
 
-/* Right-aligned link items */
 .nav-links {
   list-style-type: none;
-  margin: 0;
   padding: 0;
   display: flex;
-  align-items: center; /* Align the items vertically centered */
 }
 
 .nav-links li {
-  padding: 0 15px;
+  padding: 0 20px;
 }
 
 .nav-links a {
@@ -74,31 +58,34 @@ body {
 
 .nav-links a:hover {
   color: #999999;
+  transition: color 0.2s ease-in-out;
 }
 
 .nav-create {
-  display: flex;
-  align-items: center; /* Align dropdown button vertically centered */
+  position: relative;
+  display: inline-block;
 }
 
 .dropbtn {
   background-color: var(--primary-color);
   color: white;
-  padding: 10px 20px;
+  padding: 14px 50px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  /* Remove any margin-top if exists, or make sure it doesn't push content up */
 }
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  border-radius: 5px;
+  position: absolute; /* Position the dropdown content absolutely within its relative parent */
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  left: 0; /* Align dropdown to the left of the 'Create' button */
-  top: 100%; /* Position below the 'Create' button */
-  width: 100%;
+  left: 0; /* Aligns the dropdown to the left of the 'Create' button */
+  top: 100%; /* Positions the dropdown right below the 'Create' button */
+  width: 100%; /* Makes the dropdown content full width */
 }
 
 .dropdown-content a {
@@ -117,5 +104,5 @@ body {
 }
 
 .nav-create:hover .dropbtn {
-  background-color: darken(var(--primary-color), 5%);
+  background-color: var(--primary-color);
 }
