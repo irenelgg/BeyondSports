@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/event.css" />
   </head>
-
   <body>
     <nav class="navbar">
       <div class="nav-logo">
@@ -19,61 +18,135 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">My Events</a></li>
-        <li><a href="#">My Leagues</a></li>
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
         <li><a href="#">Contacts</a></li>
       </ul>
       <div class="nav-create">
         <button class="dropbtn">Create</button>
         <div class="dropdown-content">
-          <a href="#">Event</a>
-          <a href="#">League</a>
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
         </div>
       </div>
     </nav>
 
     <main class="event-opened-container">
       <section class="event-header">
-        <h1>Event: Basket Pick Up Mix</h1>
+        <h1></h1>
+        <!-- Event name will be set here -->
       </section>
 
       <section class="event-details">
         <div class="event-image">
-          <img src="../assets/images/basket1.png" alt="Basketball Game" />
+          <img src="" alt="Event Image" />
+          <!-- Source will be set dynamically -->
         </div>
         <div class="event-info">
           <div class="event-logistics">
             <div class="event-logistics-cols">
+              <h2 class="event-title">Date:<span class="event-body"></span></h2>
               <h2 class="event-title">
-                Date:<span class="event-body"
-                  >April 5 <span class="event-title">@</span> 7:30PM</span
-                >
-              </h2>
-              <h2 class="event-title">
-                Organizer:<span class="event-body">Nick Zeid</span>
+                Organizer:<span class="event-body"></span>
               </h2>
             </div>
             <div class="event-logistics-cols">
               <h2 class="event-title">
-                Location:<span class="event-body">RSF</span>
+                Location:<span class="event-body"></span>
               </h2>
               <h2 class="event-title">
-                Spots Available:<span class="event-body">4/12</span>
+                Spots Available:<span class="event-body"></span>
               </h2>
             </div>
           </div>
           <div class="event-description">
             <h2 class="event-title">
-              Description:<span class="event-body"
-                >Come Take A Break From Your Midterms And Play Some Basket With
-                Our Coach.</span
-              >
+              Description:<span class="event-body"></span>
             </h2>
           </div>
           <button type="button" class="event-rsvp">RSVP</button>
         </div>
       </section>
     </main>
+
+    <script>
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get("id"); // Get the event ID from the query parameter
+
+        fetch(`/events/${eventId}`) // API call to get details of the event
+          .then((response) => response.json())
+          .then((event) => {
+            document.querySelector(
+              ".event-header h1"
+            ).textContent = `Event: ${event.eventName}`;
+            document.querySelector(".event-image img").src =
+              event.imageUrl || "../assets/images/default_event.jpg";
+            document.querySelector(
+              ".event-image img"
+            ).alt = `${event.eventName}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[0].textContent = `${event.eventDate} @ ${event.eventTime}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[1].textContent = `${event.organizer}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[2].textContent = `${event.city}, ${event.state}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[3].textContent = `${event.spots}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[4].textContent = `${event.description}`;
+          })
+          .catch((error) => console.error("Failed to load event data:", error));
+
+        document.querySelector(".event-rsvp").onclick = function () {
+          rsvpToEvent(eventId, getUserId(), getLeagueId());
+        };
+      };
+
+      function rsvpToEvent(eventId, userId, leagueId) {
+        console.log(
+          `RSVPing to Event: ${eventId} by User: ${userId} for League: ${leagueId}`
+        );
+        fetch(`/rsvp`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            event_id: eventId,
+            league_id: leagueId,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert(data.message); // Alert or update UI to show success message
+            window.location.href = "/pages/myEvents.html";
+          })
+          .catch((error) => console.error("Failed to RSVP:", error));
+      }
+
+      function getUserId() {
+        // Placeholder function - replace with actual logic to retrieve user ID from cookies or local storage
+        return 1; // Assume the user ID is stored in local storage
+      }
+
+      function getLeagueId() {
+        // This can be fetched from event details or passed as null if not applicable
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("leagueId") || null; // Assuming you sometimes pass leagueId in URL
+      }
+    </script>
   </body>
 </html>

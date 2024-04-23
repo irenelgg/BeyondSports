@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Sport: Basket</title>
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/eventcard.css" />
+    <link rel="stylesheet" href="../styles/leaguecard.css" />
+    <link rel="stylesheet" href="../styles/selectedsport.css" />
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/event.css" />
+    <link rel="stylesheet" href="../styles/powerup.css" />
+    <link rel="stylesheet" href="../styles/change.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="../assets/icons/icon_logo.svg" />
+        <span>BeyondSports</span>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Search for anything" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+      <div class="nav-create">
+        <button class="dropbtn">Create</button>
+        <div class="dropdown-content">
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="selected-sport-title">
+      <h1>PowerUp League</h1>
+      
+    </div>
+    <div class = "change-container">
+  
+      <div class="change-text">
+        <div class="selected-sport-title">
+          <h2>Dates: <span class="texts">April 7 - 16, 2024</span></h2>
+          <h2>Organizers:<span class="texts"> RSF, UC Berkeley</span></h2>
+         <h2>Spots available:<span class="texts"> 9/16 </span></h2>
+         <h2>Prize:<span class="texts"> 1000 </span></h2>
+         <h2>Rules and Requirements:</h2>
+         <ul><li><h2><span class="texts"> Wheelchair only</span></h2></li>
+        <li><h2><span class="texts"> Must be 21+</span></h2></li>
+        <li><h2><span class="texts"> White Clothes Only</span></h2></li>
+        </ul><h2>Registered As:<span class="texts"> Creative Coders</span></h2>
+        <button type="button" class="change-exited">Exit League</button>
+        <h2>
+          <h2>Events:</h2>
+          
+        </div>
+    
+      </div>
+      <img src="../assets/images/hoop.png" alt="Basketball Game" />
+    </div>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const leagueId = urlParams.get("id");
+
+        if (!leagueId) {
+          console.error("League ID is required.");
+          return;
+        }
+
+        fetch(`/leagues/${leagueId}`) // Endpoint to fetch league details
+          .then((response) => response.json())
+          .then((league) => updateLeagueDetails(league))
+          .catch((error) =>
+            console.error("Failed to fetch league details:", error)
+          );
+
+        fetch(`/events/league/${leagueId}`) // Endpoint to fetch events associated with the league
+          .then((response) => response.json())
+          .then((events) => updateEvents(events))
+          .catch((error) => console.error("Failed to fetch events:", error));
+      });
+
+      function updateLeagueDetails(league) {
+        console.log("League details:", league);
+        document.querySelector(".selected-sport-title h1").textContent =
+          league.leagueName;
+        document.querySelector(".images img").src =
+          league.imageUrl || "../assets/images/default_league.png";
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[0].textContent = league.eventDates;
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[1].textContent = league.organizer;
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[2].textContent = `${league.spots} spots available`;
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[3].textContent = `$${league.prize}`;
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[4].textContent = league.rules.split(";").join("\n");
+      }
+
+      function updateEvents(events) {
+        const container = document.querySelector(".events-container");
+        container.innerHTML = ""; // Clear existing content
+        events.forEach((event) => {
+          const eventHtml = `
+                  <div class="event-card">
+                      <div class="event-card-picture">
+                          <img src="${
+                            event.imageUrl ||
+                            "../assets/images/default_event.jpg"
+                          }" />
+                      </div>
+                      <div class="event-card-content">
+                          <div class="event-card-title">${event.eventName}</div>
+                          <div class="event-card-organizer">
+                              <img src="../assets/icons/icon_person.svg" class="icon" />${
+                                event.organizer
+                              }
+                          </div>
+                          <div class="event-card-location">
+                              <img src="../assets/icons/icon_map.svg" class="icon" />${
+                                event.address
+                              }, ${event.city}
+                          </div>
+                          <div class="event-card-description">${
+                            event.description
+                          }</div>
+                          <hr class="card-divider" />
+                          <div class="event-card-time">
+                              <p>Time</p>
+                              <div class="time-shape">${event.eventTime}</div>
+                          </div>
+                          <div class="event-card-rsvp">${event.eventDate}</div>
+                      </div>
+                  </div>
+              `;
+          container.insertAdjacentHTML("beforeend", eventHtml);
+        });
+      }
+
+      document
+        .querySelector(".exit-league")
+        .addEventListener("click", function () {
+          const leagueId = new URLSearchParams(window.location.search).get(
+            "id"
+          );
+          const userId = 1; // Get this dynamically as needed
+
+          fetch("/exit-league", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user_id: userId, league_id: leagueId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message) {
+                alert(data.message);
+                window.location.href = "/pages/myLeagues.html"; // Redirect or update UI as needed
+              }
+            })
+            .catch((error) => console.error("Error exiting league:", error));
+        });
+    </script>
+  </body>
+</html>
