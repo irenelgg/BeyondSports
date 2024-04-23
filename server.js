@@ -338,14 +338,26 @@ app.put("/invite/:invite_id", (req, res) => {
 //Get all events for a sport
 app.get("/events/sport", (req, res) => {
   const sport = req.query.sport;
-  const sql = "SELECT * FROM events WHERE sport = ?";
-  db.all(sql, [sport], (err, rows) => {
-    if (err) {
-      res.status(500).send("Server error");
-      console.error(err.message);
-    } else {
-      res.json(rows);
-    }
+  const userId = 1;
+
+  if (!userId) {
+      return res.status(400).send("User ID is required");
+  }
+
+  const sql = `
+      SELECT e.* FROM events e
+      WHERE e.sport = ? AND e.id NOT IN (
+          SELECT p.event_id FROM participation p WHERE p.user_id = ? AND p.event_id IS NOT NULL AND p.type = 'participant'
+      );
+  `;
+
+  db.all(sql, [sport, userId], (err, rows) => {
+      if (err) {
+          res.status(500).send("Server error");
+          console.error(err.message);
+      } else {
+          res.json(rows);
+      }
   });
 });
 
@@ -369,15 +381,26 @@ app.get("/events/:id", (req, res) => {
 //Get all leagues for a sport
 app.get("/leagues/sport", (req, res) => {
   const sport = req.query.sport;
-  const sql = "SELECT * FROM leagues WHERE sport = ?";
-  console.log("REACHED HERE");
-  db.all(sql, [sport], (err, rows) => {
-    if (err) {
-      res.status(500).send("Server error");
-      console.error(err.message);
-    } else {
-      res.json(rows);
-    }
+  const userId = 1;
+
+  if (!userId) {
+      return res.status(400).send("User ID is required");
+  }
+
+  const sql = `
+      SELECT l.* FROM leagues l
+      WHERE l.sport = ? AND l.id NOT IN (
+          SELECT p.league_id FROM participation p WHERE p.user_id = ? AND p.league_id IS NOT NULL AND p.type = 'participant' 
+      );
+  `;
+
+  db.all(sql, [sport, userId], (err, rows) => {
+      if (err) {
+          res.status(500).send("Server error");
+          console.error(err.message);
+      } else {
+          res.json(rows);
+      }
   });
 });
 
