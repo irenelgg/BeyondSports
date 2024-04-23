@@ -301,6 +301,16 @@
         });
     }
 
+    function makeCardsClickable() {
+        const cards = document.querySelectorAll(selector);
+        cards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
+            window.location.href = `${redirectPage}?id=${id}`;
+          });
+        });
+      }
+
     function getUserId() {
       // Implement the logic to retrieve the user ID from session or local storage here
       return 1; // Placeholder
