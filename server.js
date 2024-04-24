@@ -697,7 +697,7 @@ app.put("/event/:id", upload.single("image"), (req, res) => {
     accessibility,
   } = req.body;
   const eventId = req.params.id;
-  const imageUrl = req.file ? `/assets/images/${req.file.filename}` : "";
+  const imageUrl = req.file ? `/assets/images/${req.file.filename}` : null;
 
   // Convert accessibility options to string format for database storage
   const accessibilityString = ["blindness", "wheelchair"]
