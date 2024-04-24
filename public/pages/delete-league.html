@@ -22,9 +22,9 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">My Events</a></li>
-        <li><a href="#">My Leagues</a></li>
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
         <li><a href="#">Contacts</a></li>
       </ul>
       <div class="nav-create">
@@ -39,24 +39,28 @@
     <div class="selected-sport-title">
       <h1></h1>
     </div>
-    <div class="images">
-      <img />
-    </div>
-    <div class="selected-sport-title">
-      <h2>Dates: <span class="event-body"></span></h2>
+    <div class="league-information-layout">
+      <div class="selected-sport-title">
+        <h2>Dates: <span class="event-body"></span></h2>
 
-      <h2>Organizers:<span class="event-body"> </span></h2>
-      <h2>Spots available:<span class="event-body"></span></h2>
-      <h2>Prize:<span class="event-body"> </span></h2>
-      <h2>Rules and Requirements:</h2>
-      <ul>
-        <li>
-          <h2><span class="event-body"></span></h2>
-        </li>
-      </ul>
+        <h2>Organizers:<span class="event-body"> </span></h2>
+        <h2>Spots available:<span class="event-body"></span></h2>
+        <h2>Prize:<span class="event-body"> </span></h2>
+        <h2>Rules and Requirements:</h2>
+        <ul>
+          <li>
+            <h2><span class="event-body"></span></h2>
+          </li>
+        </ul>
 
-      <button type="button" class="delete-league">Delete League</button>
-      <h2>Events:</h2>
+        <button type="button" class="delete-league league-btn">
+          Delete League
+        </button>
+        <h2 class="event-names-container">Events:</h2>
+      </div>
+      <div class="images">
+        <img />
+      </div>
     </div>
 
     <div class="events-container"></div>

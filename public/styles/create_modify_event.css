@@ -110,7 +110,7 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.navbar {
+/* .navbar {
   background-color: #f8f8f8;
   display: flex;
   justify-content: space-between;
@@ -136,7 +136,7 @@ input[type="checkbox"] {
   padding: 10px 15px;
   transition: background-color 0.3s ease;
   border-radius: 5px;
-}
+} */
 
 .create-button {
   margin-left: 20px;
