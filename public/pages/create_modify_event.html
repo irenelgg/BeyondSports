@@ -58,7 +58,8 @@
               id="image-upload"
               name="image"
               accept="image/*"
-              hidden
+              class="visually-hidden"
+              required
             />
             Drag & Drop or select files from device
             <span id="file-name"></span>
@@ -79,17 +80,18 @@
               id="event-name"
               name="eventName"
               placeholder="Event Name..."
+              required
             />
           </div>
 
           <div class="input-group-event">
             <label>Date</label>
-            <input type="date" id="date-picker" name="eventDate" />
+            <input type="date" id="date-picker" name="eventDate" required />
           </div>
 
           <div class="input-group-event">
             <label>Time</label>
-            <input type="time" id="time-picker" name="eventTime" />
+            <input type="time" id="time-picker" name="eventTime" required />
           </div>
         </div>
 
@@ -100,18 +102,31 @@
             id="address"
             name="address"
             placeholder="Address..."
+            required
           />
         </div>
 
         <div class="form-section horizontal">
           <div class="input-group">
             <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="City..." />
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="City..."
+              required
+            />
           </div>
 
           <div class="input-group">
             <label for="state">State</label>
-            <input type="text" id="state" name="state" placeholder="State..." />
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="State..."
+              required
+            />
           </div>
         </div>
 
@@ -122,6 +137,7 @@
             id="description"
             name="description"
             placeholder="Description..."
+            required
           />
         </div>
 
@@ -133,12 +149,19 @@
               id="spots"
               name="spots"
               placeholder="Spots..."
+              required
             />
           </div>
 
           <div class="input-group">
             <label for="sport">Sport</label>
-            <input type="text" id="sport" name="sport" placeholder="Sport..." />
+            <input
+              type="text"
+              id="sport"
+              name="sport"
+              placeholder="Sport..."
+              required
+            />
           </div>
         </div>
 
