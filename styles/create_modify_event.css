@@ -167,12 +167,6 @@ input[type=checkbox] {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;  /* Optional: Hide navbar links on smaller screens */
-    }
-}
-
-@media (max-width: 768px) {
     .horizontal {
         flex-direction: column;
     }
@@ -190,12 +184,7 @@ input[type=checkbox] {
     .search-input {
         flex-grow: 1; /* Makes the search bar responsive */
     }
-}
 
-/* Add this at the end of your create_modify_event.css */
-
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
     .container {
         padding: 10px; /* Adjust padding for smaller screens */
     }
