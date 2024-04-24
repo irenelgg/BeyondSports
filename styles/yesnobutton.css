@@ -67,3 +67,24 @@ button {
 .no-button:hover {
     background-color: #005fa3;
 }
+
+/* Add this at the end of your yesnobutton.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .modal {
+        width: 80%; /* Adjust width of modal for smaller screens */
+        max-width: 300px; /* Limit maximum width for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+        border-radius: 10px; /* Increase border radius for a smoother appearance */
+    }
+
+    .question {
+        font-size: 20px; /* Decrease font size for question */
+    }
+
+    button {
+        padding: 8px 16px; /* Adjust button padding for smaller screens */
+        font-size: 12px; /* Decrease font size for buttons */
+    }
+}
