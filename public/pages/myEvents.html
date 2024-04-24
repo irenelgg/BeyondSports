@@ -154,6 +154,7 @@
         .then((createdEvents) => {
           updateCreatedEvents(createdEvents);
           attachDeleteEventListeners();
+          attachModifyEventListeners();
         })
         .catch((error) =>
           console.error("Error fetching created events:", error)
@@ -239,7 +240,9 @@
             <div class="time-shape">${event.eventTime}</div>
           </div>
           <div class="event-card-actions">
-            <button class="event-card-button confirmed">MODIFY</button>
+            <button class="event-card-button modify" data-event-id="${
+              event.id
+            }">MODIFY</button>
             <button class="event-card-button delete" data-event-id="${
               event.id
             }">DELETE</button>
@@ -274,6 +277,18 @@
           console.log("Delete button clicked");
           const eventId = this.getAttribute("data-event-id");
           deleteEvent(eventId);
+        });
+      });
+    }
+
+    function attachModifyEventListeners() {
+      const modifyButtons = document.querySelectorAll(".modify");
+      modifyButtons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+          event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
+          console.log("Modify button clicked");
+          const eventId = this.getAttribute("data-event-id");
+          modifyEvent(eventId);
         });
       });
     }
@@ -313,6 +328,10 @@
           console.error("Failed to delete event:", error);
           alert("Failed to delete the event.");
         });
+    }
+
+    function modifyEvent(eventId) {
+      window.location.href = `/pages/modify_event.html?id=${eventId}`;
     }
 
     function makeCardsClickable() {

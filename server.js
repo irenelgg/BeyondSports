@@ -341,7 +341,7 @@ app.get("/events/sport", (req, res) => {
   const userId = 1;
 
   if (!userId) {
-      return res.status(400).send("User ID is required");
+    return res.status(400).send("User ID is required");
   }
 
   const sql = `
@@ -352,12 +352,12 @@ app.get("/events/sport", (req, res) => {
   `;
 
   db.all(sql, [sport, userId], (err, rows) => {
-      if (err) {
-          res.status(500).send("Server error");
-          console.error(err.message);
-      } else {
-          res.json(rows);
-      }
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
   });
 });
 
@@ -384,7 +384,7 @@ app.get("/leagues/sport", (req, res) => {
   const userId = 1;
 
   if (!userId) {
-      return res.status(400).send("User ID is required");
+    return res.status(400).send("User ID is required");
   }
 
   const sql = `
@@ -395,12 +395,12 @@ app.get("/leagues/sport", (req, res) => {
   `;
 
   db.all(sql, [sport, userId], (err, rows) => {
-      if (err) {
-          res.status(500).send("Server error");
-          console.error(err.message);
-      } else {
-          res.json(rows);
-      }
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
   });
 });
 
@@ -678,6 +678,74 @@ app.post("/reject-league", (req, res) => {
       res.status(500).send("Failed to reject league participation");
     } else {
       res.send({ message: "League participation rejected successfully!" });
+    }
+  });
+});
+
+app.put("/event/:id", upload.single("image"), (req, res) => {
+  const {
+    eventName,
+    eventDate,
+    eventTime,
+    address,
+    city,
+    state,
+    description,
+    spots,
+    sport,
+    creator_id,
+    accessibility,
+  } = req.body;
+  const eventId = req.params.id;
+  const imageUrl = req.file ? `/assets/images/${req.file.filename}` : "";
+
+  // Convert accessibility options to string format for database storage
+  const accessibilityString = ["blindness", "wheelchair"]
+    .filter((acc) => req.body[acc])
+    .join(",");
+
+  const sql = `
+      UPDATE events SET
+          eventName = ?,
+          eventDate = ?,
+          eventTime = ?,
+          address = ?,
+          city = ?,
+          state = ?,
+          description = ?,
+          spots = ?,
+          sport = ?,
+          imageUrl = COALESCE(?, imageUrl),
+          accessibility = ?,
+          creator_id = ?
+      WHERE id = ?`;
+
+  const params = [
+    eventName,
+    eventDate,
+    eventTime,
+    address,
+    city,
+    state,
+    description,
+    spots,
+    sport,
+    imageUrl,
+    accessibilityString,
+    creator_id,
+    eventId,
+  ];
+
+  // Execute SQL to update the event
+  db.run(sql, params, function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to update event");
+    } else {
+      res.send({
+        message: "Event updated successfully!",
+        eventId: eventId,
+      });
     }
   });
 });

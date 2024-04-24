@@ -54,7 +54,8 @@
 .accept-league,
 .reject-league,
 .event-cancel,
-.event-delete {
+.event-delete,
+.event-modify {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -130,4 +131,13 @@ body {
   font-size: 50px;
   font-weight: 600;
   margin-top: 20px;
+}
+
+.btns-layout {
+  display: flex;
+}
+
+.btns-layout button {
+  margin-right: 20px;
+  padding: 15px;
 }

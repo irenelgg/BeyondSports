@@ -65,9 +65,14 @@
               Description:<span class="event-body"></span>
             </h2>
           </div>
-          <button type="button" class="event-delete" id="event-action-button">
-            Delete Event
-          </button>
+          <div class="btns-layout">
+            <button type="button" class="event-modify" id="event-action-button">
+              Modify Event
+            </button>
+            <button type="button" class="event-delete" id="event-action-button">
+              Delete Event
+            </button>
+          </div>
         </div>
       </section>
     </main>
@@ -115,6 +120,9 @@
 
         document.querySelector(".event-delete").onclick = function () {
           deleteEvent(eventId);
+        };
+        document.querySelector(".event-modify").onclick = function () {
+          window.location.href = `/pages/modify_event.html?id=${eventId}`;
         };
       };
 
