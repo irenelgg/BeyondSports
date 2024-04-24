@@ -52,7 +52,8 @@
 .exit-league,
 .delete-league,
 .accept-league,
-.reject-league {
+.reject-league,
+.event-cancel {
   background-color: var(--primary-color);
   color: white;
   border: none;

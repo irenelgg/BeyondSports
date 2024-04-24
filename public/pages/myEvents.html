@@ -165,7 +165,9 @@
       container.innerHTML = ""; // Clear any existing content
       events.forEach((event) => {
         const eventHtml = `
-                <div class="event-card">
+                <div class="event-card" onclick="redirectToEventPage(${
+                  event.id
+                })">
                     <div class="event-card-picture">
                         <img src="${
                           event.imageUrl || "../assets/images/default.png"
@@ -202,6 +204,10 @@
             `;
         container.insertAdjacentHTML("beforeend", eventHtml);
       });
+    }
+
+    function redirectToEventPage(eventId) {
+      window.location.href = `/pages/event_confirmed.html?id=${eventId}`;
     }
 
     function updateCreatedEvents(events) {
@@ -245,7 +251,8 @@
     function attachCancelEventListeners() {
       const cancelButtons = document.querySelectorAll(".cancel");
       cancelButtons.forEach((button) => {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (event) {
+          event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
           console.log("Cancel button clicked");
           const eventId = this.getAttribute("data-event-id");
           cancelRSVP(eventId);
@@ -256,7 +263,8 @@
     function attachDeleteEventListeners() {
       const deleteButtons = document.querySelectorAll(".delete");
       deleteButtons.forEach((button) => {
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function (event) {
+          event.stopPropagation(); // Prevent the click event from bubbling up to the parent element
           console.log("Delete button clicked");
           const eventId = this.getAttribute("data-event-id");
           deleteEvent(eventId);
@@ -302,14 +310,14 @@
     }
 
     function makeCardsClickable() {
-        const cards = document.querySelectorAll(selector);
-        cards.forEach((card) => {
-          card.addEventListener("click", function () {
-            const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
-            window.location.href = `${redirectPage}?id=${id}`;
-          });
+      const cards = document.querySelectorAll(selector);
+      cards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const id = this.getAttribute("title"); // Assumes 'title' is used to store the id
+          window.location.href = `${redirectPage}?id=${id}`;
         });
-      }
+      });
+    }
 
     function getUserId() {
       // Implement the logic to retrieve the user ID from session or local storage here
