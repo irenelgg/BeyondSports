@@ -41,7 +41,7 @@ h2 {
 }
 
 .input-group-dates {
-  flex-basis: 100%; /* Adjust the spacing between input fields */
+  flex-basis: 48%; /* Adjust the spacing between input fields */
 }
 
 label {

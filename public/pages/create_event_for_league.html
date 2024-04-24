@@ -33,6 +33,17 @@
 
     <div class="container">
       <h1>Create/Modify Event:</h1>
+      <div class="fetch-event form-section">
+        <label for="event-description">Autofill using AI</label>
+        <input
+          type="text"
+          id="event-description"
+          placeholder="Enter event description..."
+        />
+        <button id="fetch-button" class="submit-btn">
+          Fetch Event Details
+        </button>
+      </div>
       <form
         id="event-form"
         action="/event"
@@ -48,9 +59,17 @@
               id="image-upload"
               name="image"
               accept="image/*"
+              hidden
             />
             Drag & Drop or select files from device
+            <span id="file-name"></span>
           </label>
+        </div>
+
+        <div class="form-section">
+          <button id="generate-image-button" class="submit-btn">
+            Or Generate an Image Using AI
+          </button>
         </div>
 
         <div class="form-section horizontal">
@@ -150,5 +169,94 @@
         document.getElementById("league-id").value = leagueId;
       }
     });
+
+    document
+      .getElementById("image-upload")
+      .addEventListener("change", function () {
+        const fileInput = this;
+        const fileNameSpan = document.getElementById("file-name");
+        if (fileInput.files.length > 0) {
+          const fileName = fileInput.files[0].name;
+          fileNameSpan.textContent = `Selected file: ${fileName}`; // Display file name
+        } else {
+          fileNameSpan.textContent = ""; // Clear when no file is selected
+        }
+      });
+
+    document
+      .getElementById("fetch-button")
+      .addEventListener("click", async function () {
+        const eventDescription =
+          document.getElementById("event-description").value;
+        try {
+          const response = await fetch(
+            "https://noggin.rea.gent/junior-firefly-2561",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                  "Bearer rg_v1_ihjzvu85u3efvo2do6nyl4s4sdgty1yxrjda_ngk",
+              },
+              body: JSON.stringify({ eventdescription: eventDescription }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+
+          const data = await response.json();
+          document.getElementById("event-name").value = data.eventName;
+          document.getElementById("date-picker").value = data.eventDate;
+          document.getElementById("time-picker").value = data.eventTime;
+          document.getElementById("address").value = data.address;
+          document.getElementById("city").value = data.city;
+          document.getElementById("state").value = data.state;
+          document.getElementById("description").value = data.description;
+          document.getElementById("spots").value = data.spots;
+          document.getElementById("sport").value = data.sport;
+          document.getElementById("blindness").checked = data.blindness; // Correct usage of 'checked' property
+          document.getElementById("wheelchair").checked = data.wheelchair; // Correct usage of 'checked' property
+          // Handle checkbox setup if needed
+        } catch (error) {
+          console.error("Failed to fetch event details:", error);
+        }
+      });
+
+    document
+      .getElementById("generate-image-button")
+      .addEventListener("click", async function (event) {
+        event.preventDefault(); // Prevent the form from submitting when the button is clicked
+
+        const sport = document.getElementById("sport").value;
+        // Construct the URL for the API request to generate the image
+        const imageApiUrl = `https://noggin.rea.gent/shallow-echidna-7327?key=rg_v1_2rxrco53kmvqo8xn089vkw5lmvmemhi8zzr8_ngk&sport=${encodeURIComponent(
+          sport
+        )}`;
+
+        try {
+          const response = await fetch(imageApiUrl, {
+            method: "GET", // Assuming the API uses GET, update if it's POST
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch the image");
+          }
+
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imageApiUrl;
+          // set it right under generate image button and make it a clickbale link that downlds the image
+          downloadLink.textContent = "Download Image";
+          document
+            .getElementById("generate-image-button")
+            .insertAdjacentElement("afterend", downloadLink);
+          downloadLink.download = "event-image.png";
+          // open in new tab
+          downloadLink.target = "_blank";
+        } catch (error) {
+          console.error("Error generating image:", error);
+        }
+      });
   </script>
 </html>
