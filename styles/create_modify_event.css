@@ -191,3 +191,50 @@ input[type=checkbox] {
         flex-grow: 1; /* Makes the search bar responsive */
     }
 }
+
+/* Add this at the end of your create_modify_event.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 24px; /* Decrease font size for heading */
+    }
+
+    .input-group,
+    .input-group-event {
+        flex-basis: 100%; /* Make input fields take full width */
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+    }
+
+    .nav-logo img {
+        height: 14px; /* Decrease logo size for smaller screens */
+    }
+
+    .nav-search input {
+        padding: 10px; /* Adjust padding for search input */
+        width: 150px; /* Decrease width for search input */
+    }
+
+    .nav-links {
+        display: none; /* Hide navbar links on smaller screens */
+    }
+
+    .nav-create {
+        margin-right: 10px; /* Adjust margin for 'Create' button */
+    }
+
+    .submit-btn {
+        padding: 12px; /* Adjust padding for submit button */
+    }
+}
