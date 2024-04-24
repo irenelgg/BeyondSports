@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="../styles/create_modify_league.css" />
     <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -83,7 +84,7 @@
           </div>
         </div>
 
-        <div class="form-section horizontal">
+        <div class="form-section">
           <div class="input-group-dates">
             <label for="date-range">Event Dates</label>
             <input
@@ -93,17 +94,6 @@
               placeholder="Select Date Range..."
               required
               readonly
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="sport">Sport</label>
-            <input
-              type="text"
-              id="sport"
-              name="sport"
-              placeholder="Sport..."
-              required
             />
           </div>
         </div>
@@ -129,6 +119,36 @@
               placeholder="Organizer..."
               required
             />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="sport">Sport</label>
+          <div class="radio-btn">
+            <div class="radio-layout">
+              <input
+                type="radio"
+                id="basketball"
+                name="sport"
+                value="Basketball"
+              />
+              <label for="basketball">Basketball</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="soccer" name="sport" value="Soccer" />
+              <label for="soccer">Soccer</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="tennis" name="sport" value="Tennis" />
+              <label for="tennis">Tennis</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="football" name="sport" value="Football" />
+              <label for="football">Football</label>
+            </div>
           </div>
         </div>
 
