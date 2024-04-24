@@ -158,6 +158,18 @@
     `;
           container.insertAdjacentHTML("beforeend", eventHtml);
         });
+
+        // Add event listener to RSVP button
+        const rsvpButtons = document.querySelectorAll(".event-card-rsvp");
+        rsvpButtons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent event from bubbling up
+            const card = this.closest(".event-card");
+            const id = card.getAttribute("title");
+            console.log(`RSVPing to Event ID: ${id}`);
+            rsvpToEvent(id, getUserId(), getLeagueId());
+          });
+        });
       }
 
       function makeCardsClickable(selector, redirectPage) {
@@ -168,6 +180,48 @@
             window.location.href = `${redirectPage}?id=${id}`;
           });
         });
+      }
+
+      function rsvpToEvent(eventId, userId, leagueId) {
+        console.log(
+          `RSVPing to Event: ${eventId} by User: ${userId} for League: ${leagueId}`
+        );
+        fetch(`/rsvp`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            event_id: eventId,
+            league_id: leagueId,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            alert(data.message); // Show the alert with the success message
+            window.location.href = "/pages/myEvents.html"; // Redirect to the user's events page
+          })
+          .catch((error) => {
+            console.error("Failed to RSVP:", error);
+            alert("Failed to RSVP: " + error.message); // Show error message if something goes wrong
+          });
+      }
+
+      function getUserId() {
+        // Placeholder function - replace with actual logic to retrieve user ID from cookies or local storage
+        return 1; // Assume the user ID is stored in local storage
+      }
+
+      function getLeagueId() {
+        // This can be fetched from event details or passed as null if not applicable
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("leagueId") || null; // Assuming you sometimes pass leagueId in URL
       }
     </script>
   </body>
