@@ -1,28 +1,32 @@
 .sports-icons {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 60px;
-    margin-right: 60px;
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-  
-  .sport-icon {
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    overflow: hidden;
-    width: 200px;
-    height: 200px;
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding-top: 55px;
+  padding-bottom: 55px;
+}
 
-  .choose-sport {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-  }
+.sport-icon {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
 
-  .title {
-    padding: 40px;
-    text-align: center;
-    font-size: 50px;
-  }
+.sport-icon img {
+  width: 100%;
+}
+
+.choose-sport {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 40px;
+  text-align: center;
+  font-size: 50px;
+}

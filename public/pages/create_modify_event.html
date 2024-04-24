@@ -73,7 +73,7 @@
         </div>
 
         <div class="form-section horizontal">
-          <div class="input-group-event">
+          <div class="input-group">
             <label for="event-name">Event Name</label>
             <input
               type="text"
@@ -84,12 +84,25 @@
             />
           </div>
 
-          <div class="input-group-event">
+          <div class="input-group">
+            <label for="spots">Spots</label>
+            <input
+              type="number"
+              id="spots"
+              name="spots"
+              placeholder="Spots..."
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
             <label>Date</label>
             <input type="date" id="date-picker" name="eventDate" required />
           </div>
 
-          <div class="input-group-event">
+          <div class="input-group">
             <label>Time</label>
             <input type="time" id="time-picker" name="eventTime" required />
           </div>
@@ -141,27 +154,33 @@
           />
         </div>
 
-        <div class="form-section horizontal">
-          <div class="input-group">
-            <label for="spots">Spots</label>
-            <input
-              type="number"
-              id="spots"
-              name="spots"
-              placeholder="Spots..."
-              required
-            />
-          </div>
+        <div class="input-group">
+          <label for="sport">Sport</label>
+          <div class="radio-btn">
+            <div class="radio-layout">
+              <input
+                type="radio"
+                id="basketball"
+                name="sport"
+                value="Basketball"
+              />
+              <label for="basketball">Basketball</label>
+            </div>
 
-          <div class="input-group">
-            <label for="sport">Sport</label>
-            <input
-              type="text"
-              id="sport"
-              name="sport"
-              placeholder="Sport..."
-              required
-            />
+            <div class="radio-layout">
+              <input type="radio" id="soccer" name="sport" value="Soccer" />
+              <label for="soccer">Soccer</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="tennis" name="sport" value="Tennis" />
+              <label for="tennis">Tennis</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="football" name="sport" value="Football" />
+              <label for="football">Football</label>
+            </div>
           </div>
         </div>
 
@@ -239,7 +258,11 @@
             document.getElementById("state").value = data.state;
             document.getElementById("description").value = data.description;
             document.getElementById("spots").value = data.spots;
-            document.getElementById("sport").value = data.sport;
+            if (data.sport) {
+              document.querySelector(
+                `input[name="sport"][value="${data.sport}"]`
+              ).checked = true;
+            }
             document.getElementById("blindness").checked = data.blindness; // Correct usage of 'checked' property
             document.getElementById("wheelchair").checked = data.wheelchair; // Correct usage of 'checked' property
             // Handle checkbox setup if needed
@@ -253,9 +276,11 @@
         .addEventListener("click", async function (event) {
           event.preventDefault(); // Prevent the form from submitting when the button is clicked
 
-          const sport = document.getElementById("sport").value;
+          const sport = document.querySelector(
+            'input[name="sport"]:checked'
+          ).value;
           // Construct the URL for the API request to generate the image
-          const imageApiUrl = `https://noggin.rea.gent/shallow-echidna-7327?key=rg_v1_2rxrco53kmvqo8xn089vkw5lmvmemhi8zzr8_ngk&sport=${encodeURIComponent(
+          const imageApiUrl = `https://noggin.rea.gent/happy-grasshopper-6117?key=rg_v1_gpfamqwpfcs05sliuh5ii9645eyzy0afgb8x_ngk&sport=${encodeURIComponent(
             sport
           )}`;
 

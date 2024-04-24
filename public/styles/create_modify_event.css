@@ -224,3 +224,19 @@ input[type="checkbox"] {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.radio-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.radio-layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-layout label {
+  margin: 0 0 0 10px;
+}
