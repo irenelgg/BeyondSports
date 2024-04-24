@@ -214,7 +214,9 @@
       const container = document.querySelector(".created-container");
       container.innerHTML = ""; // Clear any existing content
       events.forEach((event) => {
-        const eventHtml = `<div class="event-card">
+        const eventHtml = `<div class="event-card" onclick="redirectToEventCreatedPage(${
+          event.id
+        })">
         <div class="event-card-picture">
           <img src="${event.imageUrl || "../assets/images/default.png"}" />
         </div>
@@ -246,6 +248,10 @@
       </div>`;
         container.insertAdjacentHTML("beforeend", eventHtml);
       });
+    }
+
+    function redirectToEventCreatedPage(eventId) {
+      window.location.href = `/pages/event_created.html?id=${eventId}`;
     }
 
     function attachCancelEventListeners() {

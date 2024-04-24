@@ -53,7 +53,8 @@
 .delete-league,
 .accept-league,
 .reject-league,
-.event-cancel {
+.event-cancel,
+.event-delete {
   background-color: var(--primary-color);
   color: white;
   border: none;
