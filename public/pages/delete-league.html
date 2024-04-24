@@ -46,6 +46,7 @@
         <h2>Organizer:<span class="event-body"> </span></h2>
         <h2>Spots available:<span class="event-body"></span></h2>
         <h2>Prize:<span class="event-body"> </span></h2>
+        <h2>Sport:<span class="event-body"> </span></h2>
         <h2>Rules and Requirements:</h2>
         <ul>
           <li>
@@ -108,7 +109,10 @@
         )[3].textContent = `$${league.prize}`;
         document.querySelectorAll(
           ".selected-sport-title .event-body"
-        )[4].textContent = league.rules.split(";").join("\n");
+        )[4].textContent = league.sport;
+        document.querySelectorAll(
+          ".selected-sport-title .event-body"
+        )[5].textContent = league.rules.split(";").join("\n");
       }
 
       function updateEvents(events) {
