@@ -33,8 +33,21 @@
       </div>
     </nav>
 
-    <div class="selected-sport-title">
-      <h1>Selected Sport: Basket</h1>
+    <div class="side-container">
+      <div class="selected-sport-title">
+        <h1>Selected Sport: Basket</h1>
+      </div>
+
+      <div class="filter-options">
+        <label
+          ><input type="checkbox" id="wheelchair-access" value="wheelchair" />
+          Wheelchair Accessible</label
+        >
+        <label
+          ><input type="checkbox" id="blind-access" value="blindness" /> Blind
+          Accessible</label
+        >
+      </div>
     </div>
 
     <div class="selected-sport-title">
@@ -88,8 +101,55 @@
           ".selected-sport-title h1"
         ).textContent = `Selected Sport: ${sportName}`;
 
+        // Set up event listeners for accessibility checkboxes
+        document
+          .getElementById("wheelchair-access")
+          .addEventListener("change", () =>
+            updateContentBasedOnAccessibility(sportName)
+          );
+        document
+          .getElementById("blind-access")
+          .addEventListener("change", () =>
+            updateContentBasedOnAccessibility(sportName)
+          );
+
+        // Fetch events and leagues with accessibility options
+        updateContentBasedOnAccessibility(sportName);
+
         // Fetch events for the given sport
-        fetch(`/events/sport?sport=${encodeURIComponent(sportName)}`)
+        // fetch(`/events/sport?sport=${encodeURIComponent(sportName)}`)
+        //   .then((response) => response.json())
+        //   .then((events) => {
+        //     updateEvents(events);
+        //     makeCardsClickable(".event-card", "event_opened.html");
+        //   })
+        //   .catch((error) => console.error("Error fetching events:", error));
+
+        // fetch(`/leagues/sport?sport=${encodeURIComponent(sportName)}`)
+        //   .then((response) => response.json())
+        //   .then((leagues) => {
+        //     updateLeagues(leagues);
+        //     makeCardsClickable(".league-card", "league.html");
+        //   })
+        //   .catch((error) => console.error("Error fetching leagues:", error));
+      });
+
+      function updateContentBasedOnAccessibility(sportName) {
+        console.log("Updating content based on accessibility options");
+        const accessibilityFilters = [];
+        if (document.getElementById("wheelchair-access").checked)
+          accessibilityFilters.push("wheelchair");
+        if (document.getElementById("blind-access").checked)
+          accessibilityFilters.push("blindness");
+
+        const accessibilityQuery =
+          accessibilityFilters.length > 0 ? accessibilityFilters.join(",") : "";
+
+        fetch(
+          `/events/sport?sport=${encodeURIComponent(
+            sportName
+          )}&accessibility=${encodeURIComponent(accessibilityQuery)}`
+        )
           .then((response) => response.json())
           .then((events) => {
             updateEvents(events);
@@ -97,30 +157,35 @@
           })
           .catch((error) => console.error("Error fetching events:", error));
 
-        fetch(`/leagues/sport?sport=${encodeURIComponent(sportName)}`)
+        fetch(
+          `/leagues/sport?sport=${encodeURIComponent(
+            sportName
+          )}&accessibility=${encodeURIComponent(accessibilityQuery)}`
+        )
           .then((response) => response.json())
           .then((leagues) => {
             updateLeagues(leagues);
             makeCardsClickable(".league-card", "league.html");
           })
           .catch((error) => console.error("Error fetching leagues:", error));
-      });
+      }
 
       function updateLeagues(leagues) {
         const container = document.querySelector(".league-container");
         container.innerHTML = "";
         leagues.forEach((league) => {
           const leagueHtml = `
-                <div class="league-card" title="${league.id}">
-                    <img src="${
-                      league.imageUrl || "../assets/images/default_league.png"
-                    }" />
-                    <div class="league-info">
-                        <h3>${league.leagueName}</h3>
-                        <p>${league.eventDates}</p>
+                    <div class="league-card" title="${league.id}">
+                        <img src="${
+                          league.imageUrl ||
+                          "../assets/images/default_league.png"
+                        }" />
+                        <div class="league-info">
+                            <h3>${league.leagueName}</h3>
+                            <p>${league.eventDates}</p>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
           container.insertAdjacentHTML("beforeend", leagueHtml);
         });
       }
@@ -137,32 +202,32 @@
             )
             .join(", ");
           const eventHtml = `
-      <div class="event-card" title="${event.id}">
-        <div class="event-card-picture">
-          <img src="${event.imageUrl || "../assets/images/default.png"}" />
-        </div>
-        <div class="event-card-content">
-          <div class="event-card-title">${event.eventName}</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />${
-              accessibility || "N/A"
-            }
+          <div class="event-card" title="${event.id}">
+            <div class="event-card-picture">
+              <img src="${event.imageUrl || "../assets/images/default.png"}" />
+            </div>
+            <div class="event-card-content">
+              <div class="event-card-title">${event.eventName}</div>
+              <div class="event-card-organizer">
+                <img src="../assets/icons/icon_person.svg" class="icon" />${
+                  accessibility || "N/A"
+                }
+              </div>
+              <div class="event-card-location">
+                <img src="../assets/icons/icon_map.svg" class="icon" />${
+                  event.address
+                }, ${event.city}
+              </div>
+              <div class="event-card-description">${event.description}</div>
+              <hr class="card-divider" />
+              <div class="event-card-time">
+                <p>Time</p>
+                <div class="time-shape">${event.eventTime}</div>
+              </div>
+              <div class="event-card-rsvp">RSVP</div>
+            </div>
           </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />${
-              event.address
-            }, ${event.city}
-          </div>
-          <div class="event-card-description">${event.description}</div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">${event.eventTime}</div>
-          </div>
-          <div class="event-card-rsvp">RSVP</div>
-        </div>
-      </div>
-    `;
+        `;
           container.insertAdjacentHTML("beforeend", eventHtml);
         });
 
