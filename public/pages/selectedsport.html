@@ -135,12 +135,12 @@
       });
 
       function updateContentBasedOnAccessibility(sportName) {
-        console.log("Updating content based on accessibility options");
         const accessibilityFilters = [];
-        if (document.getElementById("wheelchair-access").checked)
-          accessibilityFilters.push("wheelchair");
+
         if (document.getElementById("blind-access").checked)
           accessibilityFilters.push("blindness");
+        if (document.getElementById("wheelchair-access").checked)
+          accessibilityFilters.push("wheelchair");
 
         const accessibilityQuery =
           accessibilityFilters.length > 0 ? accessibilityFilters.join(",") : "";
