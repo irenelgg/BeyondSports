@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Leagues</title>
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/leaguecard.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/leagues.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="../assets/icons/icon_logo.svg" />
+        <span>BeyondSports</span>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Search for anything" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+      <div class="nav-create">
+        <button class="dropbtn">Create</button>
+        <div class="dropdown-content">
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
+        </div>
+      </div>
+    </nav>
+
+    <h1>Your Confirmed Leagues:</h1>
+    <main class="leagues-opened-container">
+      <!-- <section class="leagues-header"> -->
+      <!-- <div class="leagues-image">
+          <img src="../assets/images/league2.png" alt="Basketball Game" />
+          <div class="text-overlay">
+            <h2 class="league-title">Hoopers League</h2>
+            <p class="league-date">April 9-11</p>
+          </div>
+        </div> -->
+      <!-- </section> -->
+    </main>
+    <h1>Pending Leagues:</h1>
+    <main class="pending-leagues-container">
+      <!-- <section class="leagues-header"> -->
+      <!-- <div class="leagues-image">
+          <img src="../assets/images/league1.png" alt="Basketball Game" />
+          <div class="text-overlay">
+            <h2 class="league-title">PowerUp League</h2>
+            <p class="league-date">April 7-16</p>
+          </div>
+        </div> -->
+      <!-- </section> -->
+    </main>
+    <h1>Created Leagues:</h1>
+    <main class="created-leagues-container">
+      <!-- <section class="leagues-header"></section> -->
+    </main>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userId = 1; // Fetch this dynamically if needed
+
+      fetchLeagues(`/leagues/user/${userId}`, updateParticipationDisplay);
+      fetchLeagues(`/leagues/created/${userId}`, updateCreatedLeaguesDisplay);
+
+      function fetchLeagues(url, callback) {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((error) => console.error("Failed to fetch leagues:", error));
+      }
+
+      function updateParticipationDisplay(leagues) {
+        const confirmedContainer = document.querySelector(
+          ".leagues-opened-container"
+        );
+        const pendingContainer = document.querySelector(
+          ".pending-leagues-container"
+        );
+        leagues.forEach((league) => {
+          let link;
+          if (league.type === "participant") {
+            link = "/pages/accepted-league.html?id=" + league.id;
+          } else if (league.type === "pending") {
+            link = "/pages/pending-league.html?id=" + league.id; // replace with the correct link for pending leagues
+          }
+          const leagueHtml = `
+            <div class="league-card" onclick="location.href='${link}'">
+              <img src="${
+                league.imageUrl || "../assets/images/default_league.png"
+              }" alt="${league.leagueName}" />
+              <div class="league-info">
+                <h3>${league.leagueName}</h3>
+                <p>${league.eventDates}</p>
+              </div>
+            </div>
+          `;
+          if (league.type === "participant") {
+            confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          } else if (league.type === "pending") {
+            pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          }
+        });
+      }
+
+      function updateCreatedLeaguesDisplay(leagues) {
+        const createdContainer = document.querySelector(
+          ".created-leagues-container"
+        );
+        leagues.forEach((league) => {
+          const leagueHtml = `
+            <div class="league-card" onclick="location.href='/pages/delete-league.html?id=${
+              league.id
+            }'">
+              <img src="${
+                league.imageUrl || "../assets/images/default_league.png"
+              }" alt="${league.leagueName}" />
+              <div class="league-info">
+                <h3>${league.leagueName}</h3>
+                <p>${league.eventDates}</p>
+              </div>
+            </div>
+          `;
+          createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
+        });
+      }
+    });
+  </script>
+</html>

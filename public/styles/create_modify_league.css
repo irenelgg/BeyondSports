@@ -1,0 +1,248 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 768px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+}
+
+h1 {
+  font-size: 36px;
+  color: #1d96ec;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  color: #1d96ec;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+.horizontal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group {
+  flex-basis: 48%; /* Adjust the spacing between input fields */
+}
+
+.input-group-dates {
+  flex-basis: 48%; /* Adjust the spacing between input fields */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Add this line */
+  font-size: 18px;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus,
+textarea {
+  outline-color: #1d96ec;
+}
+
+.upload-area {
+  border: 2px dashed #ddd;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fafafa;
+  font-size: 16px; /* Adjust font size for file upload area too */
+}
+
+.upload-area:hover {
+  border-color: #1d96ec; /* Optional: change border color on hover for consistency */
+}
+
+#file-name {
+  display: block; /* Makes the file name appear on a new line */
+  margin-top: 10px; /* Adds some space above the file name */
+  color: #333; /* Sets the text color */
+  font-size: 14px; /* Sets the text size */
+}
+
+.navbar {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-item {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.create-button {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #eaeaea;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  background-color: #1d96ec;
+}
+
+.nav-item:hover {
+  background-color: #eaeaea;
+  border-radius: 5px;
+}
+
+.create-button:hover {
+  background-color: #005fa3;
+  border-radius: 5px;
+}
+
+.search-container {
+  display: flex;
+  margin-right: 20%;
+}
+
+.search-input {
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1d96ec;
+  color: white;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #555;
+}
+
+.events-container {
+  display: flex;
+  align-items: center;
+}
+
+.event-right {
+  margin-left: auto;
+}
+
+.add-event-btn {
+  /* Add event button styles */
+  background-color: #1d96ec;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.add-event-btn:hover {
+  background-color: #005fa3;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1d96ec;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.submit-btn:hover {
+  background-color: #005fa3;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Optional: Hide navbar links on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .horizontal {
+    flex-direction: column;
+  }
+
+  .input-group {
+    flex-basis: 100%;
+  }
+
+  .nav-logo {
+    margin-right: 0; /* Remove margin on smaller screens for better spacing */
+  }
+  .search-container {
+    margin-right: 0;
+  }
+  .search-input {
+    flex-grow: 1; /* Makes the search bar responsive */
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create/Modify League</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link rel="stylesheet" href="../styles/create_modify_league.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="../assets/icons/icon_logo.svg" alt="BeyondSports Logo" />
+        <span>BeyondSports</span>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Search for anything" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+      <div class="nav-create">
+        <button class="dropbtn">Create</button>
+        <div class="dropdown-content">
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Create/Modify League:</h1>
+      <form
+        id="league-form"
+        action="/league"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="hidden" id="creator-id" name="creator_id" value="1" />
+        <div class="form-section">
+          <label for="image-upload" class="upload-area">
+            <input
+              type="file"
+              id="image-upload"
+              name="image"
+              accept="image/*"
+              class="visually-hidden"
+              required
+            />
+            Drag & Drop or select files from device
+            <span id="file-name"></span>
+          </label>
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
+            <label for="league-name">League Name</label>
+            <input
+              type="text"
+              id="league-name"
+              name="leagueName"
+              placeholder="League Name..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="prize">Prize</label>
+            <input
+              type="text"
+              id="prize"
+              name="prize"
+              placeholder="Prize..."
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="input-group-dates">
+            <label for="date-range">Event Dates</label>
+            <input
+              type="text"
+              id="date-range"
+              name="eventDates"
+              placeholder="Select Date Range..."
+              required
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
+            <label for="spots">Spots</label>
+            <input
+              type="number"
+              id="spots"
+              name="spots"
+              placeholder="Spots..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="organizer">Organizer</label>
+            <input
+              type="text"
+              id="organizer"
+              name="organizer"
+              placeholder="Organizer..."
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="sport">Sport</label>
+          <div class="radio-btn">
+            <div class="radio-layout">
+              <input
+                type="radio"
+                id="basketball"
+                name="sport"
+                value="Basketball"
+              />
+              <label for="basketball">Basketball</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="soccer" name="sport" value="Soccer" />
+              <label for="soccer">Soccer</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="tennis" name="sport" value="Tennis" />
+              <label for="tennis">Tennis</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="football" name="sport" value="Football" />
+              <label for="football">Football</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label for="rules">Rules and Requirements</label>
+          <textarea
+            id="rules"
+            name="rules"
+            placeholder="Rules and Requirements..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Events</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      document
+        .getElementById("image-upload")
+        .addEventListener("change", function () {
+          const fileInput = this;
+          const fileNameSpan = document.getElementById("file-name");
+          if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            fileNameSpan.textContent = `Selected file: ${fileName}`; // Display file name
+          } else {
+            fileNameSpan.textContent = ""; // Clear when no file is selected
+          }
+        });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#date-range", {
+          mode: "range",
+          dateFormat: "F j, Y",
+        });
+      });
+    </script>
+  </body>
+</html>

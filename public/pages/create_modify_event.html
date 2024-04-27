@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create/Modify Event</title>
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <img src="../assets/icons/icon_logo.svg" />
+        <span>BeyondSports</span>
+      </div>
+      <div class="nav-search">
+        <input type="text" placeholder="Search for anything" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/pages/homepage.html">Home</a></li>
+        <li><a href="/pages/myEvents.html">My Events</a></li>
+        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+      <div class="nav-create">
+        <button class="dropbtn">Create</button>
+        <div class="dropdown-content">
+          <a href="/pages/create_modify_event.html">Event</a>
+          <a href="/pages/create_modify_league.html">League</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Create/Modify Event:</h1>
+      <div class="fetch-event form-section">
+        <label for="event-description">Autofill using AI</label>
+        <input
+          type="text"
+          id="event-description"
+          placeholder="Enter event description..."
+        />
+        <button id="fetch-button" class="submit-btn">
+          Fetch Event Details
+        </button>
+      </div>
+      <form
+        id="event-form"
+        action="/event"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="hidden" id="creator-id" name="creator_id" value="1" />
+        <div class="form-section">
+          <label for="image-upload" class="upload-area">
+            <input
+              type="file"
+              id="image-upload"
+              name="image"
+              accept="image/*"
+              class="visually-hidden"
+              required
+            />
+            Drag & Drop or select files from device
+            <span id="file-name"></span>
+          </label>
+        </div>
+
+        <div class="form-section">
+          <button id="generate-image-button" class="submit-btn">
+            Or Generate an Image Using AI
+          </button>
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
+            <label for="event-name">Event Name</label>
+            <input
+              type="text"
+              id="event-name"
+              name="eventName"
+              placeholder="Event Name..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="spots">Spots</label>
+            <input
+              type="number"
+              id="spots"
+              name="spots"
+              placeholder="Spots..."
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
+            <label>Date</label>
+            <input type="date" id="date-picker" name="eventDate" required />
+          </div>
+
+          <div class="input-group">
+            <label>Time</label>
+            <input type="time" id="time-picker" name="eventTime" required />
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Address..."
+            required
+          />
+        </div>
+
+        <div class="form-section horizontal">
+          <div class="input-group">
+            <label for="city">City</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="City..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="state">State</label>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="State..."
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="Description..."
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="sport">Sport</label>
+          <div class="radio-btn">
+            <div class="radio-layout">
+              <input
+                type="radio"
+                id="basketball"
+                name="sport"
+                value="Basketball"
+              />
+              <label for="basketball">Basketball</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="soccer" name="sport" value="Soccer" />
+              <label for="soccer">Soccer</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="tennis" name="sport" value="Tennis" />
+              <label for="tennis">Tennis</label>
+            </div>
+
+            <div class="radio-layout">
+              <input type="radio" id="football" name="sport" value="Football" />
+              <label for="football">Football</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Accessibility</label>
+          <div class="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                id="blindness"
+                name="blindness"
+                value="blindness"
+              />
+              Blindness
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                id="wheelchair"
+                name="wheelchair"
+                value="wheelchair"
+              />
+              Wheelchair
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Event</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("image-upload")
+        .addEventListener("change", function () {
+          const fileInput = this;
+          const fileNameSpan = document.getElementById("file-name");
+          if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            fileNameSpan.textContent = `Selected file: ${fileName}`; // Display file name
+          } else {
+            fileNameSpan.textContent = ""; // Clear when no file is selected
+          }
+        });
+
+      document
+        .getElementById("fetch-button")
+        .addEventListener("click", async function () {
+          const eventDescription =
+            document.getElementById("event-description").value;
+          try {
+            const response = await fetch(
+              "https://noggin.rea.gent/junior-firefly-2561",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization:
+                    "Bearer rg_v1_ihjzvu85u3efvo2do6nyl4s4sdgty1yxrjda_ngk",
+                },
+                body: JSON.stringify({ eventdescription: eventDescription }),
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+            document.getElementById("event-name").value = data.eventName;
+            document.getElementById("date-picker").value = data.eventDate;
+            document.getElementById("time-picker").value = data.eventTime;
+            document.getElementById("address").value = data.address;
+            document.getElementById("city").value = data.city;
+            document.getElementById("state").value = data.state;
+            document.getElementById("description").value = data.description;
+            document.getElementById("spots").value = data.spots;
+            if (data.sport) {
+              document.querySelector(
+                `input[name="sport"][value="${data.sport}"]`
+              ).checked = true;
+            }
+            document.getElementById("blindness").checked = data.blindness; // Correct usage of 'checked' property
+            document.getElementById("wheelchair").checked = data.wheelchair; // Correct usage of 'checked' property
+            // Handle checkbox setup if needed
+          } catch (error) {
+            console.error("Failed to fetch event details:", error);
+          }
+        });
+
+      document
+        .getElementById("generate-image-button")
+        .addEventListener("click", async function (event) {
+          event.preventDefault(); // Prevent the form from submitting when the button is clicked
+
+          const sport = document.querySelector(
+            'input[name="sport"]:checked'
+          ).value;
+          // Construct the URL for the API request to generate the image
+          const imageApiUrl = `https://noggin.rea.gent/happy-grasshopper-6117?key=rg_v1_gpfamqwpfcs05sliuh5ii9645eyzy0afgb8x_ngk&sport=${encodeURIComponent(
+            sport
+          )}`;
+
+          try {
+            const response = await fetch(imageApiUrl, {
+              method: "GET", // Assuming the API uses GET, update if it's POST
+            });
+
+            if (!response.ok) {
+              throw new Error("Failed to fetch the image");
+            }
+
+            const downloadLink = document.createElement("a");
+            downloadLink.href = imageApiUrl;
+            // set it right under generate image button and make it a clickbale link that downlds the image
+            downloadLink.textContent = "Download Image";
+            document
+              .getElementById("generate-image-button")
+              .insertAdjacentElement("afterend", downloadLink);
+            downloadLink.download = "event-image.png";
+            // open in new tab
+            downloadLink.target = "_blank";
+          } catch (error) {
+            console.error("Error generating image:", error);
+          }
+        });
+    </script>
+  </body>
+</html>

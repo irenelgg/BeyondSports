@@ -1,0 +1,143 @@
+@media screen and (max-width: 760px) {
+  .event-details {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+
+.event-opened-container {
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-details {
+  display: flex;
+  column-gap: 24px;
+}
+
+.event-image {
+  flex-grow: 1;
+}
+
+.event-info {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-logistics {
+  display: flex;
+  column-gap: 100px;
+}
+
+.event-logistics-cols {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.event-image img {
+  width: 100%;
+  /* This will make the image responsive */
+  height: 100%;
+  /* This will maintain the aspect ratio */
+  max-width: 600px;
+  /* Example max-width, adjust as needed */
+  border-radius: 5px;
+}
+
+.event-rsvp,
+.exit-league,
+.delete-league,
+.accept-league,
+.reject-league,
+.event-cancel,
+.event-delete,
+.event-modify {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 16%;
+  padding: 10px 0;
+  /* Vertical padding to control height */
+  text-align: center;
+  /* Centers text horizontally */
+  display: inline-block;
+  /* Allows the use of text-align */
+  font-size: 15px;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  /* Includes padding and border in the element's total width and height */
+}
+
+.event-info-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.event-title {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.event-body {
+  margin-left: 10px;
+  /* font-size: 20px; */
+  font-family: Inter, sans-serif;
+  font-weight: 550;
+  color: grey;
+}
+
+/* Variable for special color */
+:root {
+  --primary-color: #149bfc;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+}
+
+/* Apply event-title class only to the titles, not the entire section */
+.event-title {
+  color: var(--primary-color);
+  font-size: 24px;
+  /* Assuming you want the titles smaller than the main event title */
+  font-weight: 600;
+  margin: 0;
+  /* Reset any margins for consistent spacing */
+}
+
+.event-header h1 {
+  color: var(--primary-color);
+  border: none;
+  font-weight: 600;
+  font-size: 50px;
+}
+
+.myEvent-title {
+  margin-left: 60px;
+  color: var(--primary-color);
+}
+
+.myEvent-title h2 {
+  font-size: 50px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.btns-layout {
+  display: flex;
+}
+
+.btns-layout button {
+  margin-right: 20px;
+  padding: 15px;
+}
