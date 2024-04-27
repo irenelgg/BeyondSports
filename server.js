@@ -339,25 +339,33 @@ app.put("/invite/:invite_id", (req, res) => {
 app.get("/events/sport", (req, res) => {
   const sport = req.query.sport;
   const userId = 1;
+  const accessibility = req.query.accessibility; // Get accessibility from query parameters
 
   if (!userId) {
-      return res.status(400).send("User ID is required");
+    return res.status(400).send("User ID is required");
   }
 
-  const sql = `
+  let params = [sport, userId];
+
+  let sql = `
       SELECT e.* FROM events e
       WHERE e.sport = ? AND e.id NOT IN (
           SELECT p.event_id FROM participation p WHERE p.user_id = ? AND p.event_id IS NOT NULL AND p.type = 'participant'
-      );
+      )
   `;
 
-  db.all(sql, [sport, userId], (err, rows) => {
-      if (err) {
-          res.status(500).send("Server error");
-          console.error(err.message);
-      } else {
-          res.json(rows);
-      }
+  if (accessibility) {
+    sql += ` AND accessibility LIKE ?`;
+    params.push("%" + accessibility + "%"); // Search for events with the specified accessibility
+  }
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
   });
 });
 
@@ -382,25 +390,37 @@ app.get("/events/:id", (req, res) => {
 app.get("/leagues/sport", (req, res) => {
   const sport = req.query.sport;
   const userId = 1;
+  const accessibility = req.query.accessibility;
 
   if (!userId) {
-      return res.status(400).send("User ID is required");
+    return res.status(400).send("User ID is required");
   }
 
-  const sql = `
-      SELECT l.* FROM leagues l
-      WHERE l.sport = ? AND l.id NOT IN (
-          SELECT p.league_id FROM participation p WHERE p.user_id = ? AND p.league_id IS NOT NULL AND p.type = 'participant' 
-      );
-  `;
+  let sql = `
+    SELECT l.* FROM leagues l
+    WHERE l.sport = ? AND l.id NOT IN (
+        SELECT p.league_id FROM participation p WHERE p.user_id = ? AND p.league_id IS NOT NULL AND p.type = 'participant' 
+    )
+`;
 
-  db.all(sql, [sport, userId], (err, rows) => {
-      if (err) {
-          res.status(500).send("Server error");
-          console.error(err.message);
-      } else {
-          res.json(rows);
-      }
+  let params = [sport, userId];
+
+  if (accessibility) {
+    sql += ` AND EXISTS (
+      SELECT 1 FROM league_events le
+      JOIN events e ON le.event_id = e.id
+      WHERE le.league_id = l.id AND e.accessibility LIKE ?
+  )`;
+    params.push("%" + accessibility + "%"); // Ensure this matches the number of placeholders
+  }
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(500).send("Server error");
+      console.error(err.message);
+    } else {
+      res.json(rows);
+    }
   });
 });
 
@@ -678,6 +698,74 @@ app.post("/reject-league", (req, res) => {
       res.status(500).send("Failed to reject league participation");
     } else {
       res.send({ message: "League participation rejected successfully!" });
+    }
+  });
+});
+
+app.put("/event/:id", upload.single("image"), (req, res) => {
+  const {
+    eventName,
+    eventDate,
+    eventTime,
+    address,
+    city,
+    state,
+    description,
+    spots,
+    sport,
+    creator_id,
+    accessibility,
+  } = req.body;
+  const eventId = req.params.id;
+  const imageUrl = req.file ? `/assets/images/${req.file.filename}` : null;
+
+  // Convert accessibility options to string format for database storage
+  const accessibilityString = ["blindness", "wheelchair"]
+    .filter((acc) => req.body[acc])
+    .join(",");
+
+  const sql = `
+      UPDATE events SET
+          eventName = ?,
+          eventDate = ?,
+          eventTime = ?,
+          address = ?,
+          city = ?,
+          state = ?,
+          description = ?,
+          spots = ?,
+          sport = ?,
+          imageUrl = COALESCE(?, imageUrl),
+          accessibility = ?,
+          creator_id = ?
+      WHERE id = ?`;
+
+  const params = [
+    eventName,
+    eventDate,
+    eventTime,
+    address,
+    city,
+    state,
+    description,
+    spots,
+    sport,
+    imageUrl,
+    accessibilityString,
+    creator_id,
+    eventId,
+  ];
+
+  // Execute SQL to update the event
+  db.run(sql, params, function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Failed to update event");
+    } else {
+      res.send({
+        message: "Event updated successfully!",
+        eventId: eventId,
+      });
     }
   });
 });

@@ -41,7 +41,7 @@ h2 {
 }
 
 .input-group-dates {
-  flex-basis: 100%; /* Adjust the spacing between input fields */
+  flex-basis: 48%; /* Adjust the spacing between input fields */
 }
 
 label {
@@ -234,4 +234,15 @@ textarea {
   .search-input {
     flex-grow: 1; /* Makes the search bar responsive */
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

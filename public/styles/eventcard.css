@@ -111,7 +111,8 @@ body {
   margin-top: 15px; /* Adds top margin */
 }
 
-.event-card-button.confirmed {
+.event-card-button.confirmed,
+.event-card-button.modify {
   background-color: var(--primary-color); /* Blue background */
   color: white; /* White text */
   text-align: center; /* Center the text inside */

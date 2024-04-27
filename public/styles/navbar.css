@@ -10,23 +10,17 @@ body {
 
 .navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background-color: white;
   color: black;
   padding: 0 20px;
   height: 70px;
 }
 
-.nav-logo {
-  flex-grow: 0;
-  display: flex;
-  align-items: center;
-}
-
 .nav-logo img {
-  height: 18px;
-  vertical-align: middle;
+  height: 18px; /* Adjust based on your logo's size */
+  vertical-align: 0;
 }
 
 .nav-logo span {
@@ -35,27 +29,25 @@ body {
   font-size: 20px;
 }
 
-.nav-search {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
+/* Remove border from search bar */
 
 .nav-search input {
+  padding: 12px 30px 12px 30px;
   border: none;
   border-radius: 2px;
   font-size: 16px;
-  width: 60%;
-  max-width: 500px;
+  width: 200px;
   background-color: #eeeeee;
-  padding: 8px 16px;
 }
 
 .nav-links {
   list-style-type: none;
   padding: 0;
   display: flex;
-  align-items: center;
+}
+
+.nav-links li {
+  padding: 0 20px;
 }
 
 .nav-links a {
@@ -65,28 +57,35 @@ body {
 }
 
 .nav-links a:hover {
-  color: #999;
+  color: #999999;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-create {
+  position: relative;
+  display: inline-block;
 }
 
 .dropbtn {
   background-color: var(--primary-color);
   color: white;
-  padding: 10px 20px;
+  padding: 14px 50px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.2s ease-in-out;
+  /* Remove any margin-top if exists, or make sure it doesn't push content up */
 }
 
 .dropdown-content {
   display: none;
-  position: absolute;
+  border-radius: 5px;
+  position: absolute; /* Position the dropdown content absolutely within its relative parent */
   background-color: #f9f9f9;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  left: 0;
-  top: 100%;
-  min-width: 160px; /* Ensure dropdown has enough width */
+  left: 0; /* Aligns the dropdown to the left of the 'Create' button */
+  top: 100%; /* Positions the dropdown right below the 'Create' button */
+  width: 100%; /* Makes the dropdown content full width */
 }
 
 .dropdown-content a {
@@ -105,5 +104,5 @@ body {
 }
 
 .nav-create:hover .dropbtn {
-  background-color: #1288da; /* Darker shade for hover, manually adjusted */
+  background-color: var(--primary-color);
 }

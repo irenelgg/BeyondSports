@@ -14,7 +14,6 @@ body {
 }
 
 .selected-sport-titles {
-  
   color: var(--primary-color);
 }
 
@@ -27,4 +26,24 @@ body {
   font-size: 32px;
   font-weight: 600;
   margin-top: 20px;
+}
+
+.league-information-layout .selected-sport-title h2 {
+  font-size: 24px;
+}
+
+.league-information-layout .selected-sport-title .event-names-container {
+  font-size: 32px; /* Replace with the desired font size */
+}
+
+.side-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  margin-right: 60px;
 }

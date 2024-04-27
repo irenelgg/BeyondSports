@@ -48,7 +48,7 @@
             <div class="event-logistics-cols">
               <h2 class="event-title">Date:<span class="event-body"></span></h2>
               <h2 class="event-title">
-                Organizer:<span class="event-body"></span>
+                Accessibilities:<span class="event-body"></span>
               </h2>
             </div>
             <div class="event-logistics-cols">
@@ -57,6 +57,11 @@
               </h2>
               <h2 class="event-title">
                 Spots Available:<span class="event-body"></span>
+              </h2>
+            </div>
+            <div class="event-logistics-cols">
+              <h2 class="event-title">
+                Sport:<span class="event-body"></span>
               </h2>
             </div>
           </div>
@@ -89,9 +94,16 @@
             document.querySelectorAll(
               ".event-title .event-body"
             )[0].textContent = `${event.eventDate} @ ${event.eventTime}`;
+            const accessibility = event.accessibility
+              .split(",")
+              .map(
+                (word) =>
+                  word.trim().charAt(0).toUpperCase() + word.trim().slice(1)
+              )
+              .join(", ");
             document.querySelectorAll(
               ".event-title .event-body"
-            )[1].textContent = `${event.organizer}`;
+            )[1].textContent = accessibility;
             document.querySelectorAll(
               ".event-title .event-body"
             )[2].textContent = `${event.city}, ${event.state}`;
@@ -100,7 +112,10 @@
             )[3].textContent = `${event.spots}`;
             document.querySelectorAll(
               ".event-title .event-body"
-            )[4].textContent = `${event.description}`;
+            )[4].textContent = `${event.sport}`;
+            document.querySelectorAll(
+              ".event-title .event-body"
+            )[5].textContent = `${event.description}`;
           })
           .catch((error) => console.error("Failed to load event data:", error));
 

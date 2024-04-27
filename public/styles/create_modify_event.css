@@ -110,7 +110,7 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.navbar {
+/* .navbar {
   background-color: #f8f8f8;
   display: flex;
   justify-content: space-between;
@@ -136,7 +136,7 @@ input[type="checkbox"] {
   padding: 10px 15px;
   transition: background-color 0.3s ease;
   border-radius: 5px;
-}
+} */
 
 .create-button {
   margin-left: 20px;
@@ -212,4 +212,31 @@ input[type="checkbox"] {
   .search-input {
     flex-grow: 1; /* Makes the search bar responsive */
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.radio-btn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.radio-layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.radio-layout label {
+  margin: 0 0 0 10px;
 }

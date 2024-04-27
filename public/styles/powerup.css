@@ -1,14 +1,6 @@
 /* Variable for special color */
 
-
-.images {
-  max-width: 50px;
-  max-height: 50px;
-  margin-left: 650px;
-}
-
-
-.accept{
+.accept {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -27,8 +19,7 @@
   /* Includes padding and border in the element's total width and height */
 }
 
-
-.reject{
+.reject {
   background-color: red;
   color: white;
   border: none;
@@ -47,10 +38,7 @@
   /* Includes padding and border in the element's total width and height */
 }
 
-
-
-
-.exit{
+.exit {
   background-color: white;
   color: var(--primary-color);
   border: black;
@@ -69,4 +57,25 @@
   /* Includes padding and border in the element's total width and height */
 }
 
+.league-information-layout {
+  display: flex;
+  justify-content: space-between;
+}
 
+.images {
+  margin-right: 60px;
+}
+
+.images img {
+  max-width: 400px;
+}
+
+.league-btn {
+  width: 40%;
+  padding: 20px;
+  margin-right: 10px;
+}
+
+.event-names-container {
+  padding-top: 20px;
+}
