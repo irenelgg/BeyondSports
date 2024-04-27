@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
+  font-family: 'Inter', sans-serif; /* Ensure font name is correctly quoted */
 }
 
 .navbar {
@@ -53,7 +53,7 @@ body {
 .nav-links a {
   text-decoration: none;
   color: black;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
@@ -81,7 +81,7 @@ body {
   border-radius: 5px;
   position: absolute; /* Position the dropdown content absolutely within its relative parent */
   background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   left: 0; /* Aligns the dropdown to the left of the 'Create' button */
   top: 100%; /* Positions the dropdown right below the 'Create' button */
@@ -105,4 +105,69 @@ body {
 
 .nav-create:hover .dropbtn {
   background-color: var(--primary-color);
+}
+
+/* Add this at the end of your create_modify_event.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+    }
+
+    .nav-logo img {
+        height: 14px; /* Decrease logo size for smaller screens */
+    }
+
+    .nav-search input {
+        padding: 10px; /* Adjust padding for search input */
+        width: 150px; /* Decrease width for search input */
+    }
+
+    .nav-links {
+      display: none; /* Hide navbar links on smaller screens */
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background-color: white;
+      width: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      transform: translateX(calc(100% - 20px));
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+    }
+
+    .nav-links li {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .nav-toggle {
+        display: block; /* Show toggle on smaller screens */
+    }
+
+    .nav-toggle-icon {
+        width: 30px;
+        height: 20px;
+        background-image: url("../assets/icons/Hamburger_icon.svg.png"); 
+        background-size: contain;
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        background-position: center; /* Center the image within the container */
+        cursor: pointer;
+        touch-action: manipulation; /* Prevent zooming */
+    }
+
+    .nav-create {
+        margin-right: 10px; /* Adjust margin for 'Create' button */
+    }
+
+    .submit-btn {
+        padding: 12px; /* Adjust padding for submit button */
+    }
 }

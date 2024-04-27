@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create/Modify Event</title>
+    <link rel="stylesheet" href="../styles/create_modify_event.css">
+    <link rel="stylesheet" href="../styles/navbar.css" />
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
+        </div>
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">My Events</a></li>
+          <li><a href="#">My Leagues</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="#">Event</a>
+            <a href="#">League</a>
+          </div>
+        </div>
+        <div class="nav-toggle">
+            <div class="nav-toggle-icon"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Create/Modify Event:</h1>
+        <form id="event-form">
+            <div class="form-section">
+                <label for="image-upload" class="upload-area">
+                    <input type="file" id="image-upload" accept="image/*" hidden>
+                    Drag & Drop or select files from device
+                </label>
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group-event">
+                    <label for="event-name">Event Name</label>
+                    <input type="text" id="event-name" placeholder="Event Name...">
+                </div>
+
+                <div class="input-group-event">
+                    <label>Date</label>
+                    <input type="date" id="date-picker">
+                </div>
+
+                <div class="input-group-event">
+                    <label>Time</label>
+                    <input type="time" id="time-picker">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Address...">
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="City...">
+                </div>
+
+                <div class="input-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" placeholder="State...">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label for="description">Description</label>
+                <input type="text" id="description" placeholder="Description..."></input>
+            </div>
+
+            <div class="form-section horizontal">
+                <div class="input-group">
+                    <label for="spots">Spots</label>
+                    <input type="number" id="spots" placeholder="Spots...">
+                </div>
+
+                <div class="input-group">
+                    <label for="sport">Sport</label>
+                    <input type="text" id="sport" placeholder="Sport...">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label>Accessibility</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="accessibility" value="blindness"> Blindness
+                    </label>
+                    <label>
+                        <input type="checkbox" name="accessibility" value="wheelchair"> Wheelchair
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Event</button>
+        </form>
+    </div>
+    <script src="../scripts/navbar.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* Variable for special color */
+:root {
+  --primary-color: #149bfc;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+}
+
+.selected-sport-title {
+  margin-left: 60px;
+  color: var(--primary-color);
+}
+
+.selected-sport-title h1 {
+  font-size: 64px;
+  font-weight: 600;
+}
+
+.selected-sport-title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+/* Add this at the end of your selectedsport.css */
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .selected-sport-title {
+    margin-left: 20px; /* Adjust margin for smaller screens */
+  }
+
+  .selected-sport-title h1 {
+    font-size: 36px; /* Decrease font size for heading */
+  }
+
+  .selected-sport-title h2 {
+    font-size: 24px; /* Decrease font size for subheading */
+    margin-top: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-card {
+    width: 100%; /* Make event cards take full width */
+    margin-bottom: 20px; /* Adjust margin between event cards */
+  }
+
+  .league-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .league-card {
+    width: 100%; /* Make league cards take full width */
+    margin-bottom: 20px; /* Adjust margin between league cards */
+  }
+}

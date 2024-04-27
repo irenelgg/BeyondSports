@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete League PopUp</title>
+    <link rel="stylesheet" href="../styles/yesnobutton.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Your main page content here -->
+    </div>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay"></div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <p class="question">Are you sure you would like to exit this league?</p>
+        <p>You and all your teammates will be removed from the league.</p>
+        <button id="cancel-no" class="no-button">NO, GO BACK</button>
+        <button id="cancel-yes" class="yes-button";>YES, EXIT</button>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalOverlay = document.getElementById('modal-overlay');
+            var confirmationModal = document.getElementById('confirmation-modal');
+            var mainContent = document.getElementById('main-content');
+
+            // Function to show the modal
+            function showModal() {
+                modalOverlay.classList.remove('hidden');
+                confirmationModal.classList.remove('hidden');
+                mainContent.classList.add('blur');
+            }
+
+            // Function to hide the modal
+            function hideModal() {
+                modalOverlay.classList.add('hidden');
+                confirmationModal.classList.add('hidden');
+                mainContent.classList.remove('blur');
+            }
+
+            // Example event listeners for your buttons or other elements to trigger the modal
+            document.getElementById('cancel-no').addEventListener('click', hideModal);
+            document.getElementById('cancel-yes').addEventListener('click', function() {
+                // Implement your logic for "YES, CANCEL" action
+                hideModal();
+                window.location.href = 'cancel-page.html'; // Redirect to cancellation page
+            });
+
+            // Call this function when you want to show the modal, for example on a button click
+            // showModal();
+        });
+
+    </script>
+</body>
+</html>
