@@ -11,8 +11,18 @@
     <link rel="stylesheet" href="../styles/create_modify_event.css" />
     <link rel="stylesheet" href="../styles/event.css" />
     <link rel="stylesheet" href="../styles/powerup.css" />
+    <link rel="stylesheet" href="../styles/yesnobutton.css" />
   </head>
   <body>
+
+    <div id="confirmation-modal" class="modal">
+      <p class="question">Are you sure you would like to exit this league?</p>
+      <p>You and all your teammates will be removed from the league.</p>
+      <button id="cancel-no" class="no-button">NO, GO BACK</button>
+      <button id="cancel-yes" class="yes-button";>YES, EXIT</button>
+  </div>
+
+  <div id = "main-content">
     <nav class="navbar">
       <div class="nav-logo">
         <img src="../assets/icons/icon_logo.svg" />
@@ -64,6 +74,7 @@
     </div>
 
     <div class="events-container"></div>
+  </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -167,6 +178,31 @@
           );
           const userId = 1; // Get this dynamically as needed
 
+          const confirmationModal = document.getElementById('confirmation-modal');
+          const mainContent = document.getElementById('main-content');
+
+          confirmationModal.style.display = 'block';
+          mainContent.classList.add('blur');
+
+        // Handle 'No' Button: hide modal and remove blur
+        document.getElementById('cancel-no').onclick = function() {
+          confirmationModal.style.display = 'none';
+            // overlay.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+
+        // Handle 'Yes' Button: proceed with deletion and remove blur
+        document.getElementById('cancel-yes').onclick = function() {
+            exitLeague(leagueId);
+            confirmationModal.style.display = 'none';
+            // overlay.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+        });
+
+
+      function exitLeague(leagueId) {
+          const userId = 1;
           fetch("/exit-league", {
             method: "POST",
             headers: {
@@ -182,7 +218,7 @@
               }
             })
             .catch((error) => console.error("Error exiting league:", error));
-        });
+        };
     </script>
   </body>
 </html>
