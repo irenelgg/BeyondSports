@@ -176,6 +176,7 @@ body {
   right: 0; /* Aligns the dropdown to the left of the 'Create' button */
   top: 100%; /* Positions the dropdown right below the 'Create' button */
   width: auto; /* Makes the dropdown content full width */
+  white-space: nowrap;
 }
 
 .nav-dropdown a {
@@ -194,12 +195,31 @@ body {
 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
+    .nav-create,
+    .nav-search {
+      display: none;
+    }
+    
     input[type="text"],
     input[type="date"],
     input[type="time"],
     input[type="number"],
     textarea {
-        width: 100%;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      box-sizing: border-box; /* Add this line */
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="time"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline-color: #1d96ec; /* Primary blue color on focus */
     }
 
     .nav-logo img {
