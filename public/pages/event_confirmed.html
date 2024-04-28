@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="../styles/create_modify_event.css" />
     <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/event.css" />
+    <link rel="stylesheet" href="../styles/yesnobutton.css" />
   </head>
   <body>
+    <div id="confirmation-modal" class="modal">
+      <p class="question">Are you sure you would like to delete this event?</p>
+      <button id="cancel-no" class="no-button">NO, GO BACK</button>
+      <button id="cancel-yes" class="yes-button";>YES, DELETE</button>
+  </div>
+
+<div id="main-content">
     <nav class="navbar">
       <div class="nav-logo">
         <img src="../assets/icons/icon_logo.svg" />
@@ -83,6 +91,7 @@
         </div>
       </section>
     </main>
+  </div>
 
     <script>
       window.onload = function () {
@@ -129,9 +138,33 @@
           .catch((error) => console.error("Failed to load event data:", error));
 
         document.querySelector(".event-cancel").onclick = function () {
-          cancelParticipation(eventId);
+          showDeleteConfirmationModal(eventId);
         };
       };
+
+      function showDeleteConfirmationModal(eventId) {
+        const modal = document.getElementById('confirmation-modal'); 
+        const mainContent = document.getElementById('main-content'); 
+
+
+        modal.style.display = 'block';
+        mainContent.classList.add('blur');
+
+        // Handle 'No' Button: hide modal and remove blur
+        document.getElementById('cancel-no').onclick = function() {
+            modal.style.display = 'none';
+            // overlay.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+
+        // Handle 'Yes' Button: proceed with deletion and remove blur
+        document.getElementById('cancel-yes').onclick = function() {
+          cancelParticipation(eventId);
+            modal.style.display = 'none';
+            // overlay.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+      }
 
       function cancelParticipation(eventId) {
         // Assume this is the function that sends the request to cancel participation

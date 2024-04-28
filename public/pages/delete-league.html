@@ -11,67 +11,77 @@
     <link rel="stylesheet" href="../styles/create_modify_event.css" />
     <link rel="stylesheet" href="../styles/event.css" />
     <link rel="stylesheet" href="../styles/powerup.css" />
+    <link rel="stylesheet" href="../styles/yesnobutton.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="nav-logo">
-        <img src="../assets/icons/icon_logo.svg" />
-        <span>BeyondSports</span>
-      </div>
-      <div class="nav-search">
-        <input type="text" placeholder="Search for anything" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
-      </ul>
-      <div class="nav-create">
-        <button class="dropbtn">Create</button>
-        <div class="dropdown-content">
-          <a href="/pages/create_modify_event.html">Event</a>
-          <a href="/pages/create_modify_league.html">League</a>
-        </div>
-      </div>
-      <div class="nav-toggle">
-        <div class="nav-toggle-icon"></div>
-        <div class="nav-dropdown">
-          <a href="/pages/homepage.html">Home</a>
-          <a href="/pages/myEvents.html">My Events</a>
-          <a href="/pages/myLeagues.html">My Leagues</a>
-        </div>
-      </div>
-    </nav>
 
-    <div class="selected-sport-title">
-      <h1></h1>
+    <div id="confirmation-modal" class="modal">
+      <p class="question">Are you sure you would like to delete this event?</p>
+      <button id="cancel-no" class="no-button">NO, GO BACK</button>
+      <button id="cancel-yes" class="yes-button";>YES, DELETE</button>
     </div>
-    <div class="league-information-layout">
-      <div class="selected-sport-title">
-        <h2>Dates: <span class="event-body"></span></h2>
 
-        <h2>Organizer:<span class="event-body"> </span></h2>
-        <h2>Spots available:<span class="event-body"></span></h2>
-        <h2>Prize:<span class="event-body"> </span></h2>
-        <h2>Sport:<span class="event-body"> </span></h2>
-        <h2>Rules and Requirements:</h2>
-        <ul>
-          <li>
-            <h2><span class="event-body"></span></h2>
-          </li>
+    <div id = "main-content">
+      <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
+        </div>
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="/pages/homepage.html">Home</a></li>
+          <li><a href="/pages/myEvents.html">My Events</a></li>
+          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
         </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="/pages/create_modify_event.html">Event</a>
+            <a href="/pages/create_modify_league.html">League</a>
+          </div>
+        </div>
+        <div class="nav-toggle">
+          <div class="nav-toggle-icon"></div>
+          <div class="nav-dropdown">
+            <a href="/pages/homepage.html">Home</a>
+            <a href="/pages/myEvents.html">My Events</a>
+            <a href="/pages/myLeagues.html">My Leagues</a>
+          </div>
+        </div>
+      </nav>
 
-        <button type="button" class="delete-league league-btn">
-          Delete League
-        </button>
-        <h2 class="event-names-container">Events:</h2>
+      <div class="selected-sport-title">
+        <h1></h1>
       </div>
-      <div class="images">
-        <img />
+      <div class="league-information-layout">
+        <div class="selected-sport-title">
+          <h2>Dates: <span class="event-body"></span></h2>
+
+          <h2>Organizer:<span class="event-body"> </span></h2>
+          <h2>Spots available:<span class="event-body"></span></h2>
+          <h2>Prize:<span class="event-body"> </span></h2>
+          <h2>Sport:<span class="event-body"> </span></h2>
+          <h2>Rules and Requirements:</h2>
+          <ul>
+            <li>
+              <h2><span class="event-body"></span></h2>
+            </li>
+          </ul>
+
+          <button type="button" class="delete-league league-btn">
+            Delete League
+          </button>
+          <h2 class="event-names-container">Events:</h2>
+        </div>
+        <div class="images">
+          <img />
+        </div>
       </div>
+
+      <div class="events-container"></div>
     </div>
-
-    <div class="events-container"></div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -173,22 +183,49 @@
           const leagueId = new URLSearchParams(window.location.search).get(
             "id"
           );
-          const userId = 1; // Get this dynamically as needed
-
-          fetch(`/league/${leagueId}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId: userId }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              alert(data.message);
-              window.location.href = "/pages/myLeagues.html"; // Redirect to the leagues list page
-            })
-            .catch((error) => console.error("Error deleting league:", error));
+          showDeleteConfirmationModal(leagueId)
         });
+
+      function showDeleteConfirmationModal(leagueId) {
+        const modal = document.getElementById('confirmation-modal'); 
+        const mainContent = document.getElementById('main-content'); 
+
+
+        modal.style.display = 'block';
+        mainContent.classList.add('blur');
+
+        // Handle 'No' Button: hide modal and remove blur
+        document.getElementById('cancel-no').onclick = function() {
+            modal.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+
+        // Handle 'Yes' Button: proceed with deletion and remove blur
+        document.getElementById('cancel-yes').onclick = function() {
+            deleteLeague(leagueId);
+            modal.style.display = 'none';
+            mainContent.classList.remove('blur'); 
+        };
+      } 
+
+      function deleteLeague(leagueId){
+        const userId = 1; 
+        fetch(`/league/${leagueId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userId }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(data.message);
+          window.location.href = "/pages/myLeagues.html"; // Redirect to the leagues list page
+        })
+        .catch((error) => console.error("Error deleting league:", error));
+      }
+          
+
     </script>
     <script src="../../scripts/navbar.js"></script>
   </body>
