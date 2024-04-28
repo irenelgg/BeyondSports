@@ -68,8 +68,6 @@ button {
     background-color: #005fa3;
 }
 
-/* Add this at the end of your yesnobutton.css */
-
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
     .modal {

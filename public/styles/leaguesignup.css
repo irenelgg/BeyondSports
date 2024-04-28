@@ -87,9 +87,7 @@ button {
 .no-button:hover {
     background-color: #bfbfbf;
 }
-
-/* Add this at the end of your yesnobutton.css */
-
+ 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
     .modal {
