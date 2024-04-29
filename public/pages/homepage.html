@@ -12,49 +12,50 @@
   <body>
     <header>
       <nav class="navbar">
-        <div class="nav-logo">
-          <img src="../assets/icons/icon_logo.svg" />
-          <span>BeyondSports</span>
-        </div>
-        <div class="nav-search">
-          <input type="text" placeholder="Search for anything" />
-        </div>
-        <ul class="nav-links">
-          <li><a href="/pages/homepage.html">Home</a></li>
-          <li><a href="/pages/myEvents.html">My Events</a></li>
-          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
-        </ul>
-        <div class="nav-create">
-          <button class="dropbtn">Create</button>
-          <div class="dropdown-content">
-            <a href="/pages/create_modify_event.html">Event</a>
-            <a href="/pages/create_modify_league.html">League</a>
+          <div class="nav-logo" tabindex="0">
+              <img src="../assets/icons/icon_logo.svg" alt="BeyondSports Logo" />
+              <span>BeyondSports</span>
           </div>
-        </div>
-        <div class="nav-toggle">
-          <div class="nav-toggle-icon"></div>
-          <div class="nav-dropdown">
-            <a href="/pages/homepage.html">Home</a>
-            <a href="/pages/myEvents.html">My Events</a>
-            <a href="/pages/myLeagues.html">My Leagues</a>
+          <div class="nav-search">
+              <input type="text" placeholder="Search for anything" />
           </div>
-        </div>
+          <ul class="nav-links">
+              <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+              <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+              <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
+          </ul>
+          <div class="nav-create" tabindex="0" role="button">
+              <button class="dropbtn" tabindex="0">Create</button>
+              <div class="dropdown-content">
+                  <a href="/pages/create_modify_event.html" tabindex="0">Event</a>
+                  <a href="/pages/create_modify_league.html" tabindex="0">League</a>
+              </div>
+          </div>
+          <div class="nav-toggle" tabindex="0">
+              <div class="nav-toggle-icon"></div>
+              <div class="nav-dropdown">
+                  <a href="/pages/homepage.html">Home</a>
+                  <a href="/pages/myEvents.html">My Events</a>
+                  <a href="/pages/myLeagues.html">My Leagues</a>
+              </div>
+          </div>
       </nav>
-    </header>
+  </header>
 
-    <main>
+  <main>
       <div class="selected-sport-title">
-        <h2>Choose Your Sport</h2>
+          <h2>Choose Your Sport</h2>
       </div>
 
-    <section class="choose-sport">
-      <div class="sports-icons">
-        <div class="sport-icon" title="Basketball">
-          <img src="../assets/images/basket1.png" alt="Wheel-chair basketball">
-        </div>
-      </div>
-    </section>
+      <section class="choose-sport">
+          <div class="sports-icons">
+              <div class="sport-icon" tabindex="0" role="button" title="Basketball" aria-label="Select Wheel-chair basketball">
+                  <img src="../assets/images/basket1.png" alt="Wheel-chair basketball">
+              </div>
+          </div>
+      </section>
   </main>
+
 
     <script>
       document.addEventListener("DOMContentLoaded", function (event) {

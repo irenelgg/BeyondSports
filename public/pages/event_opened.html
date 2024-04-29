@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="nav-logo">
+      <div class="nav-logo" tabindex="0" role="button">
         <img src="../assets/icons/icon_logo.svg" />
         <span>BeyondSports</span>
       </div>
@@ -18,12 +18,12 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
 
       </ul>
-      <div class="nav-create">
+      <div class="nav-create" tabindex="0" role="button">
         <button class="dropbtn">Create</button>
         <div class="dropdown-content">
           <a href="/pages/create_modify_event.html">Event</a>
@@ -78,7 +78,7 @@
               Description:<span class="event-body"></span>
             </h2>
           </div>
-          <button type="button" class="event-rsvp">RSVP</button>
+          <button type="button" class="event-rsvp" tabindex="0" role="button">RSVP</button>
         </div>
       </section>
     </main>

@@ -22,39 +22,39 @@
       <!-- Repeat for each team member -->
       <p class="input-title">Team Member 1</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 1 Name..." name="member1-name">
-          <input type="email" placeholder="Team Member 1 Email..." name="member1-email">
+          <input type="text" placeholder="Team Member 1 Name..." name="member1-name" tabindex="0" role="button">
+          <input type="email" placeholder="Team Member 1 Email..." name="member1-email" tabindex="0" role="button">
       </div>
       <p class="input-title">Team Member 2</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 2 Name..." name="member1-name">
-          <input type="email" placeholder="Team Member 2 Email..." name="member1-email">
+          <input type="text" placeholder="Team Member 2 Name..." name="member1-name" tabindex="0" role="button">
+          <input type="email" placeholder="Team Member 2 Email..." name="member1-email" tabindex="0" role="button">
       </div>
       <p class="input-title">Team Member 3</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 3 Name..." name="member1-name">
-          <input type="email" placeholder="Team Member 3 Email..." name="member1-email">
+          <input type="text" placeholder="Team Member 3 Name..." name="member1-name" tabindex="0" role="button">
+          <input type="email" placeholder="Team Member 3 Email..." name="member1-email" tabindex="0" role="button">
       </div>
       <p class="input-title">Team Member 4</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 4 Name..." name="member1-name">
-          <input type="email" placeholder="Team Member 4 Email..." name="member1-email">
+          <input type="text" placeholder="Team Member 4 Name..." name="member1-name" tabindex="0" role="button">
+          <input type="email" placeholder="Team Member 4 Email..." name="member1-email" tabindex="0" role="button">
       </div>
       <p class="input-title">Team Member 5</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 5 Name..." name="member1-name">
-          <input type="email" placeholder="Team Member 5 Email..." name="member1-email">
+          <input type="text" placeholder="Team Member 5 Name..." name="member1-name" tabindex="0" role="button">
+          <input type="email" placeholder="Team Member 5 Email..." name="member1-email" tabindex="0" role="button">
       </div>
       <p>You will be accepting all rules and requirements. An invite will also be sent to all team members via email.</p>
       <div class="modal-buttons">
-          <button id="no-button">NO, GO BACK</button>
-          <button id="yes-button">YES, JOIN</button>
+          <button id="no-button" tabindex="0" role="button">NO, GO BACK</button>
+          <button id="yes-button" tabindex="0" role="button">YES, JOIN</button>
       </div>
     </div>
 
     <div id = "main-content">
       <nav class="navbar">
-        <div class="nav-logo">
+        <div class="nav-logo" tabindex="0" role="button">
           <img src="../assets/icons/icon_logo.svg" />
           <span>BeyondSports</span>
         </div>
@@ -62,11 +62,11 @@
           <input type="text" placeholder="Search for anything" />
         </div>
         <ul class="nav-links">
-          <li><a href="/pages/homepage.html">Home</a></li>
-          <li><a href="/pages/myEvents.html">My Events</a></li>
-          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+          <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+          <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+          <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
         </ul>
-        <div class="nav-create">
+        <div class="nav-create" tabindex="0" role="button">
           <button class="dropbtn">Create</button>
           <div class="dropdown-content">
             <a href="/pages/create_modify_event.html">Event</a>
@@ -101,7 +101,7 @@
             </li>
           </ul>
 
-          <button type="button" class="event-rsvp league-btn">
+          <button type="button" class="event-rsvp league-btn" tabindex="0" role="button">
             Enter League
           </button>
           <h2 class="event-names-container">Events:</h2>
@@ -200,7 +200,7 @@
                               <p>Time</p>
                               <div class="time-shape">${event.eventTime}</div>
                           </div>
-                          <div class="event-card-rsvp">${event.eventDate}</div>
+                          <div class="event-card-rsvp" tabindex="0" role="button">${event.eventDate}</div>
                       </div>
                   </div>
               `;

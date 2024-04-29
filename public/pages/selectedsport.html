@@ -11,7 +11,7 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="nav-logo">
+      <div class="nav-logo" tabindex="0" role="button">
         <img src="../assets/icons/icon_logo.svg" />
         <span>BeyondSports</span>
       </div>
@@ -19,12 +19,12 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
       </ul>
-      <div class="nav-create">
-        <button class="dropbtn">Create</button>
+      <div class="nav-create" tabindex="0" role="button">
+        <button class="dropbtn" >Create</button>
         <div class="dropdown-content">
           <a href="/pages/create_modify_event.html">Event</a>
           <a href="/pages/create_modify_league.html">League</a>
@@ -46,12 +46,12 @@
       </div>
 
       <div class="filter-options">
-        <label
-          ><input type="checkbox" id="wheelchair-access" value="wheelchair" />
+        <label tabindex="0" role="button"
+          ><input type="checkbox" id="wheelchair-access" value="wheelchair" tabindex="0" role="button"/>
           Wheelchair Accessible</label
         >
-        <label
-          ><input type="checkbox" id="blind-access" value="blindness" /> Blind
+        <label tabindex="0" role="button"
+          ><input type="checkbox" id="blind-access" value="blindness" tabindex="0" role="button"/> Blind
           Accessible</label
         >
       </div>
@@ -182,7 +182,7 @@
         container.innerHTML = "";
         leagues.forEach((league) => {
           const leagueHtml = `
-                    <div class="league-card" title="${league.id}">
+                    <div class="league-card" title="${league.id}" tabindex="0" role="button">
                         <img src="${
                           league.imageUrl ||
                           "../assets/images/default_league.png"
@@ -209,7 +209,7 @@
             )
             .join(", ");
           const eventHtml = `
-          <div class="event-card" title="${event.id}">
+          <div class="event-card" title="${event.id}" tabindex="0" role="button">
             <div class="event-card-picture">
               <img src="${event.imageUrl || "../assets/images/default.png"}" />
             </div>
@@ -231,7 +231,7 @@
                 <p>Time</p>
                 <div class="time-shape">${event.eventTime}</div>
               </div>
-              <div class="event-card-rsvp">RSVP</div>
+              <div class="event-card-rsvp" tabindex="0" role="button">RSVP</div>
             </div>
           </div>
         `;
