@@ -69,7 +69,7 @@ button {
 }
 
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .modal {
     width: 80%; /* Adjust width of modal for smaller screens */
     max-width: 300px; /* Limit maximum width for smaller screens */

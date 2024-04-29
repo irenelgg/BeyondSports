@@ -27,7 +27,7 @@ body {
 /* Add this at the end of your selectedsport.css */
 
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .selected-sport-title {
     margin-left: 20px; /* Adjust margin for smaller screens */
   }

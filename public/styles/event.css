@@ -141,7 +141,7 @@ body {
   padding: 15px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 905px) {
   .event-details {
     flex-direction: column;
     row-gap: 16px;
@@ -149,5 +149,9 @@ body {
 
   .event-header h1 {
     font-size: 30px;
+  }
+
+  .myEvent-title h2 {
+    font-size: 40px;
   }
 }

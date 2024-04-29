@@ -16,7 +16,7 @@ body {
   border-radius: 20px;
   overflow: hidden; /* Ensures the image doesn't exceed the card size */
   margin-right: 50px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .league-card img {
@@ -36,22 +36,11 @@ body {
 /* Add this at the end of your leaguecard.css */
 
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .league-container {
     flex-direction: column; /* Stack cards vertically on smaller screens */
     align-items: center; /* Center cards horizontally */
     margin-left: 0; /* Remove left margin for better centering */
-  }
-
-  .league-card {
-    width: 90%; /* Adjust width to fill the available space */
-    max-width: 400px; /* Limit maximum width for better readability */
-    height: auto; /* Let the height adjust based on content */
-    margin: 0 auto 20px; /* Center the card horizontally and add bottom margin */
-  }
-
-  .league-card img {
-    border-radius: 20px 20px 0 0; /* Keep rounded corners only at the top */
   }
 
   .league-info {

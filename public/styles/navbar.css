@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif; /* Ensure font name is correctly quoted */
+  font-family: "Inter", sans-serif; /* Ensure font name is correctly quoted */
 }
 
 .navbar {
@@ -123,7 +123,7 @@ body {
   padding: 10px 15px;
   transition: background-color 0.3s ease;
   border-radius: 5px;
-} 
+}
 
 .nav-item:hover {
   background-color: #eaeaea;
@@ -190,93 +190,92 @@ body {
   background-color: #f1f1f1;
 }
 
-
 /* Add this at the end of your create_modify_event.css */
 
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
-    .nav-create,
-    .nav-search {
-      display: none;
-    }
-    
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    input[type="number"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      font-size: 18px;
-      box-sizing: border-box; /* Add this line */
-    }
+@media (max-width: 905px) {
+  .nav-create,
+  .nav-search {
+    display: none;
+  }
 
-    input[type="text"]:focus,
-    input[type="date"]:focus,
-    input[type="time"]:focus,
-    input[type="number"]:focus,
-    textarea:focus {
-      outline-color: #1d96ec; /* Primary blue color on focus */
-    }
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    box-sizing: border-box; /* Add this line */
+  }
 
-    .nav-logo img {
-        height: 14px; /* Decrease logo size for smaller screens */
-    }
+  input[type="text"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus,
+  input[type="number"]:focus,
+  textarea:focus {
+    outline-color: #1d96ec; /* Primary blue color on focus */
+  }
 
-    .nav-search input {
-        padding: 10px; /* Adjust padding for search input */
-        width: 150px; /* Decrease width for search input */
-    }
+  .nav-logo img {
+    height: 14px; /* Decrease logo size for smaller screens */
+  }
 
-    .nav-links {
-      display: none; /* Hide navbar links on smaller screens */
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      background-color: white;
-      width: auto;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      transform: translateX(calc(100% - 20px));
-    }
+  .nav-search input {
+    padding: 10px; /* Adjust padding for search input */
+    width: 150px; /* Decrease width for search input */
+  }
 
-    .nav-links ul {
-        flex-direction: column;
-    }
+  .nav-links {
+    display: none; /* Hide navbar links on smaller screens */
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: white;
+    width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    transform: translateX(calc(100% - 20px));
+  }
 
-    .nav-links li {
-        padding: 10px 20px;
-        border-bottom: 1px solid #ccc;
-    }
+  .nav-links ul {
+    flex-direction: column;
+  }
 
-    .nav-toggle {
-        margin-right: 10px;
-        position: relative;
-        display: inline-block;
-    } 
+  .nav-links li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+  }
 
-    .nav-toggle:hover .nav-dropdown {
-      display: block;
-    }
+  .nav-toggle {
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+  }
 
-    .nav-toggle-icon {
-      width: 30px;
-      height: 20px;
-      background-image: url("../assets/icons/Hamburger_icon.svg.png"); 
-      background-size: contain;
-      background-repeat: no-repeat; /* Prevent the image from repeating */
-      background-position: center; /* Center the image within the container */
-      cursor: pointer;
-      touch-action: manipulation; /* Prevent zooming */
-    }
+  .nav-toggle:hover .nav-dropdown {
+    display: block;
+  }
 
-    .nav-create {
-        margin-right: 10px; /* Adjust margin for 'Create' button */
-    }
+  .nav-toggle-icon {
+    width: 30px;
+    height: 20px;
+    background-image: url("../assets/icons/Hamburger_icon.svg.png");
+    background-size: contain;
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image within the container */
+    cursor: pointer;
+    touch-action: manipulation; /* Prevent zooming */
+  }
 
-    .submit-btn {
-        padding: 12px; /* Adjust padding for submit button */
-    }
+  .nav-create {
+    margin-right: 10px; /* Adjust margin for 'Create' button */
+  }
+
+  .submit-btn {
+    padding: 12px; /* Adjust padding for submit button */
+  }
 }
