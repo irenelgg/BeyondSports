@@ -1,10 +1,3 @@
-@media screen and (max-width: 760px) {
-  .event-details {
-    flex-direction: column;
-    row-gap: 16px;
-  }
-}
-
 .event-opened-container {
   padding: 0 80px;
   display: flex;
@@ -25,6 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .event-logistics {
@@ -36,7 +30,6 @@
 .event-logistics-cols {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
 }
 
 .event-image img {
@@ -46,8 +39,8 @@
   max-height: 600px;
   border-radius: 5px;
   object-fit: cover;
-  min-width: 200px; /* Adjust as needed */
-  min-height: 200px; /* Adjust as needed */
+  min-width: 300px; /* Adjust as needed */
+  min-height: 300px; /* Adjust as needed */
 }
 
 .event-rsvp,
@@ -63,7 +56,7 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  width: 16%;
+  width: 150px;
   padding: 10px 20px;
   /* Vertical padding to control height */
   min-width: 100px;
@@ -74,6 +67,7 @@
   font-size: 15px;
   /* Adjust as needed */
   box-sizing: border-box;
+  margin-bottom: 30px;
   /* Includes padding and border in the element's total width and height */
 }
 
@@ -88,6 +82,7 @@
   font-size: 18px;
   font-weight: 600;
   width: 100%;
+  margin-top: 10px;
 }
 
 .event-body {
@@ -115,6 +110,7 @@ body {
   /* Assuming you want the titles smaller than the main event title */
   font-weight: 600;
   margin: 0;
+  margin-top: 10px;
   /* Reset any margins for consistent spacing */
 }
 
@@ -143,4 +139,15 @@ body {
 .btns-layout button {
   margin-right: 20px;
   padding: 15px;
+}
+
+@media screen and (max-width: 760px) {
+  .event-details {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+
+  .event-header h1 {
+    font-size: 30px;
+  }
 }
