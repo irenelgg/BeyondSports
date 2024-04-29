@@ -31,6 +31,7 @@ body {
   height: 225px;
   display: block;
   border-radius: 8px;
+  object-fit: cover;
 }
 
 /* Event Card Content, padding 20px */

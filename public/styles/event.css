@@ -30,6 +30,7 @@
 .event-logistics {
   display: flex;
   column-gap: 100px;
+  flex-wrap: wrap;
 }
 
 .event-logistics-cols {
@@ -40,12 +41,13 @@
 
 .event-image img {
   width: 100%;
-  /* This will make the image responsive */
   height: 100%;
-  /* This will maintain the aspect ratio */
   max-width: 600px;
-  /* Example max-width, adjust as needed */
+  max-height: 600px;
   border-radius: 5px;
+  object-fit: cover;
+  min-width: 200px; /* Adjust as needed */
+  min-height: 200px; /* Adjust as needed */
 }
 
 .event-rsvp,
