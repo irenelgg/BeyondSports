@@ -46,6 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-right: 60px;
+  margin-left: 75px;
 }
 
 @media screen and (max-width: 760px) {
@@ -62,7 +63,7 @@ body {
   .filter-options {
     width: 100%; /* Ensure the filter options span the full width */
     text-align: left; /* Center the filter options horizontally */
-    margin-left: 35%;
+    margin-left: 60px;
   }
 
   .filter-options label {

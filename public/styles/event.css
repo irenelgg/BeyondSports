@@ -64,8 +64,9 @@
   cursor: pointer;
   border-radius: 5px;
   width: 16%;
-  padding: 10px 0;
+  padding: 10px 20px;
   /* Vertical padding to control height */
+  min-width: 100px;
   text-align: center;
   /* Centers text horizontally */
   display: inline-block;
