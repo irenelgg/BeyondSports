@@ -18,7 +18,7 @@ body {
 }
 
 .selected-sport-title h1 {
-  font-size: 64px;
+  font-size: 54px;
   font-weight: 600;
 }
 
@@ -46,4 +46,31 @@ body {
   display: flex;
   flex-direction: column;
   margin-right: 60px;
+  margin-left: 75px;
+}
+
+@media screen and (max-width: 905px) {
+  .side-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+  }
+
+  .selected-sport-title {
+    margin-bottom: 20px; /* Add margin to separate from filter options */
+  }
+
+  .filter-options {
+    width: 100%; /* Ensure the filter options span the full width */
+    text-align: left; /* Center the filter options horizontally */
+    margin-left: 60px;
+  }
+
+  .filter-options label {
+    margin-right: 10px; /* Adjust spacing between checkboxes */
+  }
+
+  .selected-sport-title h1 {
+    font-size: 40px;
+  }
 }

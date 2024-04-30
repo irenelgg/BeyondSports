@@ -1,25 +1,25 @@
 /* Main content and body styles here */
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 #main-content.blur {
-    filter: blur(3px);
+  filter: blur(3px);
 }
 
 .question {
-    color: #1d96ec;
-    font-size: 25px;
-    font-weight: bolder;
+  color: #1d96ec;
+  font-size: 25px;
+  font-weight: bolder;
 }
 
 /* Modal overlay and modal styles */
 .hidden {
-    display: none;
+  display: none;
 }
 
 #main-content.blur {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 
 /* #modal-overlay {
@@ -27,62 +27,62 @@ body {
 } */
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    z-index: 15; /* Higher z-index than overlay to appear above it */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    border-radius: 8px;
-    /* outline: 2px solid #1d96ec; */
-    width: 30%;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  z-index: 15; /* Higher z-index than overlay to appear above it */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-radius: 8px;
+  /* outline: 2px solid #1d96ec; */
+  width: 30%;
 }
 
 button {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
+  /* margin: 10px; */
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  /* font-weight: bold; */
 }
 
 .yes-button {
-    background-color: #fc1513
+  background-color: #fc1513;
 }
 
 .no-button {
-    background-color: #1d96ec;
+  background-color: #1d96ec;
 }
 .yes-button:hover {
-    background-color: #b51513
+  background-color: #b51513;
 }
 
 .no-button:hover {
-    background-color: #005fa3;
+  background-color: #005fa3;
 }
 
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
-    .modal {
-        width: 80%; /* Adjust width of modal for smaller screens */
-        max-width: 300px; /* Limit maximum width for smaller screens */
-        padding: 15px; /* Adjust padding for smaller screens */
-        border-radius: 10px; /* Increase border radius for a smoother appearance */
-    }
+@media (max-width: 905px) {
+  .modal {
+    width: 80%; /* Adjust width of modal for smaller screens */
+    max-width: 300px; /* Limit maximum width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+    border-radius: 10px; /* Increase border radius for a smoother appearance */
+  }
 
-    .question {
-        font-size: 20px; /* Decrease font size for question */
-    }
+  .question {
+    font-size: 20px; /* Decrease font size for question */
+  }
 
-    button {
-        padding: 8px 16px; /* Adjust button padding for smaller screens */
-        font-size: 12px; /* Decrease font size for buttons */
-    }
+  button {
+    padding: 8px 16px; /* Adjust button padding for smaller screens */
+    font-size: 12px; /* Decrease font size for buttons */
+  }
 }

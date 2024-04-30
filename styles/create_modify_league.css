@@ -1,52 +1,53 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-    max-width: 768px;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
+  max-width: 905px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
 }
 
 h1 {
-    font-size: 36px;
-    color: #1d96ec;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eaeaea;
-    margin-bottom: 20px;
+  font-size: 36px;
+  color: #1d96ec;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 20px;
-    color: #1d96ec;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  color: #1d96ec;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .horizontal {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-group {
-    flex-basis: 48%; /* Adjust the spacing between input fields */
+  flex-basis: 48%; /* Adjust the spacing between input fields */
 }
 
 .input-group-dates {
-    flex-basis: 100%; /* Adjust the spacing between input fields */
+  flex-basis: 100%; /* Adjust the spacing between input fields */
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    color: #666;
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
 }
 
 input[type="text"],
@@ -54,198 +55,197 @@ input[type="date"],
 input[type="time"],
 input[type="number"],
 textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .upload-area {
-    border: 2px dashed #ddd;
-    padding: 30px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #fafafa;
+  border: 2px dashed #ddd;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fafafa;
 }
 
 .navbar {
-    background-color: #f8f8f8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
 }
 
 .nav-links {
-    display: flex;
+  display: flex;
 }
 
 .nav-item {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #333;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 .create-button {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #eaeaea;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
-    background-color: #1d96ec;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #eaeaea;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+  background-color: #1d96ec;
 }
 
 .nav-item:hover {
-    background-color: #eaeaea;
-    border-radius: 5px;
+  background-color: #eaeaea;
+  border-radius: 5px;
 }
 
 .create-button:hover {
-    background-color: #005fa3;
-    border-radius: 5px;
+  background-color: #005fa3;
+  border-radius: 5px;
 }
 
 .search-container {
-    display: flex;
-    margin-right: 20%;
+  display: flex;
+  margin-right: 20%;
 }
 
 .search-input {
-    padding: 10px;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
 }
 
 .search-button {
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px; 
-    border: none;
-    border-radius: 5px;
-    background-color: #1d96ec;
-    color: white;
-    cursor: pointer;
-    
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1d96ec;
+  color: white;
+  cursor: pointer;
 }
 
 .search-button:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
 .events-container {
-    display: flex; 
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .event-right {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .add-event-btn {
-    /* Add event button styles */
-    background-color: #1d96ec;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
+  /* Add event button styles */
+  background-color: #1d96ec;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .add-event-btn:hover {
-    background-color: #005fa3;
+  background-color: #005fa3;
 }
 
 .submit-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #1d96ec;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1d96ec;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .submit-btn:hover {
-    background-color: #005fa3;
+  background-color: #005fa3;
 }
 
-@media (max-width: 768px) {
-    .horizontal {
-        flex-direction: column;
-    }
+@media (max-width: 905px) {
+  .horizontal {
+    flex-direction: column;
+  }
 
-    .input-group {
-        flex-basis: 100%;
-    }
+  .input-group {
+    flex-basis: 100%;
+  }
 
-    .nav-logo {
-        margin-right: 0; /* Remove margin on smaller screens for better spacing */
-    }
-    .search-container {
-        margin-right: 0;
-    }
-    .search-input {
-        flex-grow: 1; /* Makes the search bar responsive */
-    }
+  .nav-logo {
+    margin-right: 0; /* Remove margin on smaller screens for better spacing */
+  }
+  .search-container {
+    margin-right: 0;
+  }
+  .search-input {
+    flex-grow: 1; /* Makes the search bar responsive */
+  }
 
-    .container {
-        padding: 10px; /* Adjust padding for smaller screens */
-    }
+  .container {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
 
-    h1 {
-        font-size: 24px; /* Decrease font size for heading */
-    }
+  h1 {
+    font-size: 24px; /* Decrease font size for heading */
+  }
 
-    .input-group,
-    .input-group-dates {
-        flex-basis: 100%; /* Make input fields take full width */
-    }
+  .input-group,
+  .input-group-dates {
+    flex-basis: 100%; /* Make input fields take full width */
+  }
 
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    input[type="number"],
-    textarea {
-        width: 100%;
-    }
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+  }
 
-    .nav-logo img {
-        height: 14px; /* Decrease logo size for smaller screens */
-    }
+  .nav-logo img {
+    height: 14px; /* Decrease logo size for smaller screens */
+  }
 
-    .nav-search input {
-        padding: 10px; /* Adjust padding for search input */
-        width: 150px; /* Decrease width for search input */
-    }
+  .nav-search input {
+    padding: 10px; /* Adjust padding for search input */
+    width: 150px; /* Decrease width for search input */
+  }
 
-    .nav-links {
-        display: none; /* Hide navbar links on smaller screens */
-    }
+  .nav-links {
+    display: none; /* Hide navbar links on smaller screens */
+  }
 
-    .nav-create {
-        margin-right: 10px; /* Adjust margin for 'Create' button */
-    }
+  .nav-create {
+    margin-right: 10px; /* Adjust margin for 'Create' button */
+  }
 
-    .submit-btn {
-        padding: 12px; /* Adjust padding for submit button */
-    }
+  .submit-btn {
+    padding: 12px; /* Adjust padding for submit button */
+  }
 }

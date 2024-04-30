@@ -1,4 +1,4 @@
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 905px) {
   .leagues-details {
     flex-direction: column;
     row-gap: 16px;
@@ -138,4 +138,10 @@ body {
 .league-date {
   font-size: 18px; /* Adjust as needed */
   margin: 0; /* Remove margin if you don't want any spacing */
+}
+
+@media screen and (max-width: 905px) {
+  h1 {
+    font-size: 40px;
+  }
 }

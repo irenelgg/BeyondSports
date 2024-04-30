@@ -1,115 +1,113 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 #main-content.blur {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 
 #modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
 h2 {
-    color: #1d96ec;
-    font-weight: bold;
+  color: #1d96ec;
+  font-weight: bold;
 }
 
 .input-title {
-    font-weight: bold;
-    text-align: left;
+  font-weight: bold;
+  text-align: left;
 }
 
 .modal {
-    display: none;
-    overflow-y: auto; /* Enable vertical scrolling */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    z-index: 15; /* Higher z-index than overlay to appear above it */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    border-radius: 8px;
-    /* outline: 2px solid #1d96ec; */
-    width: 40%;
+  display: none;
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  z-index: 15; /* Higher z-index than overlay to appear above it */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-radius: 8px;
+  /* outline: 2px solid #1d96ec; */
+  width: 40%;
 }
 
 #team-name-input {
-    display: flex;
-    flex: 1;
-    width: 96.5%; /* Adjusted width to fill the whole line */
-    align-items: left;
+  display: flex;
+  flex: 1;
+  width: 96.5%; /* Adjusted width to fill the whole line */
+  align-items: left;
 }
 
 .input-group {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .input-group input {
-    flex: 1;
-    margin-right: 10px;
+  flex: 1;
+  margin-right: 10px;
 }
 
 button {
-    margin: 10px;
-    padding: 10px 20px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    outline: none;
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  outline: none;
 }
 
 .yes-button {
-    background-color: #1d96ec;
-    color: white;
+  background-color: #1d96ec;
+  color: white;
 }
 
 .no-button {
-    background-color: white;
-    color: #1d96ec;
-    outline: 1px solid #1d96ec;
+  background-color: white;
+  color: #1d96ec;
+  outline: 1px solid #1d96ec;
 }
 
 .yes-button:hover {
-    background-color: #005fa3;
+  background-color: #005fa3;
 }
 
 .no-button:hover {
-    background-color: #bfbfbf;
+  background-color: #bfbfbf;
 }
- 
+
 /* Adjustments for smaller screens */
-@media (max-width: 768px) {
-    .modal {
-        width: 80%; /* Adjust width of modal for smaller screens */
-        max-width: 300px; /* Limit maximum width for smaller screens */
-        padding: 15px; /* Adjust padding for smaller screens */
-        border-radius: 10px; /* Increase border radius for a smoother appearance */
-    }
+@media (max-width: 905px) {
+  .modal {
+    width: 80%; /* Adjust width of modal for smaller screens */
+    max-width: 300px; /* Limit maximum width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+    border-radius: 10px; /* Increase border radius for a smoother appearance */
+  }
 
-    .question {
-        font-size: 20px; /* Decrease font size for question */
-    }
+  .question {
+    font-size: 20px; /* Decrease font size for question */
+  }
 
-    p {
-        font-size: 14px; /* Decrease font size for additional information */
-    }
+  p {
+    font-size: 14px; /* Decrease font size for additional information */
+  }
 
-    button {
-        padding: 8px 16px; /* Adjust button padding for smaller screens */
-        font-size: 12px; /* Decrease font size for buttons */
-    }
+  button {
+    padding: 8px 16px; /* Adjust button padding for smaller screens */
+    font-size: 12px; /* Decrease font size for buttons */
+  }
 }
-
-

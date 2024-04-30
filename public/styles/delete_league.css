@@ -1,0 +1,18 @@
+@media screen and (max-width: 905px) {
+  .league-information-layout {
+    flex-direction: column;
+  }
+
+  .selected-sport-title {
+    order: 2; /* Change the order to make it appear below */
+  }
+
+  .images {
+    order: 1; /* Change the order to make it appear above */
+    padding-left: 60px; /* Add left padding */
+  }
+
+  .selected-sport-title h2 {
+    margin-top: 20px; /* Add margin to separate the date from other details */
+  }
+}

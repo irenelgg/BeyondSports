@@ -15,98 +15,124 @@
   </head>
 
   <body>
-
-      <!-- Modal Overlay -->
-  <!-- <div id="modal-overlay"></div> -->
-
-  <!-- Confirmation Modal -->
-  <div id="confirmation-modal" class="modal">
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
       <p class="question">Are you sure you would like to cancel?</p>
       <button id="cancel-no" class="no-button">NO, GO BACK</button>
-      <button id="cancel-yes" class="yes-button";>YES, CANCEL</button>
-  </div>
-
-  <!-- Deletion Modal -->
-  <div id="confirmation-modal" class="modal">
-    <p class="question">Are you sure you would like to delete this event?</p>
-    <button id="cancel-no" class="no-button">NO, GO BACK</button>
-    <button id="cancel-yes" class="yes-button";>YES, DELETE</button>
-</div>
-
-
-  <div id="main-content">
-    <nav class="navbar">
-      <div class="nav-logo">
-        <img src="../assets/icons/icon_logo.svg" />
-        <span>BeyondSports</span>
-      </div>
-      <div class="nav-search">
-        <input type="text" placeholder="Search for anything" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
-      </ul>
-      <div class="nav-create">
-        <button class="dropbtn">Create</button>
-        <div class="dropdown-content">
-          <a href="/pages/create_modify_event.html">Event</a>
-          <a href="/pages/create_modify_league.html">League</a>
-        </div>
-      </div>
-      <div class="nav-toggle">
-        <div class="nav-toggle-icon"></div>
-        <div class="nav-dropdown">
-          <a href="/pages/homepage.html">Home</a>
-          <a href="/pages/myEvents.html">My Events</a>
-          <a href="/pages/myLeagues.html">My Leagues</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="myEvent-title">
-      <h2>Your Confirmed Events:</h2>
+      <button id="cancel-yes" class="yes-button" ;>YES, CANCEL</button>
     </div>
 
-    <div class="events-container participated-container">
-      <!-- First event card -->
-      <div class="event-card">
-        <div class="event-card-picture">
-          <img src="../assets/images/basket1.png" />
+    <!-- Deletion Modal -->
+    <div id="confirmation-modal" class="modal">
+      <p class="question">Are you sure you would like to delete this event?</p>
+      <button id="cancel-no" class="no-button">NO, GO BACK</button>
+      <button id="cancel-yes" class="yes-button" ;>YES, DELETE</button>
+    </div>
+
+    <div id="main-content">
+      <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
         </div>
-        <div class="event-card-content">
-          <div class="event-card-title">Basket Pick Up - Mix</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="/pages/homepage.html">Home</a></li>
+          <li><a href="/pages/myEvents.html">My Events</a></li>
+          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="/pages/create_modify_event.html">Event</a>
+            <a href="/pages/create_modify_league.html">League</a>
           </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+        </div>
+        <div class="nav-toggle">
+          <div class="nav-toggle-icon"></div>
+          <div class="nav-dropdown">
+            <a href="/pages/homepage.html">Home</a>
+            <a href="/pages/myEvents.html">My Events</a>
+            <a href="/pages/myLeagues.html">My Leagues</a>
+            <a href="/pages/create_modify_event.html">Create an Event</a>
+            <a href="/pages/create_modify_league.html">Create a League</a>
+            <input type="text" placeholder="Search" />
           </div>
-          <div class="event-card-description">
-            Come take a break from your midterms and play some Basket with our
-            team leader Zeid.
+        </div>
+      </nav>
+
+      <h1>Your Confirmed Events:</h1>
+
+      <div class="events-container participated-container">
+        <!-- First event card -->
+        <div class="event-card">
+          <div class="event-card-picture">
+            <img src="../assets/images/basket1.png" />
           </div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">7:30PM</div>
-          </div>
-          <div class="event-card-actions">
-            <button class="event-card-button confirmed">CONFIRMED</button>
-            <button class="event-card-button cancel">CANCEL</button>
+          <div class="event-card-content">
+            <div class="event-card-title">Basket Pick Up - Mix</div>
+            <div class="event-card-organizer">
+              <img src="../assets/icons/icon_person.svg" class="icon" />Zeid
+              Solh
+            </div>
+            <div class="event-card-location">
+              <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+            </div>
+            <div class="event-card-description">
+              Come take a break from your midterms and play some Basket with our
+              team leader Zeid.
+            </div>
+            <hr class="card-divider" />
+            <div class="event-card-time">
+              <p>Time</p>
+              <div class="time-shape">7:30PM</div>
+            </div>
+            <div class="event-card-actions">
+              <button class="event-card-button confirmed">CONFIRMED</button>
+              <button class="event-card-button cancel">CANCEL</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="myEvent-title">
-      <h2>Your Created Events:</h2>
-    </div>
+      <h1>Your Created Events:</h1>
 
-    <div class="events-container created-container">
+      <div class="events-container created-container">
+        <!-- Second event card -->
+        <div class="event-card">
+          <div class="event-card-picture">
+            <img src="../assets/images/basket2.png" />
+          </div>
+          <div class="event-card-content">
+            <div class="event-card-title">Basket Pick Up - Mix</div>
+            <div class="event-card-organizer">
+              <img src="../assets/icons/icon_person.svg" class="icon" />Zeid
+              Solh
+            </div>
+            <div class="event-card-location">
+              <img src="../assets/icons/icon_map.svg" class="icon" />RSF
+            </div>
+            <div class="event-card-description">
+              Come take a break from your midterms and play some Basket with our
+              team leader Zeid.
+            </div>
+            <hr class="card-divider" />
+            <div class="event-card-time">
+              <p>Time</p>
+              <div class="time-shape">6:30PM</div>
+            </div>
+            <div class="event-card-actions">
+              <button class="event-card-button confirmed">MODIFY</button>
+              <button class="event-card-button cancel">DELETE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Second event card -->
-      <div class="event-card">
+      <!-- <div class="event-card">
         <div class="event-card-picture">
           <img src="../assets/images/basket2.png" />
         </div>
@@ -129,53 +155,19 @@
           </div>
           <div class="event-card-actions">
             <button class="event-card-button confirmed">MODIFY</button>
-            <button class="event-card-button cancel">DELETE</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Second event card -->
-      <div class="event-card">
-        <div class="event-card-picture">
-          <img src="../assets/images/basket2.png" />
-        </div>
-        <div class="event-card-content">
-          <div class="event-card-title">Basket Pick Up - Mix</div>
-          <div class="event-card-organizer">
-            <img src="../assets/icons/icon_person.svg" class="icon" />Zeid Solh
-          </div>
-          <div class="event-card-location">
-            <img src="../assets/icons/icon_map.svg" class="icon" />RSF
-          </div>
-          <div class="event-card-description">
-            Come take a break from your midterms and play some Basket with our
-            team leader Zeid.
-          </div>
-          <hr class="card-divider" />
-          <div class="event-card-time">
-            <p>Time</p>
-            <div class="time-shape">6:30PM</div>
-          </div>
-          <div class="event-card-actions">
-            <button class="event-card-button confirmed">MODIFY</button>
             <button class="event-card-button cancel">CANCEL</button>
           </div>
         </div>
       </div>
+    </div> -->
     </div>
-    <!DOCTYPE html>
-    <html lang="en">
 
     <!-- Main Content -->
     <!-- <div id="main-content" class="blur">
         Your main page content here 
     </div> -->
-  </div>
-
-
-  <script src="../scripts/rsvp.js"></script>
-
   </body>
+  <script src="../scripts/rsvp.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const userId = getUserId(); // You will need to implement this function to fetch the user's ID, e.g., from session or local storage.
@@ -318,25 +310,25 @@
     }
 
     function showConfirmationModal(eventId) {
-      const modal = document.getElementById('confirmation-modal');
-      const mainContent = document.getElementById('main-content');
-      modal.style.display = 'block';
-      mainContent.classList.add('blur');
+      const modal = document.getElementById("confirmation-modal");
+      const mainContent = document.getElementById("main-content");
+      modal.style.display = "block";
+      mainContent.classList.add("blur");
       // overlay.style.display = 'block';
 
       // Handle 'No' Button
-      document.getElementById('cancel-no').onclick = function() {
-          modal.style.display = 'none';
-          mainContent.classList.remove('blur');
-          // overlay.style.display = 'none';
+      document.getElementById("cancel-no").onclick = function () {
+        modal.style.display = "none";
+        mainContent.classList.remove("blur");
+        // overlay.style.display = 'none';
       };
 
       // Handle 'Yes' Button
-      document.getElementById('cancel-yes').onclick = function() {
-          cancelRSVP(eventId);
-          modal.style.display = 'none';
-          mainContent.classList.remove('blur');
-          // overlay.style.display = 'none';
+      document.getElementById("cancel-yes").onclick = function () {
+        cancelRSVP(eventId);
+        modal.style.display = "none";
+        mainContent.classList.remove("blur");
+        // overlay.style.display = 'none';
       };
     }
 
@@ -353,29 +345,27 @@
     }
 
     function showDeleteConfirmationModal(eventId) {
-        const modal = document.getElementById('confirmation-modal'); 
-        const mainContent = document.getElementById('main-content'); 
+      const modal = document.getElementById("confirmation-modal");
+      const mainContent = document.getElementById("main-content");
 
+      modal.style.display = "block";
+      mainContent.classList.add("blur");
 
-        modal.style.display = 'block';
-        mainContent.classList.add('blur');
+      // Handle 'No' Button: hide modal and remove blur
+      document.getElementById("cancel-no").onclick = function () {
+        modal.style.display = "none";
+        // overlay.style.display = 'none';
+        mainContent.classList.remove("blur");
+      };
 
-        // Handle 'No' Button: hide modal and remove blur
-        document.getElementById('cancel-no').onclick = function() {
-            modal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
-        };
-
-        // Handle 'Yes' Button: proceed with deletion and remove blur
-        document.getElementById('cancel-yes').onclick = function() {
-            deleteEvent(eventId);
-            modal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
-        };
+      // Handle 'Yes' Button: proceed with deletion and remove blur
+      document.getElementById("cancel-yes").onclick = function () {
+        deleteEvent(eventId);
+        modal.style.display = "none";
+        // overlay.style.display = 'none';
+        mainContent.classList.remove("blur");
+      };
     }
-
 
     function attachModifyEventListeners() {
       const modifyButtons = document.querySelectorAll(".modify");

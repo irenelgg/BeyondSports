@@ -6,7 +6,7 @@ html {
 }
 
 .container {
-  max-width: 768px;
+  max-width: 905px;
   margin: auto;
   padding: 20px;
   background: #fff;
@@ -16,7 +16,7 @@ h1 {
   font-size: 36px;
   color: #1d96ec;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eaeaea;
+  /* border-bottom: 1px solid #eaeaea; */
   margin-bottom: 20px;
 }
 
@@ -188,13 +188,13 @@ input[type="checkbox"] {
   background-color: #555;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .nav-links {
     display: none; /* Optional: Hide navbar links on smaller screens */
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 905px) {
   .horizontal {
     flex-direction: column;
   }
