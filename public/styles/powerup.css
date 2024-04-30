@@ -64,6 +64,7 @@
 
 .images {
   margin-right: 60px;
+  margin-left: 10px;
 }
 
 .images img {
@@ -71,7 +72,7 @@
 }
 
 .league-btn {
-  width: 40%;
+  width: 160px;
   padding: 20px;
   margin-right: 10px;
 }
