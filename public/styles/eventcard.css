@@ -10,7 +10,7 @@ body {
   flex-wrap: wrap;
   display: flex;
   justify-content: left;
-  margin-left: 50px;
+  margin-left: 60px;
 }
 
 /* Event Card, white background, 400 width and 600 height */

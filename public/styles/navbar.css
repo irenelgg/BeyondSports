@@ -278,4 +278,10 @@ body {
   .submit-btn {
     padding: 12px; /* Adjust padding for submit button */
   }
+
+  .nav-dropdown input {
+    width: 90%;
+    /* center in middle */
+    margin-left: 5%;
+  }
 }

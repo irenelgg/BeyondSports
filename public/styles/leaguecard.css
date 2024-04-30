@@ -17,6 +17,7 @@ body {
   overflow: hidden; /* Ensures the image doesn't exceed the card size */
   margin-right: 50px;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .league-card img {

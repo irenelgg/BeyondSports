@@ -18,7 +18,7 @@ body {
 }
 
 .selected-sport-title h1 {
-  font-size: 64px;
+  font-size: 54px;
   font-weight: 600;
 }
 
@@ -68,5 +68,9 @@ body {
 
   .filter-options label {
     margin-right: 10px; /* Adjust spacing between checkboxes */
+  }
+
+  .selected-sport-title h1 {
+    font-size: 40px;
   }
 }
