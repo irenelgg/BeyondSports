@@ -101,9 +101,11 @@
             </li>
           </ul>
 
-          <button type="button" class="event-rsvp league-btn" tabindex="0" role="button">
-            Enter League
-          </button>
+          <div class="event-rsvp league-btn" tabindex="0" role="button">
+            <button type="button" style="background-color: transparent; border: none; color: white;">
+              Enter League
+            </button>
+          </div>
           <h2 class="event-names-container">Events:</h2>
         </div>
         <div class="images">
@@ -208,9 +210,21 @@
         });
       }
 
-      document
-        .querySelector(".event-rsvp")
-        .addEventListener("click", function () {
+      document.addEventListener("DOMContentLoaded", function () {
+        const rsvpButton = document.querySelector(".event-rsvp");
+
+        rsvpButton.addEventListener("click", function () {
+          showConfirmationModal();
+        });
+
+        rsvpButton.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            showConfirmationModal();
+          }
+        });
+      });
+
+      function showConfirmationModal() {
           const leagueId = new URLSearchParams(window.location.search).get(
             "id"
           );
@@ -226,13 +240,30 @@
             mainContent.classList.remove('blur'); 
         };
 
+        document.getElementById('no-button').addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            confirmationModal.style.display = 'none';
+            mainContent.classList.remove('blur');
+          }
+        });
+
         // Handle 'Yes' Button: proceed with deletion and remove blur
         document.getElementById('yes-button').onclick = function() {
             joinLeague(leagueId);
             confirmationModal.style.display = 'none';
             mainContent.classList.remove('blur'); 
         };
+
+        document.getElementById('yes-button').addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            joinLeague(leagueId);
+            confirmationModal.style.display = 'none';
+            mainContent.classList.remove('blur');
+          }
         });
+        };
+
+        
 
       function joinLeague(leagueId) {
         const userId = 1;
@@ -252,6 +283,47 @@
             })
             .catch((error) => console.error("Error joining league:", error));
         };
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
+const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
+// console.log(navLinksforenter);
+// console.log(navLinks);
+navLinksforenter.forEach((item) => {
+  const link = item.querySelector("a");
+  // if (link == null) {
+  //   console.log(item.href);
+  // }
+  // else {
+  //   console.log(link.href);
+  // }
+  
+  item.addEventListener("click", () => {
+  if (link == null) {
+    window.location.href = item.href;
+  } else {
+    window.location.href = link.href; 
+  }
+  });
+  item.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      console.log("reached");
+      if (link == null) {
+        toggleDropdown();
+      } else {
+        window.location.href = link.href; 
+      }
+    }
+  });
+});
+});
+
+function toggleDropdown() {
+  const dropdownContent = document.querySelector(".dropbtn");
+  console.log(dropdownContent);
+  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+} 
     </script>
     <script src="../../scripts/navbar.js"></script>
   </body>

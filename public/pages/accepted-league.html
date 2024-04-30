@@ -227,7 +227,48 @@
             })
             .catch((error) => console.error("Error exiting league:", error));
         };
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+      const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
+      const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
+      // console.log(navLinksforenter);
+      // console.log(navLinks);
+      navLinksforenter.forEach((item) => {
+        const link = item.querySelector("a");
+        // if (link == null) {
+        //   console.log(item.href);
+        // }
+        // else {
+        //   console.log(link.href);
+        // }
+        
+        item.addEventListener("click", () => {
+        if (link == null) {
+          window.location.href = item.href;
+        } else {
+          window.location.href = link.href; 
+        }
+        });
+        item.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            console.log("reached");
+            if (link == null) {
+              toggleDropdown();
+            } else {
+              window.location.href = link.href; 
+            }
+          }
+        });
+      });
+      });
+
+      function toggleDropdown() {
+        const dropdownContent = document.querySelector(".dropbtn");
+        console.log(dropdownContent);
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+      } 
     </script>
-    <script src="../../scripts/navbar.js"></script>
+    <!-- <script src="../../scripts/navbar.js"></script> -->
   </body>
 </html>
