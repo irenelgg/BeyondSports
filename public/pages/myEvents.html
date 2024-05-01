@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/leaguecard.css" />
     <link rel="stylesheet" href="../styles/selectedsport.css" />
     <link rel="stylesheet" href="../styles/yesnobutton.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
   </head>
 
   <body>
@@ -31,7 +32,7 @@
 
     <div id="main-content">
       <nav class="navbar">
-        <div class="nav-logo">
+        <div class="nav-logo" tabindex="0" role="button">
           <img src="../assets/icons/icon_logo.svg" />
           <span>BeyondSports</span>
         </div>
@@ -39,9 +40,15 @@
           <input type="text" placeholder="Search for anything" />
         </div>
         <ul class="nav-links">
-          <li><a href="/pages/homepage.html">Home</a></li>
-          <li><a href="/pages/myEvents.html">My Events</a></li>
-          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+          <li tabindex="0" role="button">
+            <a href="/pages/homepage.html">Home</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myEvents.html">My Events</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myLeagues.html">My Leagues</a>
+          </li>
         </ul>
         <div class="nav-create">
           <button class="dropbtn">Create</button>
