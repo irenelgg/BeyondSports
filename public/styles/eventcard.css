@@ -115,8 +115,9 @@ body {
   display: flex;
 }
 
-.event-card-button.confirmed,
-.event-card-button.modify {
+.event-card-button.modify,
+.event-card-button.cancel,
+.event-card-button.delete {
   background-color: var(--primary-color); /* Blue background */
   color: white; /* White text */
   text-align: center; /* Center the text inside */
@@ -125,16 +126,15 @@ body {
   cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
   margin-top: 15px; /* Add some space above the RSVP button */
   font-weight: bold; /* Optional: Makes the text bold */
-  width: 170px;
+  width: 50%;
 }
 
-.event-card-button.cancel,
-.event-card-button.delete {
-  background-color: white; 
+.event-card-button.confirmed {
+  background-color: white;
   color: var(--primary-color);
-  padding: 8px 16px; 
+  padding: 8px 16px;
   border: 2px solid var(--primary-color);
-  border-radius: 10px; 
-  font-weight: bold; 
-  width: 170px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
 }
