@@ -8,54 +8,79 @@
     <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/leaguecard.css" />
     <link rel="stylesheet" href="../styles/selectedsport.css" />
+    <style>
+      .selected-sport-title h1 {
+        font-size: 50px;
+      }
+
+      @media screen and (max-width: 905px) {
+        .selected-sport-title h1 {
+          font-size: 40px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
       <nav class="navbar">
-          <div class="nav-logo" tabindex="0">
-              <img src="../assets/icons/icon_logo.svg" alt="BeyondSports Logo" />
-              <span>BeyondSports</span>
+        <div class="nav-logo" tabindex="0">
+          <img src="../assets/icons/icon_logo.svg" alt="BeyondSports Logo" />
+          <span>BeyondSports</span>
+        </div>
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
+        </div>
+        <ul class="nav-links">
+          <li tabindex="0" role="button">
+            <a href="/pages/homepage.html">Home</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myEvents.html">My Events</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myLeagues.html">My Leagues</a>
+          </li>
+        </ul>
+        <div class="nav-create" tabindex="0" role="button">
+          <button class="dropbtn" tabindex="0">Create</button>
+          <div class="dropdown-content">
+            <a href="/pages/create_modify_event.html" tabindex="0">Event</a>
+            <a href="/pages/create_modify_league.html" tabindex="0">League</a>
           </div>
-          <div class="nav-search">
-              <input type="text" placeholder="Search for anything" />
+        </div>
+        <div class="nav-toggle" tabindex="0">
+          <div class="nav-toggle-icon"></div>
+          <div class="nav-dropdown">
+            <a href="/pages/homepage.html">Home</a>
+            <a href="/pages/myEvents.html">My Events</a>
+            <a href="/pages/myLeagues.html">My Leagues</a>
           </div>
-          <ul class="nav-links">
-              <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
-              <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
-              <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
-          </ul>
-          <div class="nav-create" tabindex="0" role="button">
-              <button class="dropbtn" tabindex="0">Create</button>
-              <div class="dropdown-content">
-                  <a href="/pages/create_modify_event.html" tabindex="0">Event</a>
-                  <a href="/pages/create_modify_league.html" tabindex="0">League</a>
-              </div>
-          </div>
-          <div class="nav-toggle" tabindex="0">
-              <div class="nav-toggle-icon"></div>
-              <div class="nav-dropdown">
-                  <a href="/pages/homepage.html">Home</a>
-                  <a href="/pages/myEvents.html">My Events</a>
-                  <a href="/pages/myLeagues.html">My Leagues</a>
-              </div>
-          </div>
+        </div>
       </nav>
-  </header>
+    </header>
 
-  <main>
+    <main>
       <div class="selected-sport-title">
-          <h2>Choose Your Sport</h2>
+        <h1>Choose Your Sport</h1>
       </div>
 
       <section class="choose-sport">
-          <div class="sports-icons">
-              <div class="sport-icon" tabindex="0" role="button" title="Basketball" aria-label="Select Wheel-chair basketball">
-                  <img src="../assets/images/basket1.png" alt="Wheel-chair basketball">
-              </div>
+        <div class="sports-icons">
+          <div
+            class="sport-icon"
+            tabindex="0"
+            role="button"
+            title="Basketball"
+            aria-label="Select Wheel-chair basketball"
+          >
+            <img
+              src="../assets/images/basket1.png"
+              alt="Wheel-chair basketball"
+            />
           </div>
+        </div>
       </section>
-  </main>
-
+    </main>
 
     <script>
       document.addEventListener("DOMContentLoaded", function (event) {
@@ -90,9 +115,12 @@
       });
 
       document.addEventListener("DOMContentLoaded", function () {
-
-        const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-        const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
+        const navLinks = document.querySelectorAll(
+          ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+        );
+        const navLinksforenter = document.querySelectorAll(
+          ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+        );
         // console.log(navLinksforenter);
         // console.log(navLinks);
         navLinksforenter.forEach((item) => {
@@ -103,13 +131,13 @@
           // else {
           //   console.log(link.href);
           // }
-          
+
           item.addEventListener("click", () => {
-          if (link == null) {
-            window.location.href = item.href;
-          } else {
-            window.location.href = link.href; 
-          }
+            if (link == null) {
+              window.location.href = item.href;
+            } else {
+              window.location.href = link.href;
+            }
           });
           item.addEventListener("keydown", (event) => {
             if (event.key === "Enter" || event.key === " ") {
@@ -117,7 +145,7 @@
               if (link == null) {
                 toggleDropdown();
               } else {
-                window.location.href = link.href; 
+                window.location.href = link.href;
               }
             }
           });
@@ -125,11 +153,12 @@
       });
 
       function toggleDropdown() {
-          const dropdownContent = document.querySelector(".dropbtn");
-          console.log(dropdownContent);
-          dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-      } 
-    </script>                                     
+        const dropdownContent = document.querySelector(".dropbtn");
+        console.log(dropdownContent);
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
+    </script>
     <script src="../../scripts/navbar.js"></script>
   </body>
 </html>
