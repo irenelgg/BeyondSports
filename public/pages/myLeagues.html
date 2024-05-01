@@ -20,9 +20,15 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button">
+          <a href="/pages/homepage.html">Home</a>
+        </li>
+        <li tabindex="0" role="button">
+          <a href="/pages/myEvents.html">My Events</a>
+        </li>
+        <li tabindex="0" role="button">
+          <a href="/pages/myLeagues.html">My Leagues</a>
+        </li>
       </ul>
       <div class="nav-create">
         <button class="dropbtn">Create</button>
@@ -39,7 +45,7 @@
           <a href="/pages/myLeagues.html">My Leagues</a>
           <a href="/pages/create_modify_event.html">Create an Event</a>
           <a href="/pages/create_modify_league.html">Create a League</a>
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" style="width: 90%" />
         </div>
       </div>
     </nav>
@@ -88,20 +94,26 @@
       }
 
       function updateParticipationDisplay(leagues) {
-    const confirmedContainer = document.querySelector(".leagues-opened-container");
-    const pendingContainer = document.querySelector(".pending-leagues-container");
+        const confirmedContainer = document.querySelector(
+          ".leagues-opened-container"
+        );
+        const pendingContainer = document.querySelector(
+          ".pending-leagues-container"
+        );
 
-    leagues.forEach((league) => {
-      let link;
-      if (league.type === "participant") {
-        link = "/pages/accepted-league.html?id=" + league.id;
-      } else if (league.type === "pending") {
-        link = "/pages/pending-league.html?id=" + league.id;
-      }
+        leagues.forEach((league) => {
+          let link;
+          if (league.type === "participant") {
+            link = "/pages/accepted-league.html?id=" + league.id;
+          } else if (league.type === "pending") {
+            link = "/pages/pending-league.html?id=" + league.id;
+          }
 
-      const leagueHtml = `
+          const leagueHtml = `
         <div class="league-card" tabindex="0" role="button" data-link="${link}">
-          <img src="${league.imageUrl || '../assets/images/default_league.png'}" alt="${league.leagueName}" />
+          <img src="${
+            league.imageUrl || "../assets/images/default_league.png"
+          }" alt="${league.leagueName}" />
           <div class="league-info">
             <h3>${league.leagueName}</h3>
             <p>${league.eventDates}</p>
@@ -109,23 +121,29 @@
         </div>
       `;
 
-      if (league.type === "participant") {
-        confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
-      } else if (league.type === "pending") {
-        pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          if (league.type === "participant") {
+            confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          } else if (league.type === "pending") {
+            pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
+          }
+        });
+
+        addEventListenersToLeagueCards();
       }
-    });
 
-    addEventListenersToLeagueCards();
-  }
+      function updateCreatedLeaguesDisplay(leagues) {
+        const createdContainer = document.querySelector(
+          ".created-leagues-container"
+        );
 
-  function updateCreatedLeaguesDisplay(leagues) {
-    const createdContainer = document.querySelector(".created-leagues-container");
-
-    leagues.forEach((league) => {
-      const leagueHtml = `
-        <div class="league-card" tabindex="0" role="button" data-link="/pages/delete-league.html?id=${league.id}">
-          <img src="${league.imageUrl || '../assets/images/default_league.png'}" alt="${league.leagueName}" />
+        leagues.forEach((league) => {
+          const leagueHtml = `
+        <div class="league-card" tabindex="0" role="button" data-link="/pages/delete-league.html?id=${
+          league.id
+        }">
+          <img src="${
+            league.imageUrl || "../assets/images/default_league.png"
+          }" alt="${league.leagueName}" />
           <div class="league-info">
             <h3>${league.leagueName}</h3>
             <p>${league.eventDates}</p>
@@ -133,29 +151,29 @@
         </div>
       `;
 
-      createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
-    });
+          createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
+        });
 
-    addEventListenersToLeagueCards();
-  }
+        addEventListenersToLeagueCards();
+      }
 
-  function addEventListenersToLeagueCards() {
-    const leagueCards = document.querySelectorAll(".league-card");
+      function addEventListenersToLeagueCards() {
+        const leagueCards = document.querySelectorAll(".league-card");
 
-    leagueCards.forEach((card) => {
-      const link = card.getAttribute("data-link"); // Retrieve the link directly
+        leagueCards.forEach((card) => {
+          const link = card.getAttribute("data-link"); // Retrieve the link directly
 
-      card.addEventListener("click", () => {
-        window.location.href = link;
-      });
+          card.addEventListener("click", () => {
+            window.location.href = link;
+          });
 
-      card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          window.location.href = link;
-        }
-      });
-    });
-  }
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              window.location.href = link;
+            }
+          });
+        });
+      }
 
       // function updateParticipationDisplay(leagues) {
 
@@ -178,7 +196,7 @@
       //           league.imageUrl || "../assets/images/default_league.png"
       //         }" alt="${league.leagueName}" />
       //         <div class="league-info">
-      //           <h3>${league.leagueName}</h3> 
+      //           <h3>${league.leagueName}</h3>
       //           <p>${league.eventDates}</p>
       //         </div>
       //       </div>
@@ -189,12 +207,8 @@
       //       pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
       //     }
 
-
-
       //   });
       // }
-
-      
 
       // function updateCreatedLeaguesDisplay(leagues) {
       //   const createdContainer = document.querySelector(
@@ -219,49 +233,51 @@
       // }
     });
 
-    
-
     document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = document.querySelectorAll(
+        ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+      );
+      const navLinksforenter = document.querySelectorAll(
+        ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+      );
 
-const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
+      // console.log(navLinksforenter);
+      // console.log(navLinks);
+      navLinksforenter.forEach((item) => {
+        const link = item.querySelector("a");
+        // if (link == null) {
+        //   console.log(item.href);
+        // }
+        // else {
+        //   console.log(link.href);
+        // }
 
-// console.log(navLinksforenter);
-// console.log(navLinks);
-navLinksforenter.forEach((item) => {
-  const link = item.querySelector("a");
-  // if (link == null) {
-  //   console.log(item.href);
-  // }
-  // else {
-  //   console.log(link.href);
-  // }
-  
-  item.addEventListener("click", () => {
-  if (link == null) {
-    window.location.href = item.href;
-  } else {
-    window.location.href = link.href; 
-  }
-  });
-  item.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      console.log("reached");
-      if (link == null) {
-        toggleDropdown();
-      } else {
-        window.location.href = link.href; 
-      }
+        item.addEventListener("click", () => {
+          if (link == null) {
+            window.location.href = item.href;
+          } else {
+            window.location.href = link.href;
+          }
+        });
+        item.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            console.log("reached");
+            if (link == null) {
+              toggleDropdown();
+            } else {
+              window.location.href = link.href;
+            }
+          }
+        });
+      });
+    });
+
+    function toggleDropdown() {
+      const dropdownContent = document.querySelector(".dropbtn");
+      console.log(dropdownContent);
+      dropdownContent.style.display =
+        dropdownContent.style.display === "block" ? "none" : "block";
     }
-  });
-});
-});
-
-function toggleDropdown() {
-  const dropdownContent = document.querySelector(".dropbtn");
-  console.log(dropdownContent);
-  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-} 
   </script>
   <script src="../../scripts/navbar.js"></script>
 </html>

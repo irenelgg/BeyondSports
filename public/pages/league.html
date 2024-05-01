@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../styles/powerup.css" />
     <link rel="stylesheet" href="../styles/leaguesignup.css" />
     <link rel="stylesheet" href="../styles/yesnobutton.css" />
+    <link rel="stylesheet" href="../styles/delete_league.css" />
   </head>
   <body>
     <div id="team-modal" class="modal">
@@ -166,7 +167,7 @@
             <a href="/pages/myLeagues.html">My Leagues</a>
           </li>
         </ul>
-        <div class="nav-create" tabindex="0" role="button">
+        <div class="nav-create">
           <button class="dropbtn">Create</button>
           <div class="dropdown-content">
             <a href="/pages/create_modify_event.html">Event</a>
@@ -179,6 +180,9 @@
             <a href="/pages/homepage.html">Home</a>
             <a href="/pages/myEvents.html">My Events</a>
             <a href="/pages/myLeagues.html">My Leagues</a>
+            <a href="/pages/create_modify_event.html">Create an Event</a>
+            <a href="/pages/create_modify_league.html">Create a League</a>
+            <input type="text" placeholder="Search" style="width: 90%" />
           </div>
         </div>
       </nav>
@@ -204,7 +208,12 @@
           <div class="event-rsvp league-btn" tabindex="0" role="button">
             <button
               type="button"
-              style="background-color: transparent; border: none; color: white"
+              style="
+                background-color: transparent;
+                border: none;
+                color: white;
+                padding: 0;
+              "
             >
               Enter League
             </button>
