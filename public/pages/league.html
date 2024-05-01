@@ -17,41 +17,109 @@
     <div id="team-modal" class="modal">
       <h2>Please input the following information:</h2>
       <p class="input-title">Team Name</p>
-      <input type="text" placeholder="Team Name..." name="team-name" id="team-name-input">
+      <input
+        type="text"
+        placeholder="Team Name..."
+        name="team-name"
+        id="team-name-input"
+      />
       <!-- Repeat for each team member -->
       <p class="input-title">Team Member 1</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 1 Name..." name="member1-name" tabindex="0" role="button">
-          <input type="email" placeholder="Team Member 1 Email..." name="member1-email" tabindex="0" role="button">
+        <input
+          type="text"
+          placeholder="Team Member 1 Name..."
+          name="member1-name"
+          tabindex="0"
+          role="button"
+        />
+        <input
+          type="email"
+          placeholder="Team Member 1 Email..."
+          name="member1-email"
+          tabindex="0"
+          role="button"
+        />
       </div>
       <p class="input-title">Team Member 2</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 2 Name..." name="member1-name" tabindex="0" role="button">
-          <input type="email" placeholder="Team Member 2 Email..." name="member1-email" tabindex="0" role="button">
+        <input
+          type="text"
+          placeholder="Team Member 2 Name..."
+          name="member1-name"
+          tabindex="0"
+          role="button"
+        />
+        <input
+          type="email"
+          placeholder="Team Member 2 Email..."
+          name="member1-email"
+          tabindex="0"
+          role="button"
+        />
       </div>
       <p class="input-title">Team Member 3</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 3 Name..." name="member1-name" tabindex="0" role="button">
-          <input type="email" placeholder="Team Member 3 Email..." name="member1-email" tabindex="0" role="button">
+        <input
+          type="text"
+          placeholder="Team Member 3 Name..."
+          name="member1-name"
+          tabindex="0"
+          role="button"
+        />
+        <input
+          type="email"
+          placeholder="Team Member 3 Email..."
+          name="member1-email"
+          tabindex="0"
+          role="button"
+        />
       </div>
       <p class="input-title">Team Member 4</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 4 Name..." name="member1-name" tabindex="0" role="button">
-          <input type="email" placeholder="Team Member 4 Email..." name="member1-email" tabindex="0" role="button">
+        <input
+          type="text"
+          placeholder="Team Member 4 Name..."
+          name="member1-name"
+          tabindex="0"
+          role="button"
+        />
+        <input
+          type="email"
+          placeholder="Team Member 4 Email..."
+          name="member1-email"
+          tabindex="0"
+          role="button"
+        />
       </div>
       <p class="input-title">Team Member 5</p>
       <div class="input-group">
-          <input type="text" placeholder="Team Member 5 Name..." name="member1-name" tabindex="0" role="button">
-          <input type="email" placeholder="Team Member 5 Email..." name="member1-email" tabindex="0" role="button">
+        <input
+          type="text"
+          placeholder="Team Member 5 Name..."
+          name="member1-name"
+          tabindex="0"
+          role="button"
+        />
+        <input
+          type="email"
+          placeholder="Team Member 5 Email..."
+          name="member1-email"
+          tabindex="0"
+          role="button"
+        />
       </div>
-      <p>You will be accepting all rules and requirements. An invite will also be sent to all team members via email.</p>
+      <p>
+        You will be accepting all rules and requirements. An invite will also be
+        sent to all team members via email.
+      </p>
       <div class="modal-buttons">
-          <button id="no-button" tabindex="0" role="button">NO, GO BACK</button>
-          <button id="yes-button" tabindex="0" role="button">YES, JOIN</button>
+        <button id="no-button" tabindex="0" role="button">NO, GO BACK</button>
+        <button id="yes-button" tabindex="0" role="button">YES, JOIN</button>
       </div>
     </div>
 
-    <div id = "main-content">
+    <div id="main-content">
       <nav class="navbar">
         <div class="nav-logo" tabindex="0" role="button">
           <img src="../assets/icons/icon_logo.svg" />
@@ -61,9 +129,15 @@
           <input type="text" placeholder="Search for anything" />
         </div>
         <ul class="nav-links">
-          <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
-          <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
-          <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
+          <li tabindex="0" role="button">
+            <a href="/pages/homepage.html">Home</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myEvents.html">My Events</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myLeagues.html">My Leagues</a>
+          </li>
         </ul>
         <div class="nav-create" tabindex="0" role="button">
           <button class="dropbtn">Create</button>
@@ -101,7 +175,10 @@
           </ul>
 
           <div class="event-rsvp league-btn" tabindex="0" role="button">
-            <button type="button" style="background-color: transparent; border: none; color: white;">
+            <button
+              type="button"
+              style="background-color: transparent; border: none; color: white"
+            >
               Enter League
             </button>
           </div>
@@ -201,7 +278,9 @@
                               <p>Time</p>
                               <div class="time-shape">${event.eventTime}</div>
                           </div>
-                          <div class="event-card-rsvp" tabindex="0" role="button">${event.eventDate}</div>
+                          <div class="event-card-rsvp" tabindex="0" role="button">${formatDate(
+                            event.eventDate
+                          )}</div>
                       </div>
                   </div>
               `;
@@ -224,105 +303,114 @@
       });
 
       function showConfirmationModal() {
-          const leagueId = new URLSearchParams(window.location.search).get(
-            "id"
-          );
-        const confirmationModal = document.getElementById('team-modal');
-        const mainContent = document.getElementById('main-content');
+        const leagueId = new URLSearchParams(window.location.search).get("id");
+        const confirmationModal = document.getElementById("team-modal");
+        const mainContent = document.getElementById("main-content");
 
-        confirmationModal.style.display = 'block';
-        mainContent.classList.add('blur');
+        confirmationModal.style.display = "block";
+        mainContent.classList.add("blur");
 
         // Handle 'No' Button: hide modal and remove blur
-        document.getElementById('no-button').onclick = function() {
-          confirmationModal.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+        document.getElementById("no-button").onclick = function () {
+          confirmationModal.style.display = "none";
+          mainContent.classList.remove("blur");
         };
 
-        document.getElementById('no-button').addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            confirmationModal.style.display = 'none';
-            mainContent.classList.remove('blur');
-          }
-        });
+        document
+          .getElementById("no-button")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              confirmationModal.style.display = "none";
+              mainContent.classList.remove("blur");
+            }
+          });
 
         // Handle 'Yes' Button: proceed with deletion and remove blur
-        document.getElementById('yes-button').onclick = function() {
-            joinLeague(leagueId);
-            confirmationModal.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+        document.getElementById("yes-button").onclick = function () {
+          joinLeague(leagueId);
+          confirmationModal.style.display = "none";
+          mainContent.classList.remove("blur");
         };
 
-        document.getElementById('yes-button').addEventListener("keydown", function (event) {
-          if (event.key === "Enter" || event.key === " ") {
-            joinLeague(leagueId);
-            confirmationModal.style.display = 'none';
-            mainContent.classList.remove('blur');
-          }
-        });
-        };
+        document
+          .getElementById("yes-button")
+          .addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              joinLeague(leagueId);
+              confirmationModal.style.display = "none";
+              mainContent.classList.remove("blur");
+            }
+          });
+      }
 
-        
+      function formatDate(dateStr) {
+        const [year, day, month] = dateStr.split("-"); // Split into year, day, month
+        return `${month}/${day}/${year}`; // Reformat to MM/DD/YYYY
+      }
 
       function joinLeague(leagueId) {
         const userId = 1;
-          fetch("/join-league", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ user_id: userId, league_id: leagueId }),
+        fetch("/join-league", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: userId, league_id: leagueId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message) {
+              alert(data.message); // Show confirmation or redirect
+              location.href = "myLeagues.html"; // Redirect to my leagues page
+            }
           })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.message) {
-                alert(data.message); // Show confirmation or redirect
-                location.href = "myLeagues.html"; // Redirect to my leagues page
-              }
-            })
-            .catch((error) => console.error("Error joining league:", error));
-        };
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
-// console.log(navLinksforenter);
-// console.log(navLinks);
-navLinksforenter.forEach((item) => {
-  const link = item.querySelector("a");
-  // if (link == null) {
-  //   console.log(item.href);
-  // }
-  // else {
-  //   console.log(link.href);
-  // }
-  
-  item.addEventListener("click", () => {
-  if (link == null) {
-    window.location.href = item.href;
-  } else {
-    window.location.href = link.href; 
-  }
-  });
-  item.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      console.log("reached");
-      if (link == null) {
-        toggleDropdown();
-      } else {
-        window.location.href = link.href; 
+          .catch((error) => console.error("Error joining league:", error));
       }
-    }
-  });
-});
-});
 
-function toggleDropdown() {
-  const dropdownContent = document.querySelector(".dropbtn");
-  console.log(dropdownContent);
-  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-} 
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(
+          ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+        );
+        const navLinksforenter = document.querySelectorAll(
+          ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+        );
+        // console.log(navLinksforenter);
+        // console.log(navLinks);
+        navLinksforenter.forEach((item) => {
+          const link = item.querySelector("a");
+          // if (link == null) {
+          //   console.log(item.href);
+          // }
+          // else {
+          //   console.log(link.href);
+          // }
+
+          item.addEventListener("click", () => {
+            if (link == null) {
+              window.location.href = item.href;
+            } else {
+              window.location.href = link.href;
+            }
+          });
+          item.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              console.log("reached");
+              if (link == null) {
+                toggleDropdown();
+              } else {
+                window.location.href = link.href;
+              }
+            }
+          });
+        });
+      });
+
+      function toggleDropdown() {
+        const dropdownContent = document.querySelector(".dropbtn");
+        console.log(dropdownContent);
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
     </script>
     <script src="../../scripts/navbar.js"></script>
   </body>

@@ -15,80 +15,88 @@
     <link rel="stylesheet" href="../styles/delete_league.css" />
   </head>
   <body>
-
     <div id="confirmation-modal" class="modal">
       <p class="question">Are you sure you would like to exit this league?</p>
       <p>You and all your teammates will be removed from the league.</p>
       <button id="cancel-no" class="no-button">NO, GO BACK</button>
-      <button id="cancel-yes" class="yes-button";>YES, EXIT</button>
+      <button id="cancel-yes" class="yes-button" ;>YES, EXIT</button>
     </div>
 
-  <div id = "main-content">
-    <nav class="navbar">
-      <div class="nav-logo" tabindex="0" role="button">
-        <img src="../assets/icons/icon_logo.svg" />
-        <span>BeyondSports</span>
-      </div>
-      <div class="nav-search">
-        <input type="text" placeholder="Search for anything" />
-      </div>
-      <ul class="nav-links">
-        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
-      </ul>
-      <div class="nav-create">
-        <button class="dropbtn">Create</button>
-        <div class="dropdown-content">
-          <a href="/pages/create_modify_event.html">Event</a>
-          <a href="/pages/create_modify_league.html">League</a>
+    <div id="main-content">
+      <nav class="navbar">
+        <div class="nav-logo" tabindex="0" role="button">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
         </div>
-      </div>
-      <div class="nav-toggle">
-        <div class="nav-toggle-icon"></div>
-        <div class="nav-dropdown">
-          <a href="/pages/homepage.html">Home</a>
-          <a href="/pages/myEvents.html">My Events</a>
-          <a href="/pages/myLeagues.html">My Leagues</a>
-          <a href="/pages/create_modify_event.html">Create an Event</a>
-          <a href="/pages/create_modify_league.html">Create a League</a>
-          <input type="text" placeholder="Search" />
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
         </div>
-      </div>
-    </nav>
-
-    <div class="selected-sport-title">
-      <h1></h1>
-    </div>
-    <div class="league-information-layout">
-      <div class="selected-sport-title">
-        <h2>Dates: <span class="event-body"></span></h2>
-
-        <h2>Organizer:<span class="event-body"> </span></h2>
-        <h2>Spots available:<span class="event-body"></span></h2>
-        <h2>Prize:<span class="event-body"> </span></h2>
-        <h2>Sport:<span class="event-body"> </span></h2>
-        <h2>Rules and Requirements:</h2>
-        <ul>
-          <li>
-            <h2><span class="event-body"></span></h2>
+        <ul class="nav-links">
+          <li tabindex="0" role="button">
+            <a href="/pages/homepage.html">Home</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myEvents.html">My Events</a>
+          </li>
+          <li tabindex="0" role="button">
+            <a href="/pages/myLeagues.html">My Leagues</a>
           </li>
         </ul>
-
-        <div class="exit-league league-btn" tabindex="0" role="button">
-          <button type="button" style= "background-color: transparent; color: white; border: none;">
-            Exit League
-          </button>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="/pages/create_modify_event.html">Event</a>
+            <a href="/pages/create_modify_league.html">League</a>
+          </div>
         </div>
-        <h2 class="event-names-container">Events:</h2>
-      </div>
-      <div class="images">
-        <img />
-      </div>
-    </div>
+        <div class="nav-toggle">
+          <div class="nav-toggle-icon"></div>
+          <div class="nav-dropdown">
+            <a href="/pages/homepage.html">Home</a>
+            <a href="/pages/myEvents.html">My Events</a>
+            <a href="/pages/myLeagues.html">My Leagues</a>
+            <a href="/pages/create_modify_event.html">Create an Event</a>
+            <a href="/pages/create_modify_league.html">Create a League</a>
+            <input type="text" placeholder="Search" />
+          </div>
+        </div>
+      </nav>
 
-    <div class="events-container"></div>
-  </div>
+      <div class="selected-sport-title">
+        <h1></h1>
+      </div>
+      <div class="league-information-layout">
+        <div class="selected-sport-title">
+          <h2>Dates: <span class="event-body"></span></h2>
+
+          <h2>Organizer:<span class="event-body"> </span></h2>
+          <h2>Spots available:<span class="event-body"></span></h2>
+          <h2>Prize:<span class="event-body"> </span></h2>
+          <h2>Sport:<span class="event-body"> </span></h2>
+          <h2>Rules and Requirements:</h2>
+          <ul>
+            <li>
+              <h2><span class="event-body"></span></h2>
+            </li>
+          </ul>
+
+          <div class="exit-league league-btn" tabindex="0" role="button">
+            <button
+              type="button"
+              style="background-color: transparent; color: white; border: none"
+            >
+              Exit League
+            </button>
+          </div>
+          <h2 class="event-names-container">Events:</h2>
+        </div>
+        <div class="images">
+          <img />
+        </div>
+      </div>
+
+      <div class="events-container"></div>
+    </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -176,7 +184,9 @@
                               <p>Time</p>
                               <div class="time-shape">${event.eventTime}</div>
                           </div>
-                          <div class="event-card-rsvp">${event.eventDate}</div>
+                          <div class="event-card-rsvp">${formatDate(
+                            event.eventDate
+                          )}</div>
                       </div>
                   </div>
               `;
@@ -220,66 +230,74 @@
         };
       }
 
-
       function exitLeague(leagueId) {
-          const userId = 1;
-          fetch("/exit-league", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ user_id: userId, league_id: leagueId }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.message) {
-                alert(data.message);
-                window.location.href = "/pages/myLeagues.html"; // Redirect or update UI as needed
-              }
-            })
-            .catch((error) => console.error("Error exiting league:", error));
-        };
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-      const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-      const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
-      // console.log(navLinksforenter);
-      // console.log(navLinks);
-      navLinksforenter.forEach((item) => {
-        const link = item.querySelector("a");
-        // if (link == null) {
-        //   console.log(item.href);
-        // }
-        // else {
-        //   console.log(link.href);
-        // }
-        
-        item.addEventListener("click", () => {
-        if (link == null) {
-          window.location.href = item.href;
-        } else {
-          window.location.href = link.href; 
-        }
-        });
-        item.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            console.log("reached");
-            if (link == null) {
-              toggleDropdown();
-            } else {
-              window.location.href = link.href; 
+        const userId = 1;
+        fetch("/exit-league", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: userId, league_id: leagueId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message) {
+              alert(data.message);
+              window.location.href = "/pages/myLeagues.html"; // Redirect or update UI as needed
             }
-          }
+          })
+          .catch((error) => console.error("Error exiting league:", error));
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(
+          ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+        );
+        const navLinksforenter = document.querySelectorAll(
+          ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+        );
+        // console.log(navLinksforenter);
+        // console.log(navLinks);
+        navLinksforenter.forEach((item) => {
+          const link = item.querySelector("a");
+          // if (link == null) {
+          //   console.log(item.href);
+          // }
+          // else {
+          //   console.log(link.href);
+          // }
+
+          item.addEventListener("click", () => {
+            if (link == null) {
+              window.location.href = item.href;
+            } else {
+              window.location.href = link.href;
+            }
+          });
+          item.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              console.log("reached");
+              if (link == null) {
+                toggleDropdown();
+              } else {
+                window.location.href = link.href;
+              }
+            }
+          });
         });
-      });
       });
 
       function toggleDropdown() {
         const dropdownContent = document.querySelector(".dropbtn");
         console.log(dropdownContent);
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-      } 
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
+
+      function formatDate(dateStr) {
+        const [year, day, month] = dateStr.split("-"); // Split into year, day, month
+        return `${month}/${day}/${year}`; // Reformat to MM/DD/YYYY
+      }
     </script>
     <!-- <script src="../../scripts/navbar.js"></script> -->
   </body>

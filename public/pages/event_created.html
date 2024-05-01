@@ -13,94 +13,104 @@
     <div id="confirmation-modal" class="modal">
       <p class="question">Are you sure you would like to delete this event?</p>
       <button id="cancel-no" class="no-button">NO, GO BACK</button>
-      <button id="cancel-yes" class="yes-button";>YES, DELETE</button>
-  </div>
+      <button id="cancel-yes" class="yes-button" ;>YES, DELETE</button>
+    </div>
 
-  <div id="main-content">
-    <nav class="navbar">
-      <div class="nav-logo">
-        <img src="../assets/icons/icon_logo.svg" />
-        <span>BeyondSports</span>
-      </div>
-      <div class="nav-search">
-        <input type="text" placeholder="Search for anything" />
-      </div>
-      <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
-      </ul>
-      <div class="nav-create">
-        <button class="dropbtn">Create</button>
-        <div class="dropdown-content">
-          <a href="/pages/create_modify_event.html">Event</a>
-          <a href="/pages/create_modify_league.html">League</a>
+    <div id="main-content">
+      <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../assets/icons/icon_logo.svg" />
+          <span>BeyondSports</span>
         </div>
-      </div>
-      <div class="nav-toggle">
-        <div class="nav-toggle-icon"></div>
-        <div class="nav-dropdown">
-          <a href="/pages/homepage.html">Home</a>
-          <a href="/pages/myEvents.html">My Events</a>
-          <a href="/pages/myLeagues.html">My Leagues</a>
-          <a href="/pages/create_modify_event.html">Create an Event</a>
-          <a href="/pages/create_modify_league.html">Create a League</a>
-          <input type="text" placeholder="Search" />
+        <div class="nav-search">
+          <input type="text" placeholder="Search for anything" />
         </div>
-      </div>
-    </nav>
-
-    <main class="event-opened-container">
-      <section class="event-header">
-        <h1></h1>
-        <!-- Event name will be set here -->
-      </section>
-
-      <section class="event-details">
-        <div class="event-image">
-          <img src="" alt="Event Image" />
-          <!-- Source will be set dynamically -->
-        </div>
-        <div class="event-info">
-          <div class="event-logistics">
-            <div class="event-logistics-cols">
-              <h2 class="event-title">Date:<span class="event-body"></span></h2>
-              <h2 class="event-title">
-                Accessibilities:<span class="event-body"></span>
-              </h2>
-            </div>
-            <div class="event-logistics-cols">
-              <h2 class="event-title">
-                Location:<span class="event-body"></span>
-              </h2>
-              <h2 class="event-title">
-                Spots Available:<span class="event-body"></span>
-              </h2>
-            </div>
-            <div class="event-logistics-cols">
-              <h2 class="event-title">
-                Sport:<span class="event-body"></span>
-              </h2>
-            </div>
-          </div>
-          <div class="event-description">
-            <h2 class="event-title">
-              Description:<span class="event-body"></span>
-            </h2>
-          </div>
-          <br>
-          <div class="btns-layout">
-            <button type="button" class="event-modify" id="event-action-button">
-              Modify Event
-            </button>
-            <button type="button" class="event-delete" id="event-action-button">
-              Delete Event
-            </button>
+        <ul class="nav-links">
+          <li><a href="/pages/homepage.html">Home</a></li>
+          <li><a href="/pages/myEvents.html">My Events</a></li>
+          <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        </ul>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
+          <div class="dropdown-content">
+            <a href="/pages/create_modify_event.html">Event</a>
+            <a href="/pages/create_modify_league.html">League</a>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
+        <div class="nav-toggle">
+          <div class="nav-toggle-icon"></div>
+          <div class="nav-dropdown">
+            <a href="/pages/homepage.html">Home</a>
+            <a href="/pages/myEvents.html">My Events</a>
+            <a href="/pages/myLeagues.html">My Leagues</a>
+            <a href="/pages/create_modify_event.html">Create an Event</a>
+            <a href="/pages/create_modify_league.html">Create a League</a>
+            <input type="text" placeholder="Search" />
+          </div>
+        </div>
+      </nav>
+
+      <main class="event-opened-container">
+        <section class="event-header">
+          <h1></h1>
+          <!-- Event name will be set here -->
+        </section>
+
+        <section class="event-details">
+          <div class="event-image">
+            <img src="" alt="Event Image" />
+            <!-- Source will be set dynamically -->
+          </div>
+          <div class="event-info">
+            <div class="event-logistics">
+              <div class="event-logistics-cols">
+                <h2 class="event-title">
+                  Date:<span class="event-body"></span>
+                </h2>
+                <h2 class="event-title">
+                  Accessibilities:<span class="event-body"></span>
+                </h2>
+              </div>
+              <div class="event-logistics-cols">
+                <h2 class="event-title">
+                  Location:<span class="event-body"></span>
+                </h2>
+                <h2 class="event-title">
+                  Spots Available:<span class="event-body"></span>
+                </h2>
+              </div>
+              <div class="event-logistics-cols">
+                <h2 class="event-title">
+                  Sport:<span class="event-body"></span>
+                </h2>
+              </div>
+            </div>
+            <div class="event-description">
+              <h2 class="event-title">
+                Description:<span class="event-body"></span>
+              </h2>
+            </div>
+            <br />
+            <div class="btns-layout">
+              <button
+                type="button"
+                class="event-modify"
+                id="event-action-button"
+              >
+                Modify Event
+              </button>
+              <button
+                type="button"
+                class="event-delete"
+                id="event-action-button"
+              >
+                Delete Event
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <script>
       window.onload = function () {
@@ -120,7 +130,9 @@
             ).alt = `${event.eventName}`;
             document.querySelectorAll(
               ".event-title .event-body"
-            )[0].textContent = `${event.eventDate} @ ${event.eventTime}`;
+            )[0].textContent = `${formatDate(event.eventDate)} @ ${
+              event.eventTime
+            }`;
             const accessibility = event.accessibility
               .split(",")
               .map(
@@ -155,26 +167,25 @@
       };
 
       function showDeleteConfirmationModal(eventId) {
-        const modal = document.getElementById('confirmation-modal'); 
-        const mainContent = document.getElementById('main-content'); 
+        const modal = document.getElementById("confirmation-modal");
+        const mainContent = document.getElementById("main-content");
 
-
-        modal.style.display = 'block';
-        mainContent.classList.add('blur');
+        modal.style.display = "block";
+        mainContent.classList.add("blur");
 
         // Handle 'No' Button: hide modal and remove blur
-        document.getElementById('cancel-no').onclick = function() {
-            modal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+        document.getElementById("cancel-no").onclick = function () {
+          modal.style.display = "none";
+          // overlay.style.display = 'none';
+          mainContent.classList.remove("blur");
         };
 
         // Handle 'Yes' Button: proceed with deletion and remove blur
-        document.getElementById('cancel-yes').onclick = function() {
+        document.getElementById("cancel-yes").onclick = function () {
           deleteEvent(eventId);
-            modal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+          modal.style.display = "none";
+          // overlay.style.display = 'none';
+          mainContent.classList.remove("blur");
         };
       }
 
@@ -210,45 +221,54 @@
       }
 
       document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(
+          ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+        );
+        const navLinksforenter = document.querySelectorAll(
+          ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+        );
+        // console.log(navLinksforenter);
+        // console.log(navLinks);
+        navLinksforenter.forEach((item) => {
+          const link = item.querySelector("a");
+          // if (link == null) {
+          //   console.log(item.href);
+          // }
+          // else {
+          //   console.log(link.href);
+          // }
 
-const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
-// console.log(navLinksforenter);
-// console.log(navLinks);
-navLinksforenter.forEach((item) => {
-  const link = item.querySelector("a");
-  // if (link == null) {
-  //   console.log(item.href);
-  // }
-  // else {
-  //   console.log(link.href);
-  // }
-  
-  item.addEventListener("click", () => {
-  if (link == null) {
-    window.location.href = item.href;
-  } else {
-    window.location.href = link.href; 
-  }
-  });
-  item.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      console.log("reached");
-      if (link == null) {
-        toggleDropdown();
-      } else {
-        window.location.href = link.href; 
+          item.addEventListener("click", () => {
+            if (link == null) {
+              window.location.href = item.href;
+            } else {
+              window.location.href = link.href;
+            }
+          });
+          item.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              console.log("reached");
+              if (link == null) {
+                toggleDropdown();
+              } else {
+                window.location.href = link.href;
+              }
+            }
+          });
+        });
+      });
+
+      function formatDate(dateStr) {
+        const [year, day, month] = dateStr.split("-"); // Split into year, day, month
+        return `${month}/${day}/${year}`; // Reformat to MM/DD/YYYY
       }
-    }
-  });
-});
-});
 
-function toggleDropdown() {
-  const dropdownContent = document.querySelector(".dropbtn");
-  console.log(dropdownContent);
-  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-} 
+      function toggleDropdown() {
+        const dropdownContent = document.querySelector(".dropbtn");
+        console.log(dropdownContent);
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
+      }
     </script>
     <script src="../../scripts/navbar.js"></script>
   </body>

@@ -19,12 +19,18 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
-        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button">
+          <a href="/pages/homepage.html">Home</a>
+        </li>
+        <li tabindex="0" role="button">
+          <a href="/pages/myEvents.html">My Events</a>
+        </li>
+        <li tabindex="0" role="button">
+          <a href="/pages/myLeagues.html">My Leagues</a>
+        </li>
       </ul>
       <div class="nav-create" tabindex="0" role="button">
-        <button class="dropbtn" >Create</button>
+        <button class="dropbtn">Create</button>
         <div class="dropdown-content">
           <a href="/pages/create_modify_event.html">Event</a>
           <a href="/pages/create_modify_league.html">League</a>
@@ -50,12 +56,24 @@
 
     <div class="filter-options">
       <label tabindex="0" role="button"
-        ><input type="checkbox" id="wheelchair-access" value="wheelchair" tabindex="0" role="button"/>
+        ><input
+          type="checkbox"
+          id="wheelchair-access"
+          value="wheelchair"
+          tabindex="0"
+          role="button"
+        />
         Wheelchair Accessible</label
       >
       <label tabindex="0" role="button"
-        ><input type="checkbox" id="blind-access" value="blindness" tabindex="0" role="button"/> Blind
-        Accessible</label
+        ><input
+          type="checkbox"
+          id="blind-access"
+          value="blindness"
+          tabindex="0"
+          role="button"
+        />
+        Blind Accessible</label
       >
     </div>
     <!-- </div> -->
@@ -104,7 +122,6 @@
               window.location.href = "view_league.html";
             }
           });
-
         });
       });
 
@@ -192,7 +209,9 @@
         container.innerHTML = "";
         leagues.forEach((league) => {
           const leagueHtml = `
-                    <div class="league-card" title="${league.id}" tabindex="0" role="button">
+                    <div class="league-card" title="${
+                      league.id
+                    }" tabindex="0" role="button">
                         <img src="${
                           league.imageUrl ||
                           "../assets/images/default_league.png"
@@ -219,7 +238,9 @@
             )
             .join(", ");
           const eventHtml = `
-          <div class="event-card" title="${event.id}" tabindex="0" role="button">
+          <div class="event-card" title="${
+            event.id
+          }" tabindex="0" role="button">
             <div class="event-card-picture">
               <img src="${event.imageUrl || "../assets/images/default.png"}" />
             </div>
@@ -252,7 +273,7 @@
         const rsvpButtons = document.querySelectorAll(".event-card-rsvp");
         rsvpButtons.forEach((button) => {
           button.addEventListener("click", function (event) {
-            event.stopPropagation(); 
+            event.stopPropagation();
             const card = this.closest(".event-card");
             const id = card.getAttribute("title");
             console.log(`RSVPing to Event ID: ${id}`);
@@ -261,7 +282,7 @@
 
           button.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
-              event.stopPropagation(); 
+              event.stopPropagation();
               const card = button.closest(".event-card");
               const id = card.getAttribute("title");
               console.log(`RSVPing to Event ID: ${id}`);
@@ -275,13 +296,13 @@
         const cards = document.querySelectorAll(selector);
         cards.forEach((card) => {
           card.addEventListener("click", function () {
-            const id = this.getAttribute("title"); 
+            const id = this.getAttribute("title");
             window.location.href = `${redirectPage}?id=${id}`;
           });
 
           card.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
-              const id = card.getAttribute("title"); 
+              const id = card.getAttribute("title");
               window.location.href = `${redirectPage}?id=${id}`;
             }
           });
@@ -331,45 +352,49 @@
       }
 
       document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(
+          ".nav-links li a, .dropdown-content a, .nav-create .dropbtn"
+        );
+        const navLinksforenter = document.querySelectorAll(
+          ".nav-links li, .dropdown-content a, .nav-create .dropbtn"
+        );
+        // console.log(navLinksforenter);
+        // console.log(navLinks);
+        navLinksforenter.forEach((item) => {
+          const link = item.querySelector("a");
+          // if (link == null) {
+          //   console.log(item.href);
+          // }
+          // else {
+          //   console.log(link.href);
+          // }
 
-    const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-    const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
-    // console.log(navLinksforenter);
-    // console.log(navLinks);
-    navLinksforenter.forEach((item) => {
-      const link = item.querySelector("a");
-      // if (link == null) {
-      //   console.log(item.href);
-      // }
-      // else {
-      //   console.log(link.href);
-      // }
-      
-      item.addEventListener("click", () => {
-      if (link == null) {
-        window.location.href = item.href;
-      } else {
-        window.location.href = link.href; 
+          item.addEventListener("click", () => {
+            if (link == null) {
+              window.location.href = item.href;
+            } else {
+              window.location.href = link.href;
+            }
+          });
+          item.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              console.log("reached");
+              if (link == null) {
+                toggleDropdown();
+              } else {
+                window.location.href = link.href;
+              }
+            }
+          });
+        });
+      });
+
+      function toggleDropdown() {
+        const dropdownContent = document.querySelector(".dropbtn");
+        console.log(dropdownContent);
+        dropdownContent.style.display =
+          dropdownContent.style.display === "block" ? "none" : "block";
       }
-      });
-      item.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          console.log("reached");
-          if (link == null) {
-            toggleDropdown();
-          } else {
-            window.location.href = link.href; 
-          }
-        }
-      });
-    });
-    });
-
-    function toggleDropdown() {
-      const dropdownContent = document.querySelector(".dropbtn");
-      console.log(dropdownContent);
-      dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-    } 
     </script>
     <!-- <script src="../../scripts/navbar.js"></script> -->
   </body>
