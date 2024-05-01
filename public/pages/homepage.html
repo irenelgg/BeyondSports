@@ -23,8 +23,8 @@
   <body>
     <header>
       <nav class="navbar">
-        <div class="nav-logo" tabindex="0">
-          <img src="../assets/icons/icon_logo.svg" alt="BeyondSports Logo" />
+        <div class="nav-logo" tabindex="0" role="button">
+          <img src="../assets/icons/icon_logo.svg" />
           <span>BeyondSports</span>
         </div>
         <div class="nav-search">
@@ -41,19 +41,22 @@
             <a href="/pages/myLeagues.html">My Leagues</a>
           </li>
         </ul>
-        <div class="nav-create" tabindex="0" role="button">
-          <button class="dropbtn" tabindex="0">Create</button>
+        <div class="nav-create">
+          <button class="dropbtn">Create</button>
           <div class="dropdown-content">
-            <a href="/pages/create_modify_event.html" tabindex="0">Event</a>
-            <a href="/pages/create_modify_league.html" tabindex="0">League</a>
+            <a href="/pages/create_modify_event.html">Event</a>
+            <a href="/pages/create_modify_league.html">League</a>
           </div>
         </div>
-        <div class="nav-toggle" tabindex="0">
+        <div class="nav-toggle">
           <div class="nav-toggle-icon"></div>
           <div class="nav-dropdown">
             <a href="/pages/homepage.html">Home</a>
             <a href="/pages/myEvents.html">My Events</a>
             <a href="/pages/myLeagues.html">My Leagues</a>
+            <a href="/pages/create_modify_event.html">Create an Event</a>
+            <a href="/pages/create_modify_league.html">Create a League</a>
+            <input type="text" placeholder="Search" />
           </div>
         </div>
       </nav>

@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../styles/eventcard.css" />
     <link rel="stylesheet" href="../styles/leaguecard.css" />
     <link rel="stylesheet" href="../styles/selectedsport.css" />
-    <link rel="stylesheet" href="../styles/create_modify_event.css">
-    <link rel="stylesheet" href="../styles/event.css">
-    <link rel="stylesheet" href="../styles/powerup.css">
+    <link rel="stylesheet" href="../styles/create_modify_event.css" />
+    <link rel="stylesheet" href="../styles/event.css" />
+    <link rel="stylesheet" href="../styles/powerup.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -48,38 +48,32 @@
 
     <div class="selected-sport-title">
       <h1>PowerUp League</h1>
-      
     </div>
     <div class="images">
       <img src="../assets/images/hoop.png" alt="Basketball Game" />
-  </div>
+    </div>
     <div class="selected-sport-title">
-      
-      <h2>Dates:<span class="event-body">April 7 - 16, 2024</span>   
-      
-  </h2>
+      <h2>Dates:<span class="event-body">April 7 - 16, 2024</span></h2>
 
-      <h2>Organizers:<span class="event-body">RSF, UC Berkeley
-       </span></h2>
-      <h2>Spots available:<span class="event-body">9/16 </span>
-      </h2>
+      <h2>Organizers:<span class="event-body">RSF, UC Berkeley </span></h2>
+      <h2>Spots available:<span class="event-body">9/16 </span></h2>
       <h2>Prize:<span class="event-body"> 1000 </span></h2>
       <h2>Rules and Requirements:</h2>
       <ul>
-    
-      <li><h2><span class="event-body">Wheelchair only</span></h2></li>
-    <li><h2><span class="event-body">Must be 21+</span></h2></li>
-<li><h2><span class="event-body">White Clothes Only</span></h2></li>
-</ul>
+        <li>
+          <h2><span class="event-body">Wheelchair only</span></h2>
+        </li>
+        <li>
+          <h2><span class="event-body">Must be 21+</span></h2>
+        </li>
+        <li>
+          <h2><span class="event-body">White Clothes Only</span></h2>
+        </li>
+      </ul>
 
-
-<button type="button" class="accept">Accept 
-  Invitation
-</button>
-<button type="button" class="reject">Reject Invitation</button>
-      </h2>
+      <button type="button" class="accept">Accept Invitation</button>
+      <button type="button" class="reject">Reject Invitation</button>
       <h2>Events:</h2>
-
     </div>
 
     <div class="events-container">
@@ -162,46 +156,22 @@
       </div>
     </div>
 
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
-      const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
-      // console.log(navLinksforenter);
-      // console.log(navLinks);
-      navLinksforenter.forEach((item) => {
-        const link = item.querySelector("a");
-        // if (link == null) {
-        //   console.log(item.href);
-        // }
-        // else {
-        //   console.log(link.href);
-        // }
-        
-        item.addEventListener("click", () => {
-        if (link == null) {
-          window.location.href = item.href;
-        } else {
-          window.location.href = link.href; 
-        }
-        });
-        item.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            console.log("reached");
-            if (link == null) {
-              toggleDropdown();
-            } else {
-              window.location.href = link.href; 
-            }
-          }
-        });
-      });
-      });
-
-      function toggleDropdown() {
-        const dropdownContent = document.querySelector(".dropbtn");
-        console.log(dropdownContent);
-        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-      } 
+    document.addEventListener("DOMContentLoaded", function () { const navLinks =
+    document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create
+    .dropbtn"); const navLinksforenter = document.querySelectorAll(".nav-links
+    li, .dropdown-content a, .nav-create .dropbtn"); //
+    console.log(navLinksforenter); // console.log(navLinks);
+    navLinksforenter.forEach((item) => { const link = item.querySelector("a");
+    // if (link == null) { // console.log(item.href); // } // else { //
+    console.log(link.href); // } item.addEventListener("click", () => { if (link
+    == null) { window.location.href = item.href; } else { window.location.href =
+    link.href; } }); item.addEventListener("keydown", (event) => { if (event.key
+    === "Enter" || event.key === " ") { console.log("reached"); if (link ==
+    null) { toggleDropdown(); } else { window.location.href = link.href; } } });
+    }); }); function toggleDropdown() { const dropdownContent =
+    document.querySelector(".dropbtn"); console.log(dropdownContent);
+    dropdownContent.style.display = dropdownContent.style.display === 'block' ?
+    'none' : 'block'; }
     <script src="../../scripts/navbar.js"></script>
   </body>
 </html>
