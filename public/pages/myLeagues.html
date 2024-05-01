@@ -12,7 +12,7 @@
 
   <body>
     <nav class="navbar">
-      <div class="nav-logo">
+      <div class="nav-logo" tabindex="0" role="button">
         <img src="../assets/icons/icon_logo.svg" />
         <span>BeyondSports</span>
       </div>
@@ -20,9 +20,9 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
       </ul>
       <div class="nav-create">
         <button class="dropbtn">Create</button>
@@ -88,65 +88,144 @@
       }
 
       function updateParticipationDisplay(leagues) {
-        const confirmedContainer = document.querySelector(
-          ".leagues-opened-container"
-        );
-        const pendingContainer = document.querySelector(
-          ".pending-leagues-container"
-        );
-        leagues.forEach((league) => {
-          let link;
-          if (league.type === "participant") {
-            link = "/pages/accepted-league.html?id=" + league.id;
-          } else if (league.type === "pending") {
-            link = "/pages/pending-league.html?id=" + league.id; // replace with the correct link for pending leagues
-          }
-          const leagueHtml = `
-            <div class="league-card" onclick="location.href='${link}'">
-              <img src="${
-                league.imageUrl || "../assets/images/default_league.png"
-              }" alt="${league.leagueName}" />
-              <div class="league-info">
-                <h3>${league.leagueName}</h3>
-                <p>${league.eventDates}</p>
-              </div>
-            </div>
-          `;
-          if (league.type === "participant") {
-            confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
-          } else if (league.type === "pending") {
-            pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
-          }
-        });
+    const confirmedContainer = document.querySelector(".leagues-opened-container");
+    const pendingContainer = document.querySelector(".pending-leagues-container");
+
+    leagues.forEach((league) => {
+      let link;
+      if (league.type === "participant") {
+        link = "/pages/accepted-league.html?id=" + league.id;
+      } else if (league.type === "pending") {
+        link = "/pages/pending-league.html?id=" + league.id;
       }
 
-      function updateCreatedLeaguesDisplay(leagues) {
-        const createdContainer = document.querySelector(
-          ".created-leagues-container"
-        );
-        leagues.forEach((league) => {
-          const leagueHtml = `
-            <div class="league-card" onclick="location.href='/pages/delete-league.html?id=${
-              league.id
-            }'">
-              <img src="${
-                league.imageUrl || "../assets/images/default_league.png"
-              }" alt="${league.leagueName}" />
-              <div class="league-info">
-                <h3>${league.leagueName}</h3>
-                <p>${league.eventDates}</p>
-              </div>
-            </div>
-          `;
-          createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
-        });
+      const leagueHtml = `
+        <div class="league-card" tabindex="0" role="button" data-link="${link}">
+          <img src="${league.imageUrl || '../assets/images/default_league.png'}" alt="${league.leagueName}" />
+          <div class="league-info">
+            <h3>${league.leagueName}</h3>
+            <p>${league.eventDates}</p>
+          </div>
+        </div>
+      `;
+
+      if (league.type === "participant") {
+        confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
+      } else if (league.type === "pending") {
+        pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
       }
     });
+
+    addEventListenersToLeagueCards();
+  }
+
+  function updateCreatedLeaguesDisplay(leagues) {
+    const createdContainer = document.querySelector(".created-leagues-container");
+
+    leagues.forEach((league) => {
+      const leagueHtml = `
+        <div class="league-card" tabindex="0" role="button" data-link="/pages/delete-league.html?id=${league.id}">
+          <img src="${league.imageUrl || '../assets/images/default_league.png'}" alt="${league.leagueName}" />
+          <div class="league-info">
+            <h3>${league.leagueName}</h3>
+            <p>${league.eventDates}</p>
+          </div>
+        </div>
+      `;
+
+      createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
+    });
+
+    addEventListenersToLeagueCards();
+  }
+
+  function addEventListenersToLeagueCards() {
+    const leagueCards = document.querySelectorAll(".league-card");
+
+    leagueCards.forEach((card) => {
+      const link = card.getAttribute("data-link"); // Retrieve the link directly
+
+      card.addEventListener("click", () => {
+        window.location.href = link;
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          window.location.href = link;
+        }
+      });
+    });
+  }
+
+      // function updateParticipationDisplay(leagues) {
+
+      //   const confirmedContainer = document.querySelector(
+      //     ".leagues-opened-container"
+      //   );
+      //   const pendingContainer = document.querySelector(
+      //     ".pending-leagues-container"
+      //   );
+      //   leagues.forEach((league) => {
+      //     let link;
+      //     if (league.type === "participant") {
+      //       link = "/pages/accepted-league.html?id=" + league.id;
+      //     } else if (league.type === "pending") {
+      //       link = "/pages/pending-league.html?id=" + league.id; // replace with the correct link for pending leagues
+      //     }
+      //     const leagueHtml = `
+      //       <div class="league-card" tabindex="0" role="button" onclick="location.href='${link}'">
+      //         <img src="${
+      //           league.imageUrl || "../assets/images/default_league.png"
+      //         }" alt="${league.leagueName}" />
+      //         <div class="league-info">
+      //           <h3>${league.leagueName}</h3> 
+      //           <p>${league.eventDates}</p>
+      //         </div>
+      //       </div>
+      //     `;
+      //     if (league.type === "participant") {
+      //       confirmedContainer.insertAdjacentHTML("beforeend", leagueHtml);
+      //     } else if (league.type === "pending") {
+      //       pendingContainer.insertAdjacentHTML("beforeend", leagueHtml);
+      //     }
+
+
+
+      //   });
+      // }
+
+      
+
+      // function updateCreatedLeaguesDisplay(leagues) {
+      //   const createdContainer = document.querySelector(
+      //     ".created-leagues-container"
+      //   );
+      //   leagues.forEach((league) => {
+      //     const leagueHtml = `
+      //       <div class="league-card" tabindex="0" role="button" onclick="location.href='/pages/delete-league.html?id=${
+      //         league.id
+      //       }'">
+      //         <img src="${
+      //           league.imageUrl || "../assets/images/default_league.png"
+      //         }" alt="${league.leagueName}" />
+      //         <div class="league-info">
+      //           <h3>${league.leagueName}</h3>
+      //           <p>${league.eventDates}</p>
+      //         </div>
+      //       </div>
+      //     `;
+      //     createdContainer.insertAdjacentHTML("beforeend", leagueHtml);
+      //   });
+      // }
+    });
+
+    
 
     document.addEventListener("DOMContentLoaded", function () {
 
 const navLinks = document.querySelectorAll(".nav-links li a, .dropdown-content a, .nav-create .dropbtn");
 const navLinksforenter = document.querySelectorAll(".nav-links li, .dropdown-content a, .nav-create .dropbtn");
+
 // console.log(navLinksforenter);
 // console.log(navLinks);
 navLinksforenter.forEach((item) => {

@@ -16,7 +16,7 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="nav-logo">
+      <div class="nav-logo" tabindex="0" role="button">
         <img src="../assets/icons/icon_logo.svg" />
         <span>BeyondSports</span>
       </div>
@@ -24,9 +24,9 @@
         <input type="text" placeholder="Search for anything" />
       </div>
       <ul class="nav-links">
-        <li><a href="/pages/homepage.html">Home</a></li>
-        <li><a href="/pages/myEvents.html">My Events</a></li>
-        <li><a href="/pages/myLeagues.html">My Leagues</a></li>
+        <li tabindex="0" role="button"><a href="/pages/homepage.html">Home</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myEvents.html">My Events</a></li>
+        <li tabindex="0" role="button"><a href="/pages/myLeagues.html">My Leagues</a></li>
       </ul>
       <div class="nav-create">
         <button class="dropbtn">Create</button>
@@ -73,9 +73,12 @@
             </li>
           </ul>
 
-          <button type="button" class="delete-league league-btn">
-            Delete League
-          </button>
+          <div class="delete-league league-btn" tabindex="0" role="button">
+            <button type="button" style="background-color: transparent; color: white; border: none;">
+              Delete League
+            </button>
+          </div>
+
           <h2 class="event-names-container">Events:</h2>
         </div>
         <div class="images">
@@ -188,6 +191,15 @@
           );
           showDeleteConfirmationModal(leagueId)
         });
+
+      document.querySelector(".delete-league").addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          const leagueId = new URLSearchParams(window.location.search).get(
+            "id"
+          );
+          showDeleteConfirmationModal(leagueId)
+        }
+      });
 
       function showDeleteConfirmationModal(leagueId) {
         const modal = document.getElementById('confirmation-modal'); 

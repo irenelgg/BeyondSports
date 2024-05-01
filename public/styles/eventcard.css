@@ -110,6 +110,9 @@ body {
   cursor: pointer; /* Changes cursor to pointer on hover */
   font-weight: bold; /* Makes text bold */
   margin-top: 15px; /* Adds top margin */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  display: flex;
 }
 
 .event-card-button.confirmed,
@@ -127,11 +130,11 @@ body {
 
 .event-card-button.cancel,
 .event-card-button.delete {
-  background-color: white; /* White background for the 'button' */
-  color: var(--primary-color); /* Blue text color */
-  padding: 8px 16px; /* Padding inside the 'button' */
-  border: 2px solid var(--primary-color); /* Blue border for the 'button' */
-  border-radius: 10px; /* Rounded corners for the 'button' */
-  font-weight: bold; /* Optional: Makes the text bold */
+  background-color: white; 
+  color: var(--primary-color);
+  padding: 8px 16px; 
+  border: 2px solid var(--primary-color);
+  border-radius: 10px; 
+  font-weight: bold; 
   width: 170px;
 }

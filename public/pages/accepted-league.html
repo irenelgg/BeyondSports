@@ -75,9 +75,11 @@
           </li>
         </ul>
 
-        <button type="button" class="exit-league league-btn">
-          Exit League
-        </button>
+        <div class="exit-league league-btn" tabindex="0" role="button">
+          <button type="button" style= "background-color: transparent; color: white; border: none;">
+            Exit League
+          </button>
+        </div>
         <h2 class="event-names-container">Events:</h2>
       </div>
       <div class="images">
@@ -182,35 +184,41 @@
         });
       }
 
-      document
-        .querySelector(".exit-league")
-        .addEventListener("click", function () {
-          const leagueId = new URLSearchParams(window.location.search).get(
-            "id"
-          );
-          const userId = 1; // Get this dynamically as needed
+      document.addEventListener("DOMContentLoaded", function () {
+        const exitLeagueButton = document.querySelector(".exit-league");
 
-          const confirmationModal = document.getElementById('confirmation-modal');
-          const mainContent = document.getElementById('main-content');
+        exitLeagueButton.addEventListener("click", () => {
+          showConfirmationModal();
+        });
 
-          confirmationModal.style.display = 'block';
-          mainContent.classList.add('blur');
+        exitLeagueButton.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            showConfirmationModal(); // Show modal on Enter or Space key press
+          }
+        });
+      });
+
+      function showConfirmationModal() {
+        const leagueId = new URLSearchParams(window.location.search).get("id");
+        const confirmationModal = document.getElementById("confirmation-modal");
+        const mainContent = document.getElementById("main-content");
+
+        confirmationModal.style.display = "block";
+        mainContent.classList.add("blur");
 
         // Handle 'No' Button: hide modal and remove blur
-        document.getElementById('cancel-no').onclick = function() {
-          confirmationModal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+        document.getElementById("cancel-no").onclick = function () {
+          confirmationModal.style.display = "none";
+          mainContent.classList.remove("blur");
         };
 
-        // Handle 'Yes' Button: proceed with deletion and remove blur
-        document.getElementById('cancel-yes').onclick = function() {
-            exitLeague(leagueId);
-            confirmationModal.style.display = 'none';
-            // overlay.style.display = 'none';
-            mainContent.classList.remove('blur'); 
+        // Handle 'Yes' Button: proceed with leaving and remove blur
+        document.getElementById("cancel-yes").onclick = function () {
+          exitLeague(leagueId);
+          confirmationModal.style.display = "none";
+          mainContent.classList.remove("blur");
         };
-        });
+      }
 
 
       function exitLeague(leagueId) {
