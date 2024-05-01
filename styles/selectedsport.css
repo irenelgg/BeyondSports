@@ -50,6 +50,7 @@ body {
   .event-card {
     width: 100%; /* Make event cards take full width */
     margin-bottom: 20px; /* Adjust margin between event cards */
+    cursor: pointer;
   }
 
   .league-container {

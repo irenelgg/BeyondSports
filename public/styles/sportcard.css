@@ -23,8 +23,9 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
+  flex-wrap: wrap;
 }
 
 .title {
