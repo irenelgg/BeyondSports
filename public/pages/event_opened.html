@@ -177,7 +177,7 @@
             return response.json();
           })
           .then((data) => {
-            alert(data.message); // Alert or update UI to show success message
+            // alert(data.message); // Alert or update UI to show success message
             window.location.href = "/pages/myEvents.html";
           })
           .catch((error) => console.error("Failed to RSVP:", error));

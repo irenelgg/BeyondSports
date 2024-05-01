@@ -67,8 +67,17 @@
   margin-left: 10px;
 }
 
-.images img {
+/* .images img {
   max-width: 500px;
+} */
+
+.images img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+  object-fit: cover;
+  min-width: 300px;
+  min-height: 300px;
 }
 
 .league-btn {

@@ -238,8 +238,8 @@
             )
             .join(", ");
           const description =
-            event.description.length > 80
-              ? event.description.substring(0, 80) + "..."
+            event.description.length > 70
+              ? event.description.substring(0, 70) + "..."
               : event.description;
           const eventHtml = `
           <div class="event-card" title="${
@@ -264,7 +264,9 @@
               <hr class="card-divider" />
               <div class="event-card-time">
                 <p>Time</p>
-                <div class="time-shape">${event.eventTime}</div>
+                <div class="time-shape">${event.eventTime}, ${formatDate(
+            event.eventDate
+          )}</div>
               </div>
               <div class="event-card-rsvp" tabindex="0" role="button">RSVP</div>
             </div>
@@ -335,7 +337,7 @@
             return response.json();
           })
           .then((data) => {
-            alert(data.message); // Show the alert with the success message
+            // alert(data.message); // Show the alert with the success message
             window.location.href = "/pages/myEvents.html"; // Redirect to the user's events page
           })
           .catch((error) => {
@@ -392,6 +394,11 @@
           });
         });
       });
+
+      function formatDate(dateStr) {
+        const [year, day, month] = dateStr.split("-"); // Split into year, day, month
+        return `${month}/${day}/${year}`; // Reformat to MM/DD/YYYY
+      }
 
       function toggleDropdown() {
         const dropdownContent = document.querySelector(".dropbtn");

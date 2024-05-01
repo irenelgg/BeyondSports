@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/event.css" />
     <link rel="stylesheet" href="../styles/powerup.css" />
     <link rel="stylesheet" href="../styles/leaguesignup.css" />
+    <link rel="stylesheet" href="../styles/yesnobutton.css" />
   </head>
   <body>
     <div id="team-modal" class="modal">
@@ -32,6 +33,7 @@
           name="member1-name"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
         <input
           type="email"
@@ -39,6 +41,7 @@
           name="member1-email"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
       </div>
       <p class="input-title">Team Member 2</p>
@@ -49,6 +52,7 @@
           name="member1-name"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
         <input
           type="email"
@@ -56,6 +60,7 @@
           name="member1-email"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
       </div>
       <p class="input-title">Team Member 3</p>
@@ -66,6 +71,7 @@
           name="member1-name"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
         <input
           type="email"
@@ -73,6 +79,7 @@
           name="member1-email"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
       </div>
       <p class="input-title">Team Member 4</p>
@@ -83,6 +90,7 @@
           name="member1-name"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
         <input
           type="email"
@@ -90,6 +98,7 @@
           name="member1-email"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
       </div>
       <p class="input-title">Team Member 5</p>
@@ -100,6 +109,7 @@
           name="member1-name"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
         <input
           type="email"
@@ -107,6 +117,7 @@
           name="member1-email"
           tabindex="0"
           role="button"
+          style="margin-right: 15px"
         />
       </div>
       <p>
@@ -114,8 +125,24 @@
         sent to all team members via email.
       </p>
       <div class="modal-buttons">
-        <button id="no-button" tabindex="0" role="button">NO, GO BACK</button>
-        <button id="yes-button" tabindex="0" role="button">YES, JOIN</button>
+        <button
+          id="no-button"
+          class="no-button"
+          tabindex="0"
+          role="button"
+          style="outline: none; color: white"
+        >
+          NO, GO BACK
+        </button>
+        <button
+          id="yes-button"
+          class="no-button"
+          tabindex="0"
+          role="button"
+          style="outline: none; color: white"
+        >
+          YES, JOIN
+        </button>
       </div>
     </div>
 
@@ -253,8 +280,8 @@
             )
             .join(", ");
           const description =
-            event.description.length > 80
-              ? event.description.substring(0, 80) + "..."
+            event.description.length > 70
+              ? event.description.substring(0, 70) + "..."
               : event.description;
           const eventHtml = `
                   <div class="event-card">
@@ -362,7 +389,7 @@
           .then((response) => response.json())
           .then((data) => {
             if (data.message) {
-              alert(data.message); // Show confirmation or redirect
+              // alert(data.message); // Show confirmation or redirect
               location.href = "myLeagues.html"; // Redirect to my leagues page
             }
           })

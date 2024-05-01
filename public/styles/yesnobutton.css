@@ -44,7 +44,7 @@ body {
 
 button {
   /* margin: 10px; */
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   border: none;
   color: white;
   font-size: 14px;
@@ -55,10 +55,12 @@ button {
 
 .yes-button {
   background-color: #fc1513;
+  padding: 10px 20px;
 }
 
 .no-button {
   background-color: #1d96ec;
+  padding: 10px 20px;
 }
 .yes-button:hover {
   background-color: #b51513;
@@ -79,10 +81,5 @@ button {
 
   .question {
     font-size: 20px; /* Decrease font size for question */
-  }
-
-  button {
-    padding: 8px 16px; /* Adjust button padding for smaller screens */
-    font-size: 12px; /* Decrease font size for buttons */
   }
 }

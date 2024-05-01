@@ -159,8 +159,8 @@
             )
             .join(", ");
           const description =
-            event.description.length > 80
-              ? event.description.substring(0, 80) + "..."
+            event.description.length > 70
+              ? event.description.substring(0, 70) + "..."
               : event.description;
           const eventHtml = `
                   <div class="event-card">
@@ -253,7 +253,7 @@
         })
           .then((response) => response.json())
           .then((data) => {
-            alert(data.message);
+            // alert(data.message);
             window.location.href = "/pages/myLeagues.html"; // Redirect to the leagues list page
           })
           .catch((error) => console.error("Error deleting league:", error));
