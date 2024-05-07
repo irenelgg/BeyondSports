@@ -1,5 +1,19 @@
-To run: node server.js
-http://localhost:3000/pages/selectedsport.html
+To run: 
+
+1. git clone https://github.com/zeidsolh/BeyondSports.git
+
+2. cd BeyondSports
+
+3. node server.js
+
+4. Open: http://localhost:3000/pages/homepage.html
+
+
+
+
+
+
+Database Structure:
 
 1. **Events Table**
 
