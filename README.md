@@ -1,90 +1,122 @@
-To run: 
+# BeyondSports
 
-1. git clone https://github.com/zeidsolh/BeyondSports.git
+**BeyondSports** is an inclusive platform that connects individuals with accessible sports events and leagues in their local area. Designed to promote inclusivity and accessibility, our application empowers users to organize and participate in events while addressing the unique needs of individuals with disabilities.
 
-2. cd BeyondSports
+---
 
-3. node server.js
+## 🌟 Features
 
-4. Open: http://localhost:3000/pages/homepage.html
+- **Discover Events**: Browse upcoming sports events tailored to your interests.
+- **Create Events**: Organize events and specify accessibility options to ensure inclusivity.
+- **Join Leagues**: Participate in or organize leagues that connect individuals with shared sports interests.
+- **Manage Invitations**: Send and track invites for users to join events or leagues.
+- **Accessibility Focus**: Provide details about accessibility options for events and allow users to specify their needs.
 
+---
 
+## 🚀 Getting Started
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/irenelgg/BeyondSports.git
+2. Navigate to the project directory:
+   ```bash
+   cd BeyondSports
+3. Start the server:
+    ```bash
+    node server.js
+4. Open your browser and visit: http://localhost:3000/pages/homepage.html
 
+---
 
+## 📊 Database Structure
 
-Database Structure:
+Our platform uses a well-defined relational database structure to manage users, events, leagues, and participation data.
 
-1. **Events Table**
+### Events Table
 
-   - **Purpose**: This table stores information about individual events.
-   - **Fields**:
-     - `id`: Unique identifier for each event.
-     - `eventName`: Name of the event.
-     - `eventDate`: Date when the event occurs.
-     - `eventTime`: Time when the event occurs.
-     - `address`, `city`, `state`: Location details of the event.
-     - `description`: A brief description of what the event entails.
-     - `spots`: Number of available spots or participants for the event.
-     - `sport`: Type of sport (if applicable).
-     - `imageUrl`: URL to an image representing the event.
-     - `accessibility`: Details about accessibility options available at the event.
-     - `creator_id`: Identifier linking to the user who created the event.
+**Purpose**: Stores information about individual events.
+**Fields**:
+- `id`: Unique identifier for each event.
+- `eventName`: Name of the event.
+- `eventDate`: Date when the event occurs.
+- `eventTime`: Time when the event occurs.
+- `address`, `city`, `state`: Location details of the event.
+- `description`: A brief description of the event.
+- `spots`: Number of available spots or participants for the event.
+- `sport`: Type of sport.
+- `imageUrl`: URL to an image representing the event.
+- `accessibility`: Details about accessibility options available at the event.
+- `creator_id`: Identifier for the user who created the event.
 
-2. **Leagues Table**
+### Leagues Table
 
-   - **Purpose**: This table stores information about leagues, which can consist of multiple related events.
-   - **Fields**:
-     - `id`: Unique identifier for each league.
-     - `leagueName`: Name of the league.
-     - `prize`: Description of the prize for winning the league.
-     - `eventDates`: Dates on which league events occur.
-     - `spots`: Number of available spots or teams in the league.
-     - `organizer`: The organizer of the league.
-     - `rules`: Specific rules or regulations for the league.
-     - `imageUrl`: URL to an image representing the league.
-     - `creator_id`: Identifier for the user who created the league.
+**Purpose**: Manages information about leagues, which consist of multiple related events.
+**Fields**:
+- `id`: Unique identifier for each league.
+- `leagueName`: Name of the league.
+- `prize`: Description of the prize for the league.
+- `eventDates`: Dates on which league events occur.
+- `spots`: Number of available spots or teams.
+- `organizer`: The organizer of the league.
+- `rules`: Rules for the league.
+- `imageUrl`: URL to an image representing the league.
+- `creator_id`: Identifier for the league creator.
 
-3. **Users Table**
+### Users Table
 
-   - **Purpose**: Stores information about users who participate in or organize events and leagues.
-   - **Fields**:
-     - `id`: Unique identifier for each user.
-     - `name`: User’s name.
-     - `accessibility`: Information about any accessibility needs the user might have.
+**Purpose**: Tracks user information.
+**Fields**:
+- `id`: Unique identifier for each user.
+- `name`: User’s name.
+- `accessibility`: Details about accessibility needs (if any).
 
-4. **League Events Relationship Table**
+### Participation Table
 
-   - **Purpose**: Manages the relationship between leagues and events, allowing for the association of multiple events with a single league.
-   - **Fields**:
-     - `league_id`: Identifier for the league.
-     - `event_id`: Identifier for the event.
-     - These fields are foreign keys that reference the primary keys in the leagues and events tables, respectively.
+**Purpose**: Tracks user participation in events and leagues.
+**Fields**:
+- `user_id`: Identifier for the user.
+- `league_id`: Identifier for the league.
+- `event_id`: Identifier for the event.
+- `type`: Specifies the role of the user (`'creator'` or `'participant'`).
 
-5. **Participation Table**
+### Invites Table
 
-   - **Purpose**: Tracks which users participate in which events and leagues, and specifies whether they are participants or creators.
-   - **Fields**:
-     - `user_id`: Identifier for the user.
-     - `league_id`: Identifier for the league.
-     - `event_id`: Identifier for the event.
-     - `type`: Specifies the role of the user (e.g., 'creator', 'participant').
-     - This table uses foreign keys to link to the users, leagues, and events tables.
+**Purpose**: Tracks invitations sent to users to join leagues.
+**Fields**:
+- `invite_id`: Unique identifier for each invite.
+- `user_id`: User who received the invite.
+- `league_id`: League associated with the invite.
+- `status`: Status of the invite (`'pending'`, `'accepted'`, or `'declined'`).
 
-6. **Invites Table**
-   - **Purpose**: Manages invitations sent to users to join leagues.
-   - **Fields**:
-     - `invite_id`: Unique identifier for each invitation.
-     - `user_id`: Identifier of the user who received the invitation.
-     - `league_id`: Identifier of the league to which the user is invited.
-     - `status`: Current status of the invitation (e.g., 'pending', 'accepted', 'declined').
-     - This table also uses foreign keys to link to the users and leagues tables.
+---
 
-Each of these tables is interconnected through various foreign keys that establish relationships between different entities (users, events, leagues). This structure supports complex queries and operations, such as finding all events created by a particular user, listing all participants of an event, or managing league memberships and event scheduling.
+## 🌐 Pages
 
-PAGES:
-homepage: http://localhost:3000/pages/homepage.html
-create event page: http://localhost:3000/pages/create_modify_event.html
-create league page: http://localhost:3000/pages/create_modify_league.html
-my events page: http://localhost:3000/pages/myEvents.html?user=1
-my leagues page: http://localhost:3000/pages/myLeagues.html
+- **[Homepage](http://localhost:3000/pages/homepage.html)**  
+  Browse available sports events and leagues.
+
+- **[Create Event Page](http://localhost:3000/pages/create_modify_event.html)**  
+  Organize new events and specify accessibility options.
+
+- **[Create League Page](http://localhost:3000/pages/create_modify_league.html)**  
+  Start a new league and manage its details.
+
+- **[My Events Page](http://localhost:3000/pages/myEvents.html?user=1)**  
+  View events you’ve created or joined.
+
+- **[My Leagues Page](http://localhost:3000/pages/myLeagues.html)**  
+  Manage leagues you’re part of.
+
+---
+
+## 🎨 Figma Design
+
+Our application design is available on Figma. View the detailed wireframes and user flow:  
+**[Figma Design Link](https://www.figma.com/design/4k7iToQyi9z1vCdx7Kwp4C/App-Lofi?node-id=0-1&node-type=canvas)**
+
+---
+
+## 👩‍💻 Developers' Note
+BeyondSports was designed to empower communities by promoting accessible and inclusive sports opportunities. 
+If you have any feedback or questions, feel free to reach out or open an issue in the repository.
