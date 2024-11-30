@@ -36,7 +36,7 @@ Our platform uses a well-defined relational database structure to manage users, 
 ### Events Table
 
 **Purpose**: Stores information about individual events.
-**Fields**:
+
 - `id`: Unique identifier for each event.
 - `eventName`: Name of the event.
 - `eventDate`: Date when the event occurs.
@@ -52,7 +52,7 @@ Our platform uses a well-defined relational database structure to manage users, 
 ### Leagues Table
 
 **Purpose**: Manages information about leagues, which consist of multiple related events.
-**Fields**:
+
 - `id`: Unique identifier for each league.
 - `leagueName`: Name of the league.
 - `prize`: Description of the prize for the league.
@@ -66,7 +66,7 @@ Our platform uses a well-defined relational database structure to manage users, 
 ### Users Table
 
 **Purpose**: Tracks user information.
-**Fields**:
+
 - `id`: Unique identifier for each user.
 - `name`: User’s name.
 - `accessibility`: Details about accessibility needs (if any).
@@ -74,7 +74,7 @@ Our platform uses a well-defined relational database structure to manage users, 
 ### Participation Table
 
 **Purpose**: Tracks user participation in events and leagues.
-**Fields**:
+
 - `user_id`: Identifier for the user.
 - `league_id`: Identifier for the league.
 - `event_id`: Identifier for the event.
@@ -83,7 +83,7 @@ Our platform uses a well-defined relational database structure to manage users, 
 ### Invites Table
 
 **Purpose**: Tracks invitations sent to users to join leagues.
-**Fields**:
+
 - `invite_id`: Unique identifier for each invite.
 - `user_id`: User who received the invite.
 - `league_id`: League associated with the invite.
